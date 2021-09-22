@@ -1,0 +1,45 @@
+resumen casos de uso
+CU001 login
+CU002 negar acceso login
+CU003 descargar post
+CU004 leer post
+CU005 Nueva suscripción <- llama a un sub caso para realizar la suscripci[on
+CU006 Dejar comentario en pagina de revista
+CU007 ver lista de las revistas a las que esta suscrito
+CU008 Dejar like en Revista
+CU009 Ver informacion autor post
+CU010 Mostrar previsualización de una revista
+CU011 Realizar cobro por suscripción
+CU012 Modificar tags de gustos de usuario
+CU013 Anular suscripción a revista
+CU014 Registrar nuevo Usuario
+CU015 Modificar información del Usuario
+CU016 Seleccionar etiquetas de interés
+CU017 Convertirse en Editor
+CU018 Publicar revista
+CU019 Publicar post a revista
+CU020 Modificar información de revista
+CU021 Ver revistas publicadas (panel Editores)
+CU022 Reporte de comentarios en revistas (panel Editores)
+CU023 Reporte de suscripciones a revistas (panel Editores)
+CU024 Reporte de la revista más gustada (panel Editor)
+CU025 Obtener lista detallada suscriptores a una revista
+CU026 Obtener ganancia por revista para Editor
+CU027 Reporte de ganancias (panel Editores)
+CU028 Obtener lista detallada de suscriptores y su ganancia (panel Editores)
+CU029 Reporte de la revista más gustada (panel Editores)
+CU030 Obtener lista de suscriptores que le dieron me gusta a una revista
+CU031 Ver lista de revistas pendientes de publicar
+CU032 Aprobar publicación de revista
+CU033 Rechazar publicación de revista
+CU034 Agregar anuncio
+CU035 Deshabilitar anuncio
+CU036 Modificar anuncio
+CU037 Reporte de ganancias por revista (panel Admin)
+CU038 Reporte de ganancias por anunciante (panel Admin)
+CU039 Reporte de ganancias totales (panel Admin) <--- NO LO HE EMPEZADO
+CU040 Reporte de las 5 revistas mas populares (mas likes) (panel Admin)
+CU041 Reporte de las 5 revistas más comentadas (panel Admin)
+CU042 Reporte de anucnios (panel Admin)
+CU043 Reporte de efectividad de anuncios por anunciante (panel Admin)
+CU044 Actualizar información de revista (panel Admin)
