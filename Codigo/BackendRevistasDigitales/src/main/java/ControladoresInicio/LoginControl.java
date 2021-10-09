@@ -5,6 +5,11 @@
  */
 package ControladoresInicio;
 
+import Convertidores.Convertidor;
+import Convertidores.ConvertidorEntidadLogin;
+import EntidadesLogin.EntidadLogin;
+import LoginModel.ComprobarCredenciales;
+import Personas.Persona;
 import java.io.BufferedReader;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -20,20 +25,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginControl", urlPatterns = {"/LoginControl"})
 public class LoginControl extends HttpServlet {
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BufferedReader reader = request.getReader();
+        try {
+            ComprobarCredenciales cc = new ComprobarCredenciales(request.getReader());
+            Persona persona = cc.verificarPersona();
+            response.getWriter().append(cc.personaVerificada(persona));
+        } catch (IOException e) {
+            response.getWriter().append(e.getMessage());
+        }
     }
-
-    
 
 }

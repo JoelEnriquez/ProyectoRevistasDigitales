@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS Persona ;
 
 CREATE TABLE IF NOT EXISTS Persona (
   id INT NOT NULL AUTO_INCREMENT,
-  tipo_usuario TINYINT NOT NULL,
+  tipo_usuario VARCHAR(15) NOT NULL,
   nombre VARCHAR(45) NOT NULL,
   password VARCHAR(25) NOT NULL,
   foto LONGBLOB NULL,
@@ -24,27 +24,6 @@ CREATE TABLE IF NOT EXISTS Persona (
   descripcion VARCHAR(200) NULL,
   PRIMARY KEY (id));
 
-
--- -----------------------------------------------------
--- Table Revista
--- -----------------------------------------------------
-DROP TABLE IF EXISTS Revista ;
-
-CREATE TABLE IF NOT EXISTS Revista (
-  nombre VARCHAR(50) NOT NULL,
-  categoria VARCHAR(45) NOT NULL,
-  descripcion VARCHAR(200) NOT NULL,
-  pago TINYINT NOT NULL,
-  costo_suscripcion DOUBLE NULL,
-  costo_dia DOUBLE NULL,
-  id_editor INT NOT NULL,
-  PRIMARY KEY (nombre),
-  INDEX fk_Revista_Persona1_idx (id_editor ASC) VISIBLE,
-  CONSTRAINT fk_Revista_Persona1
-    FOREIGN KEY (id_editor)
-    REFERENCES Persona (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
 
 -- -----------------------------------------------------
 -- Table Anunciante
@@ -83,6 +62,52 @@ CREATE TABLE IF NOT EXISTS Anuncio (
     ON UPDATE NO ACTION);
 
 
+-- -----------------------------------------------------
+-- Table Etiqueta
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Etiqueta ;
+
+CREATE TABLE IF NOT EXISTS Etiqueta (
+  nombre VARCHAR(30) NOT NULL,
+  PRIMARY KEY (nombre));
+
+
+-- -----------------------------------------------------
+-- Table Categoria
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Categoria ;
+
+CREATE TABLE IF NOT EXISTS Categoria (
+  nombre VARCHAR(40) NOT NULL,
+  PRIMARY KEY (nombre));
+
+-- -----------------------------------------------------
+-- Table Revista
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Revista ;
+
+CREATE TABLE IF NOT EXISTS Revista (
+  nombre VARCHAR(50) NOT NULL,
+  descripcion VARCHAR(200) NOT NULL,
+  pago TINYINT NOT NULL,
+  costo_suscripcion DOUBLE NULL,
+  costo_dia DOUBLE NULL,
+  nombre_categoria VARCHAR(40) NOT NULL,
+  id_editor INT NOT NULL,
+  PRIMARY KEY (nombre),
+  INDEX fk_Revista_Persona1_idx (id_editor ASC) VISIBLE,
+  INDEX fk_Revista_Categoria1_idx (nombre_categoria ASC) VISIBLE,
+  CONSTRAINT fk_Revista_Persona1
+    FOREIGN KEY (id_editor)
+    REFERENCES Persona (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT fk_Revista_Categoria1
+    FOREIGN KEY (nombre_categoria)
+    REFERENCES Categoria (nombre)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table Publicacion
@@ -101,18 +126,6 @@ CREATE TABLE IF NOT EXISTS Publicacion (
     REFERENCES Revista (nombre)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-
-
--- -----------------------------------------------------
--- Table Etiqueta
--- -----------------------------------------------------
-DROP TABLE IF EXISTS Etiqueta ;
-
-CREATE TABLE IF NOT EXISTS Etiqueta (
-  nombre VARCHAR(30) NOT NULL,
-  PRIMARY KEY (nombre));
-
 
 
 -- -----------------------------------------------------
@@ -282,6 +295,27 @@ CREATE TABLE IF NOT EXISTS Cambio_Costo_Diario (
     ON UPDATE NO ACTION);
 
 
+-- -----------------------------------------------------
+-- Table Categorias_Usuario
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Categorias_Usuario;
+
+CREATE TABLE IF NOT EXISTS Categorias_Usuario (
+  id_usuario INT NOT NULL,
+  nombre_categoria VARCHAR(40) NOT NULL,
+  PRIMARY KEY (id_usuario, nombre_categoria),
+  INDEX fk_Categorias_Usuario_Categoria1_idx (nombre_categoria ASC) VISIBLE,
+  CONSTRAINT fk_Categorias_Usuario_Persona1
+    FOREIGN KEY (id_usuario)
+    REFERENCES Persona (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_Categorias_Usuario_Categoria1
+    FOREIGN KEY (nombre_categoria)
+    REFERENCES Categoria (nombre)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table Valores_Global
@@ -343,5 +377,14 @@ CREATE USER 'admin_revistas'@'localhost' identified by 'Proyecto_Revistas_2021';
 GRANT ALL PRIVILEGES ON ProyectoRevistas.* TO admin_revistas@localhost;
 FLUSH PRIVILEGES;
 
+
+
+-- -------------------------------------------------
+-- INSERTS DE PRUEBA
+-- -------------------------------------------------
+
+INSERT INTO Persona (tipo_usuario, nombre, password) VALUES ('USUARIO','Roberto',123);
+INSERT INTO Persona (tipo_usuario, nombre, password) VALUES ('EDITOR','Gerson',123);
+INSERT INTO Persona (tipo_usuario, nombre, password) VALUES ('ADMIN','Lucia',123);
 
 
