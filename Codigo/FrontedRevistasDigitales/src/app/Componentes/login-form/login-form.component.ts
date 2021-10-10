@@ -26,46 +26,30 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      codigo: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
+
+  public redirectRegister(evento: Event){
+    evento.preventDefault();
+    this.redirigirService.redirigir(Rutas.REGISTER);
   }
 
   public iniciarSesion() {
     if (this.loginForm.valid) {
       console.log('Enviar los datos al servidor');
-      this.persona = new Persona(this.loginForm.value.codigo, this.loginForm.value.password);
+      this.persona = new Persona(this.loginForm.value.userName, this.loginForm.value.password);
 
       this.loginService.validarPersona(this.persona).subscribe(
         (persona: Persona) => {
           this.loginForm.reset({
-            codigo: '',
+            userName: '',
             password: '',
           });
           this.mostrarError = false;
           //Verify tipe of person
-          switch (persona.tipo) {
-            case PersonaEnum.ADMIN:
-              //Redirect page admin
-              this.redirigirService.redirigir(Rutas.MAIN_ADMIN);
-              console.log('Admin');
-              break;
-            case PersonaEnum.EDITOR:
-              //Redirect page editor
-              this.redirigirService.redirigir(Rutas.MAIN_EDIT);
-              console.log('Editor');
-              break;
-            case PersonaEnum.USUARIO:
-              //Redirect page usuario
-              this.redirigirService.redirigir(Rutas.MAIN_USER);
-              console.log('Usuario');
-              break;
-            default:
-              console.log('No one');
-              this.mostrarError = true;
-              this.mensaje = "Codigo o contraseña incorrecta";
-              break;
-          }
+          this.redirigirLogin(persona);
         },
         (error: any) => {
           console.log(error);
@@ -73,6 +57,31 @@ export class LoginFormComponent implements OnInit {
           this.mensaje = error.error.message;
         }
       );
+    }
+  }
+
+  redirigirLogin(persona: Persona){
+    switch (persona.tipo) {
+      case PersonaEnum.ADMIN:
+        //Redirect page admin
+        this.redirigirService.redirigir(Rutas.MAIN_ADMIN);
+        console.log('Admin');
+        break;
+      case PersonaEnum.EDITOR:
+        //Redirect page editor
+        this.redirigirService.redirigir(Rutas.MAIN_EDIT);
+        console.log('Editor');
+        break;
+      case PersonaEnum.USUARIO:
+        //Redirect page usuario
+        this.redirigirService.redirigir(Rutas.MAIN_USER);
+        console.log('Usuario');
+        break;
+      default:
+        console.log('No one');
+        this.mostrarError = true;
+        this.mensaje = "Codigo o contraseña incorrecta";
+        break;
     }
   }
 }

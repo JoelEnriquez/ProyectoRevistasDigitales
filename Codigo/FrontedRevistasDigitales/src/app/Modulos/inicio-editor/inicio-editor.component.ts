@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Editor } from '../../Objects/Editor';
+import { LocalStorageService } from '../../Services/local-storage.service';
 
 @Component({
   selector: 'app-inicio-editor',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioEditorComponent implements OnInit {
 
-  constructor() { }
+  editor!: Editor;
+  
+  constructor(private localStorage: LocalStorageService) {
+    this.editor = JSON.parse(`${this.localStorage.obtenerData('editor')}`)
+  }
 
   ngOnInit(): void {
   }

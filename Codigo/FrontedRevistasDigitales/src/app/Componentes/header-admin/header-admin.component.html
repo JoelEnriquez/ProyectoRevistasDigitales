@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Area de Administrador</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Asignar Gasto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Cambiar Gasto de Revista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Crear Anuncio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Ver listado anuncios</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Reportes de Ganancia
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Ganancia por Revista</a></li>
+                        <li><a class="dropdown-item" href="#">Ganancia por Anunciante</a></li>
+                        <li><a class="dropdown-item" href="#">Ganancias Totales</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Reportes de Revistas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Revistas mas populares</a></li>
+                        <li><a class="dropdown-item" href="#">Revistas mas comentas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Reportes de Anuncios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Reporte Anuncios</a></li>
+                        <li><a class="dropdown-item" href="#">Efectividad de anuncios</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <span class="d-flex navbar-text text-white">
+                Nombre: {{admin.nombre}}
+            </span>
+            <div class="p-2">
+                <a class="btn btn-primary" (click)="cerrarSesion($event)" href="#">Cerrar Sesion</a>
+            </div>
+        </div>
+    </div>
+</nav>

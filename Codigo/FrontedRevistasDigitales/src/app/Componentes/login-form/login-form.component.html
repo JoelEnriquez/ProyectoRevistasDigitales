@@ -4,26 +4,29 @@
             <div class="col-auto align-self-center">
                 <div *ngIf="mostrarError" class="alert alert-danger">
                     <h6 class="text-center">{{ mensaje }}</h6>
-                  </div>
+                </div>
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()" class="mb-5">
                             <div class="form-group text-center">
-                                <label>Codigo</label>
-                                <input type="text" class="form-control" name="codigo" placeholder="Ingrese su codigo" formControlName="codigo">
+                                <label>Nombre de Usuario</label>
+                                <input type="text" class="form-control" name="userName" placeholder="Ingrese su codigo"
+                                    formControlName="userName">
                             </div>
                             <div class="form-group text-center">
                                 <label>Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña" formControlName="password">
+                                <input type="password" class="form-control" name="password"
+                                    placeholder="Ingrese su contraseña" formControlName="password">
                             </div>
                             <div class="row justify-content-center">
-                                <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Ingresar</button>
+                                <button [disabled]="loginForm.invalid" type="submit"
+                                    class="btn btn-primary">Ingresar</button>
                             </div>
                         </form>
                         <p class="h6 text-center">¿No estas registrado en el sistema?</p>
                         <div class="row justify-content-center">
                             <button class="btn btn-light">
-                                <a href="#">Registrate</a>
+                                <a (click)="redirectRegister($event)" href="#">Registrate</a>
                             </button>
                         </div>
                     </div>

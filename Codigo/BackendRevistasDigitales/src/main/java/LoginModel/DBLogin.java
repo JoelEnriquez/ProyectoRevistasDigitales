@@ -17,12 +17,12 @@ import java.sql.ResultSet;
  * @author joel
  */
 public class DBLogin {
-    private final String getTipoPersonaQuery = "SELECT tipo_usuario FROM Persona WHERE id = ? AND password = ?";
+    private final String getTipoPersonaQuery = "SELECT tipo_usuario FROM Persona WHERE user_name = ? AND password = ?";
     private Connection conexion = ConexionDB.getConexion();
     
     public Persona getTipoPersona(Persona persona){
         try(PreparedStatement ps = conexion.prepareStatement(getTipoPersonaQuery)){
-            ps.setInt(1, Integer.parseInt(persona.getCodigo()));
+            ps.setString(1, persona.getUserName());
             ps.setString(2, persona.getPassword());
             try(ResultSet rs = ps.executeQuery()){
                 if (rs.next()) {

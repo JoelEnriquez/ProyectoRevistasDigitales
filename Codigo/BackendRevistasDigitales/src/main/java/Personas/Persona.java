@@ -10,35 +10,35 @@ package Personas;
  * @author joel
  */
 public class Persona {
-    private String codigo;
+    private String userName;
     private String password;
     private String nombre;
     private PersonaEnum tipo;
 
-    public Persona(String codigo, String password, String nombre, PersonaEnum tipo) {
-        this.codigo = codigo;
+    public Persona(String userName, String password, String nombre, PersonaEnum tipo) {
+        this.userName = userName;
         this.password = password;
         this.nombre = nombre;
         this.tipo = tipo;
     }
     
-    public Persona(String codigo, String password, String nombre) {
-        this.codigo = codigo;
+    public Persona(String userName, String password, String nombre) {
+        this.userName = userName;
         this.password = password;
         this.nombre = nombre;
     }
 
-    public Persona(String codigo, String password) {
-        this.codigo = codigo;
+    public Persona(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

@@ -7,7 +7,7 @@ package ControladoresInicio;
 
 import Convertidores.Convertidor;
 import Convertidores.ConvertidorEntidadLogin;
-import EntidadesLogin.EntidadLogin;
+import EntidadesInicio.EntidadLogin;
 import LoginModel.ComprobarCredenciales;
 import Personas.Persona;
 import java.io.BufferedReader;

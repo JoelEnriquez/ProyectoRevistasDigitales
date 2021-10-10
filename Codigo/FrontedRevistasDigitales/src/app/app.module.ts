@@ -10,6 +10,9 @@ import { EscogerCategoriasComponent } from './Modulos/escoger-categorias/escoger
 import { InicioAdminComponent } from './Modulos/inicio-admin/inicio-admin.component';
 import { InicioEditorComponent } from './Modulos/inicio-editor/inicio-editor.component';
 import { InicioUsuarioComponent } from './Modulos/inicio-usuario/inicio-usuario.component';
+import { HeaderEditorComponent } from './Componentes/header-editor/header-editor.component';
+import { HeaderAdminComponent } from './Componentes/header-admin/header-admin.component';
+import { HeaderUsuarioComponent } from './Componentes/header-usuario/header-usuario.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { InicioUsuarioComponent } from './Modulos/inicio-usuario/inicio-usuario.
     InicioAdminComponent,
     InicioEditorComponent,
     InicioUsuarioComponent,
+    HeaderEditorComponent,
+    HeaderAdminComponent,
+    HeaderUsuarioComponent,
   ],
   imports: [
     BrowserModule,

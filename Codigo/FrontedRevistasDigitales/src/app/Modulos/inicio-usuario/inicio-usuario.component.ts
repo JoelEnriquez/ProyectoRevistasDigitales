@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../../Objects/Usuario';
 
 @Component({
   selector: 'app-inicio-usuario',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioUsuarioComponent implements OnInit {
 
+  usuario!: Usuario;
   constructor() { }
 
   ngOnInit(): void {

@@ -5,11 +5,8 @@
  */
 package LoginModel;
 
-import Convertidores.Convertidor;
 import Convertidores.ConvertidorBuffer;
-import Convertidores.ConvertidorEntidadLogin;
 import Convertidores.ConvertidorPersona;
-import EntidadesLogin.EntidadLogin;
 import Personas.Persona;
 import java.io.BufferedReader;
 import java.io.IOException;

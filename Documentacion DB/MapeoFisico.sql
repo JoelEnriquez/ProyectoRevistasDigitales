@@ -15,14 +15,14 @@ USE ProyectoRevistas;
 DROP TABLE IF EXISTS Persona ;
 
 CREATE TABLE IF NOT EXISTS Persona (
-  id INT NOT NULL AUTO_INCREMENT,
+  user_name VARCHAR(30) NOT NULL,
   tipo_usuario VARCHAR(15) NOT NULL,
   nombre VARCHAR(45) NOT NULL,
   password VARCHAR(25) NOT NULL,
   foto LONGBLOB NULL,
   hobbies VARCHAR(75) NULL,
   descripcion VARCHAR(200) NULL,
-  PRIMARY KEY (id));
+  PRIMARY KEY (user_name));
 
 
 -- -----------------------------------------------------
@@ -93,13 +93,13 @@ CREATE TABLE IF NOT EXISTS Revista (
   costo_suscripcion DOUBLE NULL,
   costo_dia DOUBLE NULL,
   nombre_categoria VARCHAR(40) NOT NULL,
-  id_editor INT NOT NULL,
+  user_name VARCHAR(30) NOT NULL,
   PRIMARY KEY (nombre),
-  INDEX fk_Revista_Persona1_idx (id_editor ASC) VISIBLE,
+  INDEX fk_Revista_Persona1_idx (user_name ASC) VISIBLE,
   INDEX fk_Revista_Categoria1_idx (nombre_categoria ASC) VISIBLE,
   CONSTRAINT fk_Revista_Persona1
-    FOREIGN KEY (id_editor)
-    REFERENCES Persona (id)
+    FOREIGN KEY (user_name)
+    REFERENCES Persona (user_name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     CONSTRAINT fk_Revista_Categoria1
@@ -135,18 +135,18 @@ DROP TABLE IF EXISTS Preferencias_Usuario ;
 
 CREATE TABLE IF NOT EXISTS Preferencias_Usuario (
   nombre_etiqueta VARCHAR(30) NOT NULL,
-  id_usuario INT NOT NULL,
-  PRIMARY KEY (nombre_etiqueta, id_usuario),
+  user_name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (nombre_etiqueta, user_name),
   INDEX fk_Preferencias_Usuario_Etiqueta1_idx (nombre_etiqueta ASC) VISIBLE,
-  INDEX fk_Preferencias_Usuario_Usuario1_idx (id_usuario ASC) VISIBLE,
+  INDEX fk_Preferencias_Usuario_Usuario1_idx (user_name ASC) VISIBLE,
   CONSTRAINT fk_Preferencias_Usuario_Etiqueta1
     FOREIGN KEY (nombre_etiqueta)
     REFERENCES Etiqueta (nombre)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Preferencias_Usuario_Usuario1
-    FOREIGN KEY (id_usuario)
-    REFERENCES Persona (id)
+    FOREIGN KEY (user_name)
+    REFERENCES Persona (user_name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -186,18 +186,18 @@ CREATE TABLE IF NOT EXISTS Comentario (
   contenido VARCHAR(200) NOT NULL,
   fecha_comentario DATE NOT NULL,
   nombre_revista VARCHAR(50) NOT NULL,
-  id_usuario INT NOT NULL,
+  user_name VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_Comentario_Revista1_idx (nombre_revista ASC) VISIBLE,
-  INDEX fk_Comentario_Usuario1_idx (id_usuario ASC) VISIBLE,
+  INDEX fk_Comentario_Usuario1_idx (user_name ASC) VISIBLE,
   CONSTRAINT fk_Comentario_Revista1
     FOREIGN KEY (nombre_revista)
     REFERENCES Revista (nombre)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Comentario_Usuario1
-    FOREIGN KEY (id_usuario)
-    REFERENCES Persona (id)
+    FOREIGN KEY (user_name)
+    REFERENCES Persona (user_name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -213,18 +213,18 @@ CREATE TABLE IF NOT EXISTS Suscripcion (
   fecha_suscripcion DATE NOT NULL,
   fecha_caducidad DATE NULL,
   nombre_revista VARCHAR(50) NOT NULL,
-  id_usuario INT NOT NULL,
+  user_name VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_Suscripcion_Revista1_idx (nombre_revista ASC) VISIBLE,
-  INDEX fk_Suscripcion_Usuario1_idx (id_usuario ASC) VISIBLE,
+  INDEX fk_Suscripcion_Usuario1_idx (user_name ASC) VISIBLE,
   CONSTRAINT fk_Suscripcion_Revista1
     FOREIGN KEY (nombre_revista)
     REFERENCES Revista (nombre)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Suscripcion_Usuario1
-    FOREIGN KEY (id_usuario)
-    REFERENCES Persona (id)
+    FOREIGN KEY (user_name)
+    REFERENCES Persona (user_name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -237,17 +237,17 @@ DROP TABLE IF EXISTS Me_Gusta ;
 
 CREATE TABLE IF NOT EXISTS Me_Gusta (
   nombre_revista VARCHAR(50) NOT NULL,
-  id_usuario INT NOT NULL,
-  PRIMARY KEY (nombre_revista, id_usuario),
-  INDEX fk_Me_Gusta_Usuario1_idx (id_usuario ASC) VISIBLE,
+  user_name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (nombre_revista, user_name),
+  INDEX fk_Me_Gusta_Usuario1_idx (user_name ASC) VISIBLE,
   CONSTRAINT fk_Me_Gusta_Revista1
     FOREIGN KEY (nombre_revista)
     REFERENCES Revista (nombre)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Me_Gusta_Usuario1
-    FOREIGN KEY (id_usuario)
-    REFERENCES Persona (id)
+    FOREIGN KEY (user_name)
+    REFERENCES Persona (user_name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -301,13 +301,13 @@ CREATE TABLE IF NOT EXISTS Cambio_Costo_Diario (
 DROP TABLE IF EXISTS Categorias_Usuario;
 
 CREATE TABLE IF NOT EXISTS Categorias_Usuario (
-  id_usuario INT NOT NULL,
+  user_name VARCHAR(30) NOT NULL,
   nombre_categoria VARCHAR(40) NOT NULL,
-  PRIMARY KEY (id_usuario, nombre_categoria),
+  PRIMARY KEY (user_name, nombre_categoria),
   INDEX fk_Categorias_Usuario_Categoria1_idx (nombre_categoria ASC) VISIBLE,
   CONSTRAINT fk_Categorias_Usuario_Persona1
-    FOREIGN KEY (id_usuario)
-    REFERENCES Persona (id)
+    FOREIGN KEY (user_name)
+    REFERENCES Persona (user_name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Categorias_Usuario_Categoria1
@@ -383,8 +383,8 @@ FLUSH PRIVILEGES;
 -- INSERTS DE PRUEBA
 -- -------------------------------------------------
 
-INSERT INTO Persona (tipo_usuario, nombre, password) VALUES ('USUARIO','Roberto',123);
-INSERT INTO Persona (tipo_usuario, nombre, password) VALUES ('EDITOR','Gerson',123);
-INSERT INTO Persona (tipo_usuario, nombre, password) VALUES ('ADMIN','Lucia',123);
+INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('RobertPg','USUARIO','Roberto',123);
+INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('Gerson98','EDITOR','Gerson',123);
+INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('LuciaStar','ADMIN','Lucia',123);
 
 

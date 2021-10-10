@@ -5,7 +5,7 @@
  */
 package Convertidores;
 
-import EntidadesLogin.EntidadLogin;
+import EntidadesInicio.EntidadLogin;
 
 /**
  *

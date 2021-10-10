@@ -5,10 +5,63 @@
  */
 package Personas;
 
+import java.io.InputStream;
+
 /**
  *
  * @author joel
  */
-public class Usuario {
+public class Usuario extends Persona {
+    private String hobbies;
+    private String descripcion;
+    private InputStream foto;
+
+    public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre, PersonaEnum tipo) {
+        super(userName, password, nombre, tipo);
+        this.hobbies = hobbies;
+        this.descripcion = descripcion;
+        this.foto = foto;
+    }
+
+    public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre) {
+        super(userName, password, nombre);
+        this.hobbies = hobbies;
+        this.descripcion = descripcion;
+        this.foto = foto;
+    }
+
+    public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password) {
+        super(userName, password);
+        this.hobbies = hobbies;
+        this.descripcion = descripcion;
+        this.foto = foto;
+    }
+
+    
+    
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public InputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(InputStream foto) {
+        this.foto = foto;
+    }
+    
     
 }
