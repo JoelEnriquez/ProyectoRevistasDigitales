@@ -6,6 +6,7 @@ import { PersonaEnum } from 'src/app/Objects/PersonaEnum';
 import { LoginService } from '../../Services/login.service';
 import { RedirigirService } from '../../Services/redirigir.service';
 import { Rutas } from '../../Objects/Rutas';
+import { LocalStorageService } from '../../Services/local-storage.service';
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +22,8 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private redirigirService: RedirigirService
+    private redirigirService: RedirigirService,
+    private localStorage: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -65,20 +67,19 @@ export class LoginFormComponent implements OnInit {
       case PersonaEnum.ADMIN:
         //Redirect page admin
         this.redirigirService.redirigir(Rutas.MAIN_ADMIN);
-        console.log('Admin');
+        this.localStorage.setItem(persona,'admin');
         break;
       case PersonaEnum.EDITOR:
         //Redirect page editor
         this.redirigirService.redirigir(Rutas.MAIN_EDIT);
-        console.log('Editor');
+        this.localStorage.setItem(persona,'editor');
         break;
       case PersonaEnum.USUARIO:
         //Redirect page usuario
         this.redirigirService.redirigir(Rutas.MAIN_USER);
-        console.log('Usuario');
+        this.localStorage.setItem(persona,'usuario');
         break;
       default:
-        console.log('No one');
         this.mostrarError = true;
         this.mensaje = "Codigo o contraseña incorrecta";
         break;

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark" id="navId">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Area de Administrador</a>
+        <a class="navbar-brand" href="/main-admin">Area de Administrador</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,39 +20,31 @@
                     <a class="nav-link active" aria-current="page" href="#">Ver listado anuncios</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Reportes de Ganancia
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Ganancia por Revista</a></li>
-                        <li><a class="dropdown-item" href="#">Ganancia por Anunciante</a></li>
-                        <li><a class="dropdown-item" href="#">Ganancias Totales</a></li>
-                    </ul>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes de Ganancia</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#tab2Id">Ganancia por Revista</a>
+                        <a class="dropdown-item" href="#tab3Id">Ganancia por Anunciante</a>
+                        <a class="dropdown-item" href="#tab4Id">Ganancias Totales</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Reportes de Revistas
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Revistas mas populares</a></li>
-                        <li><a class="dropdown-item" href="#">Revistas mas comentas</a></li>
-                    </ul>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes de Revistas</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#tab2Id">Revistas mas populares</a>
+                        <a class="dropdown-item" href="#tab3Id">Revistas mas comentas</a>
+                        <a class="dropdown-item" href="#tab4Id">Ganancias Totales</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Reportes de Anuncios
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Reporte Anuncios</a></li>
-                        <li><a class="dropdown-item" href="#">Efectividad de anuncios</a></li>
-                    </ul>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes de Anuncios</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#tab2Id">Reporte Anuncios</a>
+                        <a class="dropdown-item" href="#tab3Id">Efectividad de anuncios</a>
+                    </div>
                 </li>
             </ul>
-            <span class="d-flex navbar-text text-white">
-                Nombre: {{admin.nombre}}
+            <span class="ml-5 d-flex navbar-text text-white">
+                Nombre de Usuario: {{admin.userName}}
             </span>
             <div class="p-2">
                 <a class="btn btn-primary" (click)="cerrarSesion($event)" href="#">Cerrar Sesion</a>
@@ -60,3 +52,19 @@
         </div>
     </div>
 </nav>
+
+<!-- Tab panes
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+</div> -->
+
+<script>
+    $('#navId a').click(e => {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>

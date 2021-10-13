@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Admin } from '../../Objects/Admin';
+import { LocalStorageService } from '../../Services/local-storage.service';
+import { Persona } from '../../Objects/Persona';
 
 @Component({
   selector: 'app-inicio-admin',
@@ -8,9 +10,11 @@ import { Admin } from '../../Objects/Admin';
 })
 export class InicioAdminComponent implements OnInit {
 
-  admin!: Admin;
+  admin: Admin;
 
-  constructor() { }
+  constructor(private localStorage: LocalStorageService) {
+    this.admin = JSON.parse(`${this.localStorage.obtenerData('admin')}`);
+   }
 
   ngOnInit(): void {
   }

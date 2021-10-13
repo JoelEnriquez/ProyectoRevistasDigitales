@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Admin } from '../../Objects/Admin';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RedirigirService } from '../../Services/redirigir.service';
+import { Persona } from '../../Objects/Persona';
 
 @Component({
   selector: 'app-header-admin',
@@ -11,10 +12,13 @@ import { RedirigirService } from '../../Services/redirigir.service';
 export class HeaderAdminComponent implements OnInit {
 
   @Input() admin!: Admin;
+
   constructor(private localService: LocalStorageService,
-    private redirigir: RedirigirService) { }
+    private redirigir: RedirigirService) {
+  }
 
   ngOnInit(): void {
+    console.log(this.admin)
   }
 
   cerrarSesion(event: Event) {

@@ -1,37 +1,43 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="#">Area de Editor</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Crear Revista</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Ver Revistas Propias</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Reportes
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Visualizar comentarios de revistas</a></li>
-                      <li><a class="dropdown-item" href="#">Visualizar suscripciones a revistas</a></li>
-                      <li><a class="dropdown-item" href="#">Ver revistas mas gustadas</a></li>
-                      <li><a class="dropdown-item" href="#">Visualizar ganancias</a></li>
-                  </ul>
-              </li>
-          </ul>
-          <span class="d-flex navbar-text text-white">
-              Nombre: {{editor.nombre}}
-          </span>
-          <div class="p-2">
-              <a class="btn btn-primary" (click)="cerrarSesion($event)" href="#">Cerrar Sesion</a>
-          </div>
-      </div>
-  </div>
+<nav class="navbar navbar-expand navbar-dark bg-dark" id="navId">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Area de Editor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Crear Revista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Ver Revistas Propias</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Reportes</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#tab2Id">Visualizar comentarios de revistas</a>
+                        <a class="dropdown-item" href="#tab3Id">Visualizar suscripciones a revistas</a>
+                        <a class="dropdown-item" href="#tab4Id">Ver revistas mas gustadas</a>
+                        <a class="dropdown-item" href="#tab4Id">Visualizar ganancias</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="offset-6 d-flex navbar-text text-white">
+                Nombre de Usuario: {{editor.userName}}
+            </span>
+            <div class="p-2">
+                <a class="btn btn-primary" (click)="cerrarSesion($event)" href="#">Cerrar Sesion</a>
+            </div>
+        </div>
+    </div>
 </nav>
 
 
+<script>
+    $('#navId a').click(e => {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>
