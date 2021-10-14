@@ -12,28 +12,30 @@ import Personas.Editor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author joel
  */
 public class RegistrarEditor {
-    private BufferedReader br;
     private ConvertidorEditor ce;
 
-    public RegistrarEditor(BufferedReader br) {
-        this.br = br;
+    public RegistrarEditor() {
         ce = new ConvertidorEditor(Editor.class);
     }
     
-    public Editor registrarEditor() throws IOException, SQLException{
-        String contenido = new ConvertidorBuffer().extraerContenido(br);
+    public Editor registrarEditor(String contenido, Part imagen) throws IOException, SQLException{
         Editor editor = ce.fromJson(contenido);
+        if (imagen!=null) {
+            editor.setFoto(imagen.getInputStream());
+        }
         new DBRegister().insertEditor(editor);
         return editor;
     }
     
     public String editorRegistrado(Editor nuevoEditor){
+        nuevoEditor.setFoto(null); //Borrar la foto del objeto editor
         return ce.toJson(nuevoEditor);
     }
     

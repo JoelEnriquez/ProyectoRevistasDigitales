@@ -7,6 +7,9 @@ import { Rutas } from '../../Objects/Rutas';
 import { Editor } from '../../Objects/Editor';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { LoginFormComponent } from '../login-form/login-form.component';
+import { FilesService } from '../../Services/files.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Base64Service } from '../../Services/base64.service';
 
 @Component({
   selector: 'app-register-form',
@@ -21,13 +24,18 @@ export class RegisterFormComponent implements OnInit {
   mostrarImagen: boolean = false;
   urlImagen!: String;
   PersonaEnum!: PersonaEnum;
+  archivos: any = [];
   imagenSeleccionada: File | null = null;
+  previsualizar: string = "";
 
   constructor(
     private formBuilder: FormBuilder,
     private redirigirService: RedirigirService,
     private registerService: RegistrarService,
     private localStorage: LocalStorageService,
+    private filesService: FilesService,
+    private sanitizer: DomSanitizer,
+    private base64: Base64Service
   ) { }
 
   ngOnInit(): void {
@@ -45,19 +53,10 @@ export class RegisterFormComponent implements OnInit {
   cargarArchivo(event: Event) {
     const files = (event.target as HTMLInputElement).files;
     if (files != null) {
-      this.imagenSeleccionada = files.item(0);
-      /*
-      this.filesService.fileUpload(this.selectedFile).subscribe(
-        (data) => {
-          this.fileUploaded = true;
-          this.messageUpload =
-            'File ' + this.selectedFile?.name + ' uploaded correctly';
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      */
+      this.imagenSeleccionada = files.item(0); //Guardamos en el atributo de la clase
+      this.base64.extraerBase64(this.imagenSeleccionada).then((imagen: any) => {
+        this.previsualizar = imagen.base;
+      })
     }
   }
 
@@ -73,8 +72,8 @@ export class RegisterFormComponent implements OnInit {
 
       switch (tipo) {
         case PersonaEnum.EDITOR:
-          let editor: Editor = new Editor(userName, password, nombre, tipo, hobbies, descripcion);
-          this.registerService.registrarPersona(editor).subscribe(
+          const editor: Editor = new Editor(userName, password, nombre, tipo, hobbies,descripcion);
+          this.registerService.registrarPersona(editor,this.imagenSeleccionada).subscribe(
             (editor: Editor) => {
               this.registerForm.reset({
                 userName: ['', Validators.required],
@@ -92,16 +91,19 @@ export class RegisterFormComponent implements OnInit {
             (error: any) => {
               console.log(error);
               this.mostrarError = true;
-              this.mensaje = error.error.message;
+              this.mensaje = error.error.text;
             }
           );
           break;
         case PersonaEnum.USUARIO:
+          //Comprobar que no exista dicho nombre de usuario
           break;
         default:
           break;
       }
     }
   }
+
+  
 
 }

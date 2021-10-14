@@ -1,13 +1,13 @@
 <div class="container">
   <h3 class="text-center m-5">Formulario de Registro</h3>
   <div *ngIf="mostrarError" class="alert alert-danger">
-    <h6 class="text-center">{{ mensaje }}</h6>
+    <h6 class="text-center">{{mensaje}}</h6>
   </div>
   <form [formGroup]="registerForm" (ngSubmit)="guardarInfo()" class="mt-5 border p-3">
     <div class="form-group row">
       <label for="inputUserName" class="col-sm-2 col-form-label">Nombre de Usuario</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputUserName" placeholder="userName" formControlName="userName">
+        <input type="text" class="form-control" id="inputUserName" placeholder="Nombre de Usuario" formControlName="userName">
       </div>
     </div>
     <div class="form-group row">
@@ -48,14 +48,14 @@
     <div class="row">
       <div class="col-3">
         <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" id="customFile" formControlName="foto"
-            (change)="cargarArchivo($event)">
-          <label class="custom-file-label" for="customFile">Subir Foto</label>
+          <input type="file" class="custom-file-input" id="fileImage" formControlName="foto"
+            (change)="cargarArchivo($event)" accept="image/*">
+          <label class="custom-file-label" for="fileImage">Subir Foto</label>
         </div>
       </div>
-      <div class="col-9" *ngIf="mostrarImagen">
+      <div class="col-9" *ngIf="previsualizar">
         <div class="card" style="width:400px">
-          <img [src]="urlImagen">
+          <img [src]="previsualizar">
         </div>
       </div>
     </div>

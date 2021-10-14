@@ -11,6 +11,7 @@ import { RedirigirService } from '../../Services/redirigir.service';
 export class HeaderUsuarioComponent implements OnInit {
 
   @Input() usuario!:Usuario;
+  
   constructor(private localService: LocalStorageService,
     private redirigir: RedirigirService) { }
 

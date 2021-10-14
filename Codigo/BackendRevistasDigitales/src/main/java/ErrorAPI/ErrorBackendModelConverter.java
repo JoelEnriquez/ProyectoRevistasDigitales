@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Convertidores;
+package ErrorAPI;
 
-import ErrorAPI.ErrorBackendModel;
+import Convertidores.Convertidor;
 
 /**
  *
  * @author joel
  */
-public class ErrorBackendModelConverter extends Convertidor<ErrorBackendModel>{
+public class ErrorBackendModelConverter extends Convertidor<ErrorBackendModel> {
 
     public ErrorBackendModelConverter(Class<ErrorBackendModel> claseConvertir) {
         super(claseConvertir);

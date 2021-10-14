@@ -5,6 +5,7 @@
  */
 package Personas;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 /**
@@ -16,11 +17,11 @@ public class Editor extends Persona{
     private String descripcion;
     private InputStream foto;
 
-    public Editor(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre, PersonaEnum tipo) {
+    public Editor(String userName, String password, String nombre, PersonaEnum tipo,String hobbies, String descripcion, String foto) {
         super(userName, password, nombre, tipo);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
-        this.foto = foto;
+        this.foto = new ByteArrayInputStream(foto.getBytes());
     }
 
     public Editor(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre) {

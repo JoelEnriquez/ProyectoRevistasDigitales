@@ -22,9 +22,11 @@ import java.sql.SQLException;
 public class DBRegister {
 
     private final String insertPersonaQuery = "INSERT INTO Persona VALUES (?,?,?,?,?,?,?)";
+    private final String existenciaUsuario = "SELECT COUNT(*) FROM Persona WHERE user_name = ?";
+    
     private Connection conexion = ConexionDB.getConexion();
 
-    public boolean insertEditor(Editor editor) throws SQLException {
+    public void insertEditor(Editor editor) throws SQLException {
         try ( PreparedStatement ps = conexion.prepareStatement(insertPersonaQuery)) {
             ps.setString(1, editor.getUserName());
             ps.setString(2, editor.getTipo().toString());
@@ -34,7 +36,7 @@ public class DBRegister {
             ps.setString(6, editor.getHobbies());
             ps.setString(7, editor.getDescripcion());
 
-            return ps.execute();
+            ps.execute();
         } catch (SQLException e) {
             switch (e.getErrorCode()) {
                 case 1062:
@@ -70,5 +72,9 @@ public class DBRegister {
             }
         }
 
+    }
+    
+    public boolean existenciaUsuario(String userName){
+        
     }
 }

@@ -10,10 +10,9 @@ import { LocalStorageService } from '../../Services/local-storage.service';
 export class InicioEditorComponent implements OnInit {
 
   editor: Editor;
-  
+
   constructor(private localStorage: LocalStorageService) {
     this.editor = JSON.parse(`${this.localStorage.obtenerData('editor')}`);
-    console.log(this.editor);
   }
 
   ngOnInit(): void {
