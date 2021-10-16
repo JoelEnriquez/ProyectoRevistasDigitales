@@ -5,14 +5,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './Componentes/login-form/login-form.component';
-import { RegisterFormComponent } from './Componentes/register-form/register-form.component';
-import { EscogerCategoriasComponent } from './Modulos/escoger-categorias/escoger-categorias.component';
+import { RegisterFormComponent } from './Modulos/register-form/register-form.component';
+import { EscogerCategoriasComponent } from './Componentes/escoger-categoria/escoger-categorias.component';
 import { InicioAdminComponent } from './Modulos/inicio-admin/inicio-admin.component';
 import { InicioEditorComponent } from './Modulos/inicio-editor/inicio-editor.component';
 import { InicioUsuarioComponent } from './Modulos/inicio-usuario/inicio-usuario.component';
 import { HeaderEditorComponent } from './Componentes/header-editor/header-editor.component';
 import { HeaderAdminComponent } from './Componentes/header-admin/header-admin.component';
 import { HeaderUsuarioComponent } from './Componentes/header-usuario/header-usuario.component';
+import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HeaderUsuarioComponent } from './Componentes/header-usuario/header-usua
     HeaderEditorComponent,
     HeaderAdminComponent,
     HeaderUsuarioComponent,
+    CrearRevistaComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,92 @@
+<div class="container">
+  <h3 class="text-center m-5">Formulario de Registro</h3>
+  <div *ngIf="mostrarError" class="alert alert-danger">
+    <h6 class="text-center">{{mensaje}}</h6>
+  </div>
+  <div class="row">
+    <div [ngClass]="clase_div" [hidden]="print_categories">
+      <form [formGroup]="registerForm" (ngSubmit)="guardarInfo()" class="mt-5 border p-3">
+        <div class="form-group row">
+          <label for="inputUserName" class="col-sm-2 col-form-label">Nombre de Usuario</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputUserName" placeholder="Nombre de Usuario"
+              formControlName="userName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputName" placeholder="Nombre" formControlName="nombre">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+              formControlName="password">
+          </div>
+        </div>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Tipo de Registro</legend>
+            <div class="col-sm-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="persona" id="gridUser" value="USUARIO" checked
+                  formControlName="persona">
+                <label class="form-check-label" for="gridUser">
+                  Usuario
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="persona" id="gridEditor" value="EDITOR"
+                  formControlName="persona">
+                <label class="form-check-label" for="gridEditor">
+                  Editor
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+        <div class="row">
+          <div class="col-3">
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" id="fileImage" formControlName="foto"
+                (change)="cargarArchivo($event)" accept="image/*">
+              <label class="custom-file-label" for="fileImage">Subir Foto</label>
+            </div>
+          </div>
+          <div class="col-9" *ngIf="previsualizar">
+            <div class="card" style="width:400px">
+              <img [src]="previsualizar">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="textHobbies">Hobbies</label>
+          <textarea class="form-control rounded-0" id="textHobbies" rows="1" formControlName="hobbies"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="textDescripcion">Descripcion</label>
+          <textarea class="form-control rounded-0" id="textDescripcion" rows="3"
+            formControlName="descripcion"></textarea>
+        </div>
+        <div class="row justify-content-center">
+          <button [disabled]="registerForm.invalid" type="submit"
+            class="btn btn-primary">Registrarse</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="print_categories" class="col-12" style="background: rgb(238, 241, 232);">
+        <h4 class="text-center m-2">Seleccione al menos 3 categorias que tenga de preferencia</h4>
+        <app-escoger-categorias *ngFor="let categoria of listadoCategorias" [categoria]="categoria"
+        (nombreCategoria)="agregarCategoria($event)">
+        </app-escoger-categorias>
+        <div class="row justify-content-center">
+          <button [hidden]="hide_register" (click)="saveUser()" class="m-3 p-3 btn btn-outline-success" style="font-size: 21px;line-height: 27px;letter-spacing: -0.017em;font-weight: 800;">Finalizar Registro</button>
+        </div>
+       
+    </div>
+  </div>
+</div>

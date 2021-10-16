@@ -74,7 +74,16 @@ public class DBRegister {
 
     }
     
-    public boolean existenciaUsuario(String userName){
-        
+    public Boolean existenciaUsuario(String userName){
+        try (PreparedStatement ps = conexion.prepareStatement(existenciaUsuario)){
+            ps.setString(1, userName);
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getInt(1)==1;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return false;
     }
 }

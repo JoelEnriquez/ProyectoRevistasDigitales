@@ -11,18 +11,18 @@ package EntidadesRevista;
  */
 public class Categoria {
     
-    private String nombreCategoria;
+    private String nombre;
 
-    public Categoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
+    public Categoria(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getNombreCategoria() {
-        return nombreCategoria;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     

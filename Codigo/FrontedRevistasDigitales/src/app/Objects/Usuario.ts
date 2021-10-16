@@ -3,12 +3,12 @@ import { PersonaEnum } from './PersonaEnum';
 
 export class Usuario extends Persona {
   constructor(
-    userName: String,
-    password: String,
-    nombre: String,
+    userName: string,
+    password: string,
+    nombre: string,
     tipo: PersonaEnum,
-    public hobbies?: String,
-    public descripcion?:String,
+    public hobbies?: string,
+    public descripcion?:string,
     public foto?: File
   ){
     super(userName, password, nombre, tipo);

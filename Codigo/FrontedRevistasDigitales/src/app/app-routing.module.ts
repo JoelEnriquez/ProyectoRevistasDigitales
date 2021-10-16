@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginFormComponent } from './Componentes/login-form/login-form.component';
-import { RegisterFormComponent } from './Componentes/register-form/register-form.component';
 import { InicioUsuarioComponent } from './Modulos/inicio-usuario/inicio-usuario.component';
 import { InicioAdminComponent } from './Modulos/inicio-admin/inicio-admin.component';
 import { InicioEditorComponent } from './Modulos/inicio-editor/inicio-editor.component';
+import { Rutas } from './Objects/Rutas';
+import { EscogerCategoriasComponent } from './Componentes/escoger-categoria/escoger-categorias.component';
+import { RegisterFormComponent } from './Modulos/register-form/register-form.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,10 @@ const routes: Routes = [
   {
     path: "main-edit",
     component: InicioEditorComponent
+  },
+  {
+    path: Rutas.REGISTER + "/choose-categories",
+    component: EscogerCategoriasComponent
   }
 
 ];

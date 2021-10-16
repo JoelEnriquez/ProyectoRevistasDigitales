@@ -3,5 +3,6 @@ export enum Rutas {
   REGISTER = "register",
   MAIN_USER = "main-user",
   MAIN_EDIT = "main-edit",
-  MAIN_ADMIN = "main-admin"
+  MAIN_ADMIN = "main-admin",
+  CHOOSE_CATEGORIES = "register/choose-categories"
 }

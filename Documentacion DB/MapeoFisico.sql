@@ -387,4 +387,16 @@ INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('RobertPg
 INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('Gerson98','EDITOR','Gerson',123);
 INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('LuciaStar','ADMIN','Lucia',123);
 
+INSERT INTO Categoria VALUES ('Terror');
+INSERT INTO Categoria VALUES ('Drama');
+INSERT INTO Categoria VALUES ('Misterio');
+INSERT INTO Categoria VALUES ('Comedia');
+INSERT INTO Categoria VALUES ('Belleza');
+INSERT INTO Categoria VALUES ('Poemas');
+INSERT INTO Categoria VALUES ('Deportes');
+INSERT INTO Categoria VALUES ('Ciencia');
+INSERT INTO Categoria VALUES ('Finanzas');
+INSERT INTO Categoria VALUES ('Actualidad');
+INSERT INTO Categoria VALUES ('Cine');
+INSERT INTO Categoria VALUES ('Musica');
 
