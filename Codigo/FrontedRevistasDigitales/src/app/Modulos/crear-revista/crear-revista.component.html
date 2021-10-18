@@ -1,6 +1,63 @@
 <app-header-editor></app-header-editor>
 <div class="container">
-<form>
-
-</form>
+  <h3 class="text-center m-5">Formulario de Creacion de Revista</h3>
+  <div *ngIf="_mostrarError" class="alert alert-danger">
+    <h6 class="text-center">{{_mensaje}}</h6>
+  </div>
+  <div *ngIf="_mostrarExito" class="alert alert-success">
+    <h6 class="text-center">{{_mensaje}}</h6>
+  </div>
+  <form [formGroup]='_registerRevistaForm' (ngSubmit)="registrarRevista()" class="mt-5 border p-3">
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputName" placeholder="Nombre de Revista" formControlName="nombre">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textDescripcion">Descripcion</label>
+      <textarea class="form-control rounded-0 " id="textDescripcion" rows="3" max-rows="6"
+        formControlName="descripcion"></textarea>
+    </div>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Tipo de Cobro</legend>
+        <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="cobro" id="gridGratis" value="false" checked
+              formControlName="cobro">
+            <label class="form-check-label" for="gridGratis">
+              Gratis
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="cobro" id="gridPago" value="true"
+              formControlName="cobro">
+            <label class="form-check-label" for="gridPago">
+              Pago
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group row">
+      <label for="priceRevistas" class="col-sm-2 col-form-label">Costo</label>
+      <div class="col-sm-10">
+        <input *ngIf="_registerRevistaForm.value.cobro === 'true'" type="text" class="form-control" id="priceRevistas" placeholder="Precio de Suscripcion"
+          formControlName="costo" NumberOnly>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="categoriaRevista" class="col-sm-2 col-form-label">Categoria de Revista</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="categoriaRevista" formControlName="categoria">
+          <option [ngValue]="null">Seleccione una categoria para la revista...</option>
+          <option *ngFor="let categoria of _listadoCategorias" [ngValue]="categoria.nombre">{{categoria.nombre}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <button [disabled]="_registerRevistaForm.invalid" type="submit" class="btn btn-primary">Registrar Revista</button>
+    </div>
+  </form>
 </div>

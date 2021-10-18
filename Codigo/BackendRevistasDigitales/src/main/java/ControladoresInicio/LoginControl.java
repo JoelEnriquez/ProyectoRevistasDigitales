@@ -5,12 +5,8 @@
  */
 package ControladoresInicio;
 
-import Convertidores.Convertidor;
-import Convertidores.ConvertidorEntidadLogin;
-import EntidadesInicio.EntidadLogin;
 import LoginModel.ComprobarCredenciales;
 import Personas.Persona;
-import java.io.BufferedReader;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

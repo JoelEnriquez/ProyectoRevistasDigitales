@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Editor } from '../../Objects/Editor';
 import { LocalStorageService } from '../../Services/local-storage.service';
+import { RutasEditor } from '../../Objects/RutasEditor';
 
 @Component({
   selector: 'app-inicio-editor',
@@ -9,10 +10,10 @@ import { LocalStorageService } from '../../Services/local-storage.service';
 })
 export class InicioEditorComponent implements OnInit {
 
-  editor: Editor;
+  rutasEditor = RutasEditor;
 
   constructor(private localStorage: LocalStorageService) {
-    this.editor = JSON.parse(`${this.localStorage.obtenerData('editor')}`);
+    
   }
 
   ngOnInit(): void {

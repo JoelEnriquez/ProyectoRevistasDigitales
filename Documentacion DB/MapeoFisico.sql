@@ -89,6 +89,9 @@ DROP TABLE IF EXISTS Revista ;
 CREATE TABLE IF NOT EXISTS Revista (
   nombre VARCHAR(50) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
+  suscribir TINYINT NOT NULL,
+  comentar TINYINT NOT NULL,
+  reaccionar TINYINT NOT NULL,
   pago TINYINT NOT NULL,
   costo_suscripcion DOUBLE NULL,
   costo_dia DOUBLE NULL,

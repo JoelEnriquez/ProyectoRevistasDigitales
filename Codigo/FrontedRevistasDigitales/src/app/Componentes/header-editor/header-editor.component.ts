@@ -4,6 +4,7 @@ import { Editor } from '../../Objects/Editor';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RedirigirService } from '../../Services/redirigir.service';
 import { Rutas } from '../../Objects/Rutas';
+import { RutasEditor } from '../../Objects/RutasEditor';
 
 @Component({
   selector: 'app-header-editor',
@@ -12,11 +13,17 @@ import { Rutas } from '../../Objects/Rutas';
 })
 export class HeaderEditorComponent implements OnInit {
 
-  @Input() editor!: Editor
+  editor: Editor
+  rutasEditor = RutasEditor;
+
   constructor(private localService: LocalStorageService,
-    private redirigir: RedirigirService) { }
+    private redirigir: RedirigirService,
+    private localStorage: LocalStorageService) {
+      this.editor = JSON.parse(`${this.localStorage.obtenerData('editor')}`);
+    }
 
   ngOnInit(): void {
+    
   }
 
   cerrarSesion(event: Event){

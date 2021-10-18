@@ -24,7 +24,7 @@ public class DBRegister {
     private final String insertPersonaQuery = "INSERT INTO Persona VALUES (?,?,?,?,?,?,?)";
     private final String existenciaUsuario = "SELECT COUNT(*) FROM Persona WHERE user_name = ?";
     
-    private Connection conexion = ConexionDB.getConexion();
+    private final Connection conexion = ConexionDB.getConexion();
 
     public void insertEditor(Editor editor) throws SQLException {
         try ( PreparedStatement ps = conexion.prepareStatement(insertPersonaQuery)) {

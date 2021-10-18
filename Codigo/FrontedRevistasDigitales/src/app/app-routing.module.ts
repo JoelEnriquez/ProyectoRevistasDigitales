@@ -7,6 +7,8 @@ import { InicioEditorComponent } from './Modulos/inicio-editor/inicio-editor.com
 import { Rutas } from './Objects/Rutas';
 import { EscogerCategoriasComponent } from './Componentes/escoger-categoria/escoger-categorias.component';
 import { RegisterFormComponent } from './Modulos/register-form/register-form.component';
+import { RutasEditor } from './Objects/RutasEditor';
+import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,10 @@ const routes: Routes = [
   {
     path: Rutas.REGISTER + "/choose-categories",
     component: EscogerCategoriasComponent
+  },
+  {
+    path: RutasEditor.CREATE_REVISTA,
+    component: CrearRevistaComponent
   }
 
 ];
