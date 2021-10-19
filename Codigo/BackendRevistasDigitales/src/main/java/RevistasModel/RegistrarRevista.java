@@ -8,9 +8,11 @@ package RevistasModel;
 import Convertidores.ConvertidorBuffer;
 import Convertidores.ConvertidorRevista;
 import EntidadesRevista.Revista;
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,10 +26,23 @@ public class RegistrarRevista {
         this.br = br;
         cr = new ConvertidorRevista(Revista.class);
     }
+
+    public RegistrarRevista() {
+    }
     
     public void registrarRevista() throws SQLException, IOException{
         String contenido = new ConvertidorBuffer().extraerContenido(br);
         Revista revista = cr.fromJson(contenido);
         new DBRevista().insertarRevista(revista);
     }
+    
+    public String getRevistasSinAsignarCosto(){
+        return new Gson().toJson(new DBRevista().obtenerRevistasSinCostoDiario());
+    }
+    
+    public void asignarCostoDiario(String nombreRevista, String costo){
+        new DBRevista().asignarCostoDiario(Double.valueOf(costo), nombreRevista);
+    }
+    
+    
 }

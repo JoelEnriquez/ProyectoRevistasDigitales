@@ -11,6 +11,7 @@ import RevistasModel.RegistrarRevista;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author joel
  */
 @WebServlet(name = "RegisterRevistaControl", urlPatterns = {"/RegisterRevistaControl"})
+@MultipartConfig
 public class RegisterRevistaControl extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -35,7 +37,7 @@ public class RegisterRevistaControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.getWriter().append(new RegistrarRevista().getRevistasSinAsignarCosto());
     }
 
     /**
@@ -58,5 +60,15 @@ public class RegisterRevistaControl extends HttpServlet {
         }
 
     }
+    
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombreRevista = request.getParameter("nombreRevista");
+        String costo = request.getParameter("costoDiario");
+        new RegistrarRevista().asignarCostoDiario(nombreRevista, costo);
+    }
+    
+    
 
 }

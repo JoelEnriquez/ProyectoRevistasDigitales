@@ -1,0 +1,51 @@
+<app-header-editor></app-header-editor>
+<div class="container">
+  <h3 class="text-center m-5">Listado de Revistas Propias</h3>
+  <div class="row">
+    <div class="col">
+      <div class="tableFixHead table-inverse table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre de Revista</th>
+              <th>Subir Publicacion</th>
+              <th>Editar Revista</th>
+              <th>Permitir Suscripcion</th>
+              <th>Permitir Comentarios</th>
+              <th>Permitir Me Gusta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let revista of _listRevistas">
+              <td>{{revista.nombre}}</td>
+              <td>
+                <button class="btn btn-primary">Subir</button>
+              </td>
+              <td>
+                <button class="btn btn-primary">Editar</button>
+              </td>
+              <td>
+                <div class="custom-control custom-switch">
+                  <input (change)="cambiarStatusSuscripcion(revista.nombre, revista.suscribir)" type="checkbox" class="custom-control-input" id="{{revista.nombre}}{{revista.suscribir}}">
+                  <label class="custom-control-label" for="{{revista.nombre}}{{revista.suscribir}}"></label>
+                </div>
+              </td>
+              <td>
+                <div class="custom-control custom-switch">
+                  <input (change)="cambiarStatusComentar(revista.nombre, revista.comentar)" type="checkbox" class="custom-control-input" id="{{revista.nombre}}{{revista.suscribir}}">
+                  <label class="custom-control-label" for="{{revista.nombre}}{{revista.suscribir}}"></label>
+                </div>
+              </td>
+              <td>
+                <div class="custom-control custom-switch">
+                  <input (change)="cambiarStatusMeGusta(revista.nombre, revista.reaccionar)" type="checkbox" class="custom-control-input" id="{{revista.nombre}}{{revista.suscribir}}">
+                  <label class="custom-control-label" for="{{revista.nombre}}{{revista.suscribir}}"></label>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

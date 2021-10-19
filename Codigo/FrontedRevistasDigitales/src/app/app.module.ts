@@ -16,6 +16,7 @@ import { HeaderUsuarioComponent } from './Componentes/header-usuario/header-usua
 import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.component';
 import { StrictNumberOnlyDirective } from './Componentes/Herramientas/StrictNumberOnlyDirective';
 import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.component';
+import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-propias.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.com
     HeaderUsuarioComponent,
     CrearRevistaComponent,
     StrictNumberOnlyDirective,
-    AsignarGastoComponent
+    AsignarGastoComponent,
+    RevistasPropiasComponent
   ],
   imports: [
     BrowserModule,

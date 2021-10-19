@@ -3,6 +3,7 @@ import { Admin } from '../../Objects/Admin';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RedirigirService } from '../../Services/redirigir.service';
 import { Persona } from '../../Objects/Persona';
+import { RutasAdmin } from '../../Objects/RutasAdmin';
 
 @Component({
   selector: 'app-header-admin',
@@ -11,14 +12,16 @@ import { Persona } from '../../Objects/Persona';
 })
 export class HeaderAdminComponent implements OnInit {
 
-  @Input() admin!: Admin;
+  admin: Admin;
+  rutasAdmin = RutasAdmin;
 
   constructor(private localService: LocalStorageService,
     private redirigir: RedirigirService) {
+      this.admin = JSON.parse(`${this.localService.obtenerData('admin')}`);
   }
 
   ngOnInit(): void {
-    console.log(this.admin)
+    
   }
 
   cerrarSesion(event: Event) {

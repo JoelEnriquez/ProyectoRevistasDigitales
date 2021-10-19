@@ -17,9 +17,8 @@ export class HeaderEditorComponent implements OnInit {
   rutasEditor = RutasEditor;
 
   constructor(private localService: LocalStorageService,
-    private redirigir: RedirigirService,
-    private localStorage: LocalStorageService) {
-      this.editor = JSON.parse(`${this.localStorage.obtenerData('editor')}`);
+    private redirigir: RedirigirService,) {
+      this.editor = JSON.parse(`${this.localService.obtenerData('editor')}`);
     }
 
   ngOnInit(): void {

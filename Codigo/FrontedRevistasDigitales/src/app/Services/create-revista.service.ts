@@ -15,4 +15,15 @@ export class CreateRevistaService {
     return this.httpClient.post<void>(Rutas.API_URL + "RegisterRevistaControl", revista);
   }
 
+  revistasSinGastoDiario(): Observable<Revista[]>{
+    return this.httpClient.get<Revista[]>(Rutas.API_URL+"RegisterRevistaControl");
+  }
+
+  asignarCostoDiario(nombre: string, costoDiario: number): Observable<void> {
+    const formData: FormData = new FormData();
+    formData.set('nombreRevista',nombre);
+    formData.set('costoDiario',costoDiario.toLocaleString());
+    return this.httpClient.put<void>(Rutas.API_URL+"RegisterRevistaControl",formData);
+  }
+
 }

@@ -67,6 +67,19 @@ public class Revista {
         this.userName = userName;
     }
     
+    /**
+     * Revista with all parameters
+     * @param nombre
+     * @param descripcion
+     * @param suscribir
+     * @param comentar
+     * @param reaccionar
+     * @param pago
+     * @param costoSuscripcion
+     * @param costoDia
+     * @param nombreCategoria
+     * @param userName 
+     */
     public Revista(String nombre, String descripcion, boolean suscribir, boolean comentar, boolean reaccionar, boolean pago, Double costoSuscripcion, Double costoDia, String nombreCategoria, String userName) {
         this.nombre = nombre;
         this.descripcion = descripcion;

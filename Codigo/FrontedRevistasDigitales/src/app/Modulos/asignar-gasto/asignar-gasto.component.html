@@ -1,1 +1,71 @@
-<p>asignar-gasto works!</p>
+<app-header-admin></app-header-admin>
+<div class="container-fluid">
+  <h3 class="text-center m-5">Asignar Gasto a Revistas</h3>
+  <div class="row">
+    <div class="col-7">
+      <div class="tableFixHead table-inverse table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre de Revista</th>
+              <th>Tipo de Suscripcion</th>
+              <th>Nombre de Categoria</th>
+              <th>Editor Creador</th>
+              <th>Asignar Costo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let revista of _listRevistas">
+              <td>{{revista.nombre}}</td>
+              <td>
+                <ng-container *ngIf="revista.pago; else pago_false">
+                  Pago
+                </ng-container>
+                <ng-template #pago_false>
+                  Gratis
+                </ng-template>
+              </td>
+              <td>{{revista.nombreCategoria}}</td>
+              <td>{{revista.userName}}</td>
+              <td>
+                <button (click)="aginarCosto(revista.nombre)" class="btn btn-outline-primary">Asignar Costo</button>
+              </td>
+              <td>
+                <div class="custom-control custom-switch">
+                  <input (change)="cambiarStatus(revista.nombre)" type="checkbox" class="custom-control-input" id="customSwitch1{{revista.nombre}}">
+                  <label class="custom-control-label" for="customSwitch1{{revista.nombre}}"></label>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-4 offset-1">
+      <form [formGroup]="_asignarCostoForm" (ngSubmit)="guardarCosto()">
+        <div class="form-group row">
+          <label for="staticName" class="col-4 col-form-label">Nombre Revista</label>
+          <div class="col-8">
+            <input formControlName="nombre" type="text" readonly class="form-control-plaintext" id="staticName" >
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputCostoPorDia" class="col-4 col-form-label">Costo por Dia</label>
+          <div class="col-8">
+            <input type="text" formControlName="costo" [ngClass]="_cantidadValida" class="form-control" id="inputPassword" placeholder="Costo por dia" NumberOnly>
+            <div *ngIf="_cantidadValida!=''" class="invalid-feedback">
+              Por favor, ingrese una cantidad mayor a 0
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <button type="submit" [disabled]="_asignarCostoForm.invalid" class="btn btn-primary mb-2">Asignar</button>
+        </div>
+      </form>
+      <div *ngIf="_mostrarExito" class="alert alert-success mt-5" >
+        <h6 class="text-center" style="font-size: 1.2rem;line-height: 0.9;letter-spacing: -0.01em;font-weight: 400;">{{_mensaje}}</h6>
+      </div>
+    </div>
+  </div>
+  
+</div>
