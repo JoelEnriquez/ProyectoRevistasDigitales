@@ -7,6 +7,8 @@ package ControladoresEditor;
 
 import Convertidores.ErrorBackendModelConverter;
 import ErrorAPI.ErrorBackendModel;
+import RevistasModel.ActualizarDatosRevista;
+import RevistasModel.InfoRevista;
 import RevistasModel.RegistrarRevista;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,9 +23,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "RegisterRevistaControl", urlPatterns = {"/RegisterRevistaControl"})
+@WebServlet(name = "RevistaControl", urlPatterns = {"/RevistaControl"})
 @MultipartConfig
-public class RegisterRevistaControl extends HttpServlet {
+public class RevistaControl extends HttpServlet {
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -37,7 +41,20 @@ public class RegisterRevistaControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().append(new RegistrarRevista().getRevistasSinAsignarCosto());
+        String action = request.getParameter("action");
+        switch (action) {
+            case "revistas_propias":
+                String userNameEditor = request.getParameter("editor");
+                response.getWriter().append(new InfoRevista().getlistadoRevistasPropias(userNameEditor));
+                break;
+            case "etiquetas_revista":
+                String nombreRevista = request.getParameter("revista");
+                response.getWriter().append(new InfoRevista().getListadoEtiquetasRevista(nombreRevista));
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
     }
 
     /**
@@ -53,24 +70,20 @@ public class RegisterRevistaControl extends HttpServlet {
             throws ServletException, IOException {
         String revista = request.getParameter("revista");
         String etiquetas = request.getParameter("etiquetas");
-        RegistrarRevista rr = new RegistrarRevista(revista,etiquetas);
         try {
-            rr.registrarRevista();
-        } catch (IOException | SQLException e) {
+            new ActualizarDatosRevista().actualizarDatosRevista(revista, etiquetas);
+        } catch (SQLException e) {
             response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(e.getMessage())));
             response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
         }
+    }
 
-    }
-    
     @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response){
         String nombreRevista = request.getParameter("nombreRevista");
-        String costo = request.getParameter("costoDiario");
-        new RegistrarRevista().asignarCostoDiario(nombreRevista, costo);
+        String statusNuevo = request.getParameter("statusNuevo");
+        String campoModificar = request.getParameter("campoModificar");
+        new InfoRevista().modificarCampoRevista(nombreRevista, Boolean.valueOf(statusNuevo), campoModificar);
     }
-    
-    
 
 }

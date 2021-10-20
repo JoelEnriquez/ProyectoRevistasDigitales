@@ -11,6 +11,7 @@ import { RutasEditor } from './Objects/RutasEditor';
 import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.component';
 import { RutasAdmin } from './Objects/RutasAdmin';
 import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.component';
+import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-propias.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: RutasAdmin.ASIGN_COST,
     component: AsignarGastoComponent
+  },
+  {
+    path: RutasEditor.REVISTAS_PROPIAS,
+    component: RevistasPropiasComponent
   }
 
 ];

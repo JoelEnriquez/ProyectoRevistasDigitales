@@ -10,7 +10,6 @@ import EntidadesRevista.Revista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -19,35 +18,9 @@ import java.util.ArrayList;
  */
 public class DBRevista {
 
-    private final String asignarCostoDiario = "UPDATE Revista SET costo_dia=? WHERE nombre = ?";
     private final String obtenerRevistasSinCostoDiarioQuery = "SELECT * FROM Revista WHERE costo_dia IS NULL";
     private final String obtenerRevistasPropiasQuery = "SELECT * FROM Revista WHERE user_name = ? AND costo_dia IS NOT NULL";
-    private final String crearRevistaQuery = "INSERT INTO Revista (nombre, descripcion,suscribir,comentar,reaccionar,pago,costo_suscripcion,nombre_categoria,user_name) VALUES (?,?,?,?,?,?,?,?,?)";
     private final Connection conexion = ConexionDB.getConexion();
-
-    public void insertarRevista(Revista revista) throws SQLException {
-        try ( PreparedStatement ps = conexion.prepareStatement(crearRevistaQuery)) {
-            ps.setString(1, revista.getNombre());
-            ps.setString(2, revista.getDescripcion());
-            ps.setBoolean(3, revista.isSuscribir());
-            ps.setBoolean(4, revista.isComentar());
-            ps.setBoolean(5, revista.isReaccionar());
-            ps.setBoolean(6, revista.isPago());
-            ps.setObject(7, revista.getCostoSuscripcion(), java.sql.Types.DOUBLE);
-            ps.setString(8, revista.getNombreCategoria());
-            ps.setString(9, revista.getUserName());
-            ps.execute();
-        } catch (SQLException e) {
-            switch (e.getErrorCode()) {
-                case 1062:
-                    throw new SQLException("Ya existe una revista con dicho nombre");
-                case 1406:
-                    throw new SQLException("Se ha sobrepasado la cantidad de caracteres permitidos en uno de los campos");
-                default:
-                    throw new SQLException(e.getMessage());
-            }
-        }
-    }
 
     public ArrayList<Revista> obtenerRevistasPropias(String userNameEditor) {
         ArrayList<Revista> listadoRevitas = new ArrayList<>();
@@ -96,12 +69,7 @@ public class DBRevista {
         return listadoRevitas;
     }
     
-    public void asignarCostoDiario(Double costoDiario, String nombreRevista){
-        try (PreparedStatement ps = conexion.prepareStatement(asignarCostoDiario)){
-            ps.setDouble(1, costoDiario);
-            ps.setString(2, nombreRevista);
-            ps.execute();    
-        } catch (Exception e) {
-        }
-    }
+    
+    
+    
 }

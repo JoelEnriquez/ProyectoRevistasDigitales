@@ -6,18 +6,15 @@
 package ControladoresInicio;
 
 import Convertidores.ErrorBackendModelConverter;
-import EntidadesInicio.RespuestaRegistro;
 import ErrorAPI.ErrorBackendModel;
 import Personas.Editor;
 import Personas.Usuario;
 import RegisterModel.DBEscogerCategorias;
-import RegisterModel.DBRegister;
 import RegisterModel.RegistrarEditor;
 import RegisterModel.RegistrarUsuario;
 import RegisterModel.VerificarUsuario;
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

@@ -5,35 +5,47 @@
  */
 package RevistasModel;
 
-import Convertidores.ConvertidorBuffer;
+import Convertidores.ConvertidorEtiquetasArray;
 import Convertidores.ConvertidorRevista;
+import EntidadesRevista.Etiqueta;
 import EntidadesRevista.Revista;
 import com.google.gson.Gson;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
  * @author joel
  */
 public class RegistrarRevista {
-     private BufferedReader br;
     private ConvertidorRevista cr;
+    private ConvertidorEtiquetasArray cea;
+    private String revista;
+    private String listadoEtiquetas;
 
-    public RegistrarRevista(BufferedReader br) {
-        this.br = br;
+    public RegistrarRevista(String revista, String listadoEtiquetas) {
         cr = new ConvertidorRevista(Revista.class);
+        cea = new ConvertidorEtiquetasArray(Etiqueta[].class);
+        this.revista = revista;
+        this.listadoEtiquetas = listadoEtiquetas;
     }
 
     public RegistrarRevista() {
     }
     
     public void registrarRevista() throws SQLException, IOException{
-        String contenido = new ConvertidorBuffer().extraerContenido(br);
-        Revista revista = cr.fromJson(contenido);
-        new DBRevista().insertarRevista(revista);
+        Revista revistaInsertar = cr.fromJson(revista);
+        DBRegisterRevista registerRevista = new DBRegisterRevista();
+        registerRevista.insertarRevista(revistaInsertar); //Insertar revista
+        //Insertar etiquetas asociadas a la revista
+        Etiqueta[] listEtiquetas = cea.fromJson(this.listadoEtiquetas);
+        for (Etiqueta etiqueta : listEtiquetas) {
+            try {
+                new DBEtiqueta().insertEtiqueta(etiqueta); //Insertar etiqueta, si ya existe, proceder a asociarla
+            } catch (SQLException e) {
+            }
+            registerRevista.asociarEtiqueta(revistaInsertar.getNombre(), etiqueta);
+        }
     }
     
     public String getRevistasSinAsignarCosto(){
@@ -41,7 +53,7 @@ public class RegistrarRevista {
     }
     
     public void asignarCostoDiario(String nombreRevista, String costo){
-        new DBRevista().asignarCostoDiario(Double.valueOf(costo), nombreRevista);
+        new DBRegisterRevista().asignarCostoDiario(Double.valueOf(costo), nombreRevista);
     }
     
     

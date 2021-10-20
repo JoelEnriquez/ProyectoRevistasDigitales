@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Categoria } from '../../Objects/Categoria';
-import { RegistrarService } from '../../Services/registrar.service';
-import { LocalStorageService } from '../../Services/local-storage.service';
 import { Editor } from '../../Objects/Editor';
+import { Categoria } from '../../Objects/Categoria';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Etiqueta } from '../../Objects/Etiqueta';
+import { LocalStorageService } from '../../Services/local-storage.service';
+import { RegistrarService } from '../../Services/registrar.service';
 import { RevistaService } from '../../Services/revista.service';
 import { Revista } from '../../Objects/Revista';
-import { Etiqueta } from '../../Objects/Etiqueta';
 
 @Component({
-  selector: 'app-crear-revista',
-  templateUrl: './crear-revista.component.html',
-  styleUrls: ['./crear-revista.component.css']
+  selector: 'app-crear-revista-form',
+  templateUrl: './crear-revista-form.component.html',
+  styleUrls: ['./crear-revista-form.component.css']
 })
-export class CrearRevistaComponent implements OnInit {
+export class CrearRevistaFormComponent implements OnInit {
 
   editor: Editor;
   _isInvalid: string = '';
@@ -138,6 +138,5 @@ export class CrearRevistaComponent implements OnInit {
       categoria: null,
     });
   }
-
 
 }

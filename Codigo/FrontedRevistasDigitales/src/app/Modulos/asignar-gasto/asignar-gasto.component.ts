@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Revista } from '../../Objects/Revista';
-import { CreateRevistaService } from '../../Services/create-revista.service';
+import { RevistaService } from '../../Services/revista.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -17,7 +17,7 @@ export class AsignarGastoComponent implements OnInit {
   _mensaje!: string;
   _listRevistas!: Revista[];
   _revistaAsignar!: string;
-  constructor(private createRevista : CreateRevistaService,
+  constructor(private createRevista : RevistaService,
     private formBuilder: FormBuilder) { 
     this.obtenerListaRevistas();
   }
@@ -42,6 +42,7 @@ export class AsignarGastoComponent implements OnInit {
     this._asignarCostoForm.patchValue({
       nombre: nombre
     })
+    this._cantidadValida = '';
   }
 
   guardarCosto(){
@@ -55,6 +56,7 @@ export class AsignarGastoComponent implements OnInit {
           () => {
             this.resetForm();
             this._mostrarExito = true;
+            this._cantidadValida = '';
             this._mensaje = 'Se ha asignado el costo diario correctamente';
             this.obtenerListaRevistas();
           }
@@ -70,7 +72,5 @@ export class AsignarGastoComponent implements OnInit {
     });
   }
 
-  cambiarStatus(nombreRevista: string){
-    console.log(nombreRevista);
-  }
+  
 }

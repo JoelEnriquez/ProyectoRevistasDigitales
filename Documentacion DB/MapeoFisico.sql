@@ -119,7 +119,7 @@ DROP TABLE IF EXISTS Publicacion ;
 
 CREATE TABLE IF NOT EXISTS Publicacion (
   id INT NOT NULL AUTO_INCREMENT,
-  contenido LONGBLOB NOT NULL,
+  contenido VARCHAR(200) NOT NULL,
   fecha_publicacion DATE NOT NULL,
   nombre_revista VARCHAR(50) NOT NULL,
   PRIMARY KEY (id),
