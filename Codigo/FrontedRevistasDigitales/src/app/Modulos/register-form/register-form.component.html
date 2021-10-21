@@ -51,8 +51,11 @@
         <div class="row">
           <div class="col-3">
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" id="fileImage" formControlName="foto"
-                (change)="cargarArchivo($event)" accept="image/*">
+              <input [ngClass]=_archivoInvalido type="file" class="custom-file-input" id="fileImage"
+                formControlName="foto" (change)="cargarArchivo($event)" accept=".jpg">
+              <div *ngIf="_archivoInvalido!=''" class="invalid-feedback">
+                Por favor, selecciona una imagen jpg o jpeg
+              </div>
               <label class="custom-file-label" for="fileImage">Subir Foto</label>
             </div>
           </div>
@@ -73,19 +76,20 @@
             formControlName="descripcion"></textarea>
         </div>
         <div class="row justify-content-center">
-          <button [disabled]="registerForm.invalid" type="submit"
-            class="btn btn-primary">Registrarse</button>
+          <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Registrarse</button>
         </div>
       </form>
     </div>
     <div *ngIf="print_categories" class="col-12" style="background: rgb(238, 241, 232);">
-        <h4 class="text-center m-2">Seleccione al menos 3 categorias que tenga de preferencia</h4>
-        <app-escoger-categorias *ngFor="let categoria of listadoCategorias" [categoria]="categoria"
+      <h4 class="text-center m-2">Seleccione al menos 3 categorias que tenga de preferencia</h4>
+      <app-escoger-categorias *ngFor="let categoria of listadoCategorias" [categoria]="categoria"
         (nombreCategoria)="agregarCategoria($event)">
-        </app-escoger-categorias>
-        <div class="row justify-content-center">
-          <button [hidden]="hide_register" (click)="saveUser()" class="m-3 p-3 btn btn-outline-success" style="font-size: 21px;line-height: 27px;letter-spacing: -0.017em;font-weight: 800;">Finalizar Registro</button>
-        </div>   
+      </app-escoger-categorias>
+      <div class="row justify-content-center">
+        <button [hidden]="hide_register" (click)="saveUser()" class="m-3 p-3 btn btn-outline-success"
+          style="font-size: 21px;line-height: 27px;letter-spacing: -0.017em;font-weight: 800;">Finalizar
+          Registro</button>
+      </div>
     </div>
   </div>
 </div>

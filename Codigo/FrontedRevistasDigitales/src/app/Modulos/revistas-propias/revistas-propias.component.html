@@ -3,7 +3,8 @@
   <h3 class="text-center m-5">Listado de Revistas Propias</h3>
   <div class="row">
     <div class="col">
-      <div class="tableFixHeadRevistas table-inverse table-responsive">
+      <div *ngIf="_listRevistas!=undefined&&_listRevistas.length>0"
+        class="tableFixHeadRevistas table-inverse table-responsive">
         <table>
           <thead>
             <tr>
@@ -13,15 +14,24 @@
               <th>Permitir Suscripcion</th>
               <th>Permitir Comentarios</th>
               <th>Permitir Me Gusta</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let revista of _listRevistas">
               <td>{{revista.nombre}}</td>
               <td>
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#subirPubli">
-                  Subir
-                </button>
+                <div *ngIf="revista.costoDia==0; else elseBlock">
+                  <div class="alert alert-warning" role="alert">
+                    Todavia no puedes subir publicacion
+                  </div>
+                </div>
+                <ng-template #elseBlock>
+                  <button (click)="setRevistaToUploadPubli(revista)" type="button" class="btn btn-outline-info"
+                    data-toggle="modal" data-target="#subirPubli">
+                    Subir
+                  </button>
+                </ng-template>
               </td>
               <td>
                 <button (click)="setRevistaToEdit(revista)" type="button" class="btn btn-outline-warning"
@@ -48,9 +58,24 @@
                   <label class="custom-control-label" for="{{revista.nombre}}reaccionar"></label>
                 </div>
               </td>
+              <td>
+                <div *ngIf="revista.costoDia==0; else elseBlock">
+                  <div class="alert alert-info" role="alert">
+                    En Espera
+                  </div>
+                </div>
+                <ng-template #elseBlock>
+                  <div class="alert alert-success" role="alert">
+                    Aprobada
+                  </div>
+                </ng-template>
+              </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div *ngIf="_listRevistas==undefined||_listRevistas.length<=0" class="alet alert-warning">
+        <h3 class="text-center">No tienes revistas creadas</h3>
       </div>
     </div>
   </div>
@@ -70,11 +95,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <app-subir-publicacion></app-subir-publicacion>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <app-subir-publicacion [_revistaToUploadFile]="_revistaToUploadPubli"></app-subir-publicacion>
       </div>
     </div>
   </div>

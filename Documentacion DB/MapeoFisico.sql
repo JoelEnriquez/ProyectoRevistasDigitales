@@ -119,6 +119,7 @@ DROP TABLE IF EXISTS Publicacion ;
 
 CREATE TABLE IF NOT EXISTS Publicacion (
   id INT NOT NULL AUTO_INCREMENT,
+  nombre_publicacion VARCHAR(60) NOT NULL,
   contenido VARCHAR(200) NOT NULL,
   fecha_publicacion DATE NOT NULL,
   nombre_revista VARCHAR(50) NOT NULL,
@@ -342,6 +343,7 @@ DROP TABLE IF EXISTS Pago ;
 CREATE TABLE IF NOT EXISTS Pago (
   id INT NOT NULL AUTO_INCREMENT,
   monto DOUBLE NOT NULL,
+  porcentaje_ganancia INT,
   fecha_pago DATE NOT NULL,
   id_suscripcion INT NOT NULL,
   INDEX fk_Pago_Suscripcion1_idx (id_suscripcion ASC) VISIBLE,
@@ -402,4 +404,6 @@ INSERT INTO Categoria VALUES ('Finanzas');
 INSERT INTO Categoria VALUES ('Actualidad');
 INSERT INTO Categoria VALUES ('Cine');
 INSERT INTO Categoria VALUES ('Musica');
+
+INSERT INTO Valores_Global VALUES (30, 25,45,60);
 

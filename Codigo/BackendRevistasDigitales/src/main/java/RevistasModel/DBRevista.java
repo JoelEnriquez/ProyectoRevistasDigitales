@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class DBRevista {
 
     private final String obtenerRevistasSinCostoDiarioQuery = "SELECT * FROM Revista WHERE costo_dia IS NULL";
-    private final String obtenerRevistasPropiasQuery = "SELECT * FROM Revista WHERE user_name = ? AND costo_dia IS NOT NULL";
+    private final String obtenerRevistasPropiasQuery = "SELECT * FROM Revista WHERE user_name = ?";
     private final Connection conexion = ConexionDB.getConexion();
 
     public ArrayList<Revista> obtenerRevistasPropias(String userNameEditor) {

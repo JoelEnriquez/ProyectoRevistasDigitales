@@ -27,6 +27,7 @@ export class RevistasPropiasComponent implements OnInit {
   _listadoEtiquetas!: Etiqueta[];
   _cobroCheck!:boolean;
 
+  _revistaToUploadPubli!:Revista;
 
   _editor: Editor;
   _listRevistas!: Revista[];
@@ -140,16 +141,25 @@ export class RevistasPropiasComponent implements OnInit {
 
     this._revistaToEdit = revista;
 
-    this._editarRevistaForm.setValue({
+    this._editarRevistaForm.patchValue({
       nombre: revista.nombre,
       descripcion: revista.descripcion,
       cobro: revista.pago.toLocaleString(),
       costo: revista.costoSuscripcion,
       categoria: revista.nombreCategoria,
-      
     });
-
+    //Delete message edit 
+    this._isInvalid = '';
+    this._isInvalidMessage = '';
+    this._cantidadInvalida = '';
+    this._mostrarError = false;
+    this._mostrarError = false;
+    this._mensajeEdit = '';
     this.obtenerListadoEtiquetas();
+  }
+
+  setRevistaToUploadPubli(revista: Revista){
+    this._revistaToUploadPubli = revista;
   }
 
   actualizarRevista() {
@@ -174,6 +184,8 @@ export class RevistasPropiasComponent implements OnInit {
           this.revistaService.actualizarRevista(revista, this._listadoEtiquetas).subscribe(
             () => {
               this.limpiarErroresEtiqueta();
+              //Setear revista modificada al array[]
+              this._listRevistas[this.indiceRevistaModificar(this._revistaToEdit)] = revista;
               this._mostrarError = false;
               this._mostrarExito = true;
               this._cantidadInvalida = '';

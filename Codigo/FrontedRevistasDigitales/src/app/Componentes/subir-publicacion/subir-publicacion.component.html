@@ -1,1 +1,38 @@
-<p>subir-publicacion works!</p>
+<div class="container-fluid">
+  <div *ngIf="_mostrarError" class="alert alert-danger">
+    <h6 class="text-center">{{_mensaje}}</h6>
+  </div>
+  <div *ngIf="_mostrarExito" class="alert alert-success">
+    <h6 class="text-center">{{_mensaje}}</h6>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <form [formGroup]='_subirPublicacionForm' (ngSubmit)="subirPublicacion()" class="border p-3">
+        <div class="form-group row">
+          <label for="inputName" class="col-4 col-form-label">Nombre de Publicacion</label>
+          <div class="col-8">
+            <input type="text" class="form-control" formControlName="nombre" id="inputName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-4 col-form-label" for="inputFechaPublicacion">Fecha de Publicacion</label>
+          <div class="col-8">
+            <input type="date" class="form-control" id="inputFechaPublicacion" formControlName="fecha">
+          </div>
+        </div>
+        <div class="form-group">
+          <label  for="file">Escoge un archivo PDF a subir</label>
+          <input [ngClass]='_archivoInvalido' formControlName="file" type="file" accept=".pdf" (change)="cargarArchivo($event)" />
+          <div *ngIf="_archivoInvalido!=''" class="invalid-feedback">
+            Por favor, selecciona un archivo PDF
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <button [disabled]="_subirPublicacionForm.invalid" type="submit" class="btn btn-primary">
+            Subir Publicacion
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

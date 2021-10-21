@@ -19,6 +19,7 @@ import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.com
 import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-propias.component';
 import { CrearRevistaFormComponent } from './Componentes/crear-revista-form/crear-revista-form.component';
 import { SubirPublicacionComponent } from './Componentes/subir-publicacion/subir-publicacion.component';
+import { EditarPerfilComponent } from './Componentes/editar-perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SubirPublicacionComponent } from './Componentes/subir-publicacion/subir
     RevistasPropiasComponent,
     CrearRevistaFormComponent,
     SubirPublicacionComponent,
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,

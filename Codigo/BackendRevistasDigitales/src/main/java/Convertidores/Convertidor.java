@@ -6,6 +6,7 @@
 package Convertidores;
 
 import com.google.gson.Gson;
+import java.lang.reflect.Type;
 
 /**
  *

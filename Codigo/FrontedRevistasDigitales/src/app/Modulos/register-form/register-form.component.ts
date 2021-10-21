@@ -18,6 +18,7 @@ import { Persona } from '../../Objects/Persona';
 })
 export class RegisterFormComponent implements OnInit {
 
+  _archivoInvalido: string  ='';
   mostrarError: boolean = false;
   mensaje: String = "";
   registerForm!: FormGroup;
@@ -80,9 +81,20 @@ export class RegisterFormComponent implements OnInit {
     const files = (event.target as HTMLInputElement).files;
     if (files != null) {
       this.imagenSeleccionada = files.item(0); //Guardamos en el atributo de la clase
-      this.base64.extraerBase64(this.imagenSeleccionada).then((imagen: any) => {
-        this.previsualizar = imagen.base;
-      })
+      if (this.imagenSeleccionada?.type != 'image/jpeg') {
+        this._archivoInvalido = 'is-invalid';
+        this.previsualizar = '';
+        this.imagenSeleccionada = null;
+        this.registerForm.patchValue({
+          foto: null
+        });
+      } else {
+        this._archivoInvalido = '';
+        this.base64.extraerBase64(this.imagenSeleccionada).then((imagen: any) => {
+          this.previsualizar = imagen.base;
+        })
+      }
+
     }
   }
 
