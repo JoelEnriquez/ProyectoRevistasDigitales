@@ -7,6 +7,7 @@ package ControladoresInicio;
 
 import Convertidores.ErrorBackendModelConverter;
 import ErrorAPI.ErrorBackendModel;
+import ErrorAPI.ErrorResponse;
 import Personas.Editor;
 import Personas.Usuario;
 import RegisterModel.DBEscogerCategorias;
@@ -16,6 +17,8 @@ import RegisterModel.VerificarUsuario;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -74,8 +77,9 @@ public class RegisterControl extends HttpServlet {
                 response.getWriter().append(re.editorRegistrado(nuevoEditor));
             }
         } catch (IOException | SQLException e) {
-            response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(e.getMessage())));
-            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            ErrorResponse.mostrarError(response, e.getMessage());
+        } catch (Exception ex) {
+            ErrorResponse.mostrarError(response, ex.getMessage());
         }
 
     }

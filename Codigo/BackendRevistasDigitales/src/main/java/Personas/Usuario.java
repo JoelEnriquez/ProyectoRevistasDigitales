@@ -16,11 +16,14 @@ public class Usuario extends Persona {
     private String descripcion;
     private InputStream foto;
 
-    public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre, PersonaEnum tipo) {
+    public Usuario(String userName, String password, String nombre, PersonaEnum tipo) {
+        super(userName, password, nombre, tipo);
+    }
+    
+    public Usuario(String hobbies, String descripcion, String userName, String password, String nombre, PersonaEnum tipo) {
         super(userName, password, nombre, tipo);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
-        this.foto = foto;
     }
 
     public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre) {

@@ -7,7 +7,10 @@ package LoginModel;
 
 import Convertidores.ConvertidorBuffer;
 import Convertidores.ConvertidorPersona;
+import EntidadesApoyo.Encriptar;
+import Personas.Editor;
 import Personas.Persona;
+import Personas.PersonaEnum;
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -19,18 +22,24 @@ public class ComprobarCredenciales {
     
     private BufferedReader br;
     private ConvertidorPersona cel;
+    private DBLogin dbLogin;
 
     public ComprobarCredenciales(BufferedReader br) {
         this.br = br;
         cel = new ConvertidorPersona(Persona.class);
+        dbLogin = new DBLogin();
     }
     
-    public Persona verificarPersona() throws IOException{
+    public Persona verificarPersona() throws IOException, Exception{
         String contenido = new ConvertidorBuffer().extraerContenido(br);
-        return new DBLogin().getTipoPersona(cel.fromJson(contenido)); //Verificar que tipo de persona es, en base a sus credenciales 
+        Persona persona = cel.fromJson(contenido);
+        persona.setPassword(new Encriptar().encriptar(persona.getPassword()));
+        return dbLogin.getTipoPersona(persona); //Verificar que tipo de persona es, en base a sus credenciales 
     }
     
     public String personaVerificada(Persona persona){
         return cel.toJson(persona);
     }
+    
+    
 }

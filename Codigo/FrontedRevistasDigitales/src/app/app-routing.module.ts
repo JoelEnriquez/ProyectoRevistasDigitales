@@ -12,6 +12,9 @@ import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.com
 import { RutasAdmin } from './Objects/RutasAdmin';
 import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.component';
 import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-propias.component';
+import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
+import { RutasUsuario } from './Objects/RutasUsuario';
+import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -49,6 +52,14 @@ const routes: Routes = [
   {
     path: RutasEditor.REVISTAS_PROPIAS,
     component: RevistasPropiasComponent
+  },
+  {
+    path: RutasEditor.EDIT_PROFILE,
+    component: EditProfileComponent
+  },
+  {
+    path: RutasUsuario.EDIT_PROFILE,
+    component: UserProfileComponent
   }
 
 ];

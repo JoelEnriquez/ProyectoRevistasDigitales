@@ -24,6 +24,8 @@ import { ConfEtiquetasComponent } from './Componentes/conf-etiquetas/conf-etique
 import { PrevisualizacionRevistaComponent } from './Componentes/previsualizacion-revista/previsualizacion-revista.component';
 import { PrevisualizacionEditorComponent } from './Componentes/previsualizacion-editor/previsualizacion-editor.component';
 import { RevistaCardComponent } from './Componentes/revista-card/revista-card.component';
+import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
+import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { RevistaCardComponent } from './Componentes/revista-card/revista-card.co
     PrevisualizacionRevistaComponent,
     PrevisualizacionEditorComponent,
     RevistaCardComponent,
+    EditProfileComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

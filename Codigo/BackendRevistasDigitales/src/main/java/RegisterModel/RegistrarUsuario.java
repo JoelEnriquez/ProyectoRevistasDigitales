@@ -7,6 +7,7 @@ package RegisterModel;
 
 import Convertidores.ConvertidorCategoriaArray;
 import Convertidores.ConvertidorUsuario;
+import EntidadesApoyo.Encriptar;
 import EntidadesRevista.Categoria;
 import Personas.Usuario;
 import java.io.IOException;
@@ -26,11 +27,12 @@ public class RegistrarUsuario {
         cca = new ConvertidorCategoriaArray(Categoria[].class);
     }
     
-    public Usuario registrarUsuario(String contenido, Part imagen) throws IOException, SQLException{
+    public Usuario registrarUsuario(String contenido, Part imagen) throws IOException, SQLException, Exception{
         Usuario usuario = cu.fromJson(contenido);
         if (imagen!=null) {
             usuario.setFoto(imagen.getInputStream());
         }
+        usuario.setPassword(new Encriptar().encriptar(usuario.getPassword()));
         new DBRegister().insertarUsuario(usuario);
         return usuario;
     }

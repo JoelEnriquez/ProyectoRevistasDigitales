@@ -5,11 +5,9 @@
  */
 package RegisterModel;
 
-import Convertidores.ConvertidorBuffer;
 import Convertidores.ConvertidorEditor;
-import EntidadesInicio.RespuestaRegistro;
+import EntidadesApoyo.Encriptar;
 import Personas.Editor;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.http.Part;
@@ -25,11 +23,12 @@ public class RegistrarEditor {
         ce = new ConvertidorEditor(Editor.class);
     }
     
-    public Editor registrarEditor(String contenido, Part imagen) throws IOException, SQLException{
+    public Editor registrarEditor(String contenido, Part imagen) throws IOException, SQLException, Exception{
         Editor editor = ce.fromJson(contenido);
         if (imagen!=null) {
             editor.setFoto(imagen.getInputStream());
         }
+        editor.setPassword(new Encriptar().encriptar(editor.getPassword()));
         new DBRegister().insertEditor(editor);
         return editor;
     }

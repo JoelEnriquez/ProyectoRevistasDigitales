@@ -8,6 +8,7 @@ package ControladoresEditor;
 import ConexionDB.ConexionDB;
 import Convertidores.ErrorBackendModelConverter;
 import ErrorAPI.ErrorBackendModel;
+import ErrorAPI.ErrorResponse;
 import RevistasModel.RegistrarPublicacion;
 import java.io.IOException;
 import java.sql.Connection;
@@ -30,23 +31,19 @@ import javax.servlet.http.Part;
 @MultipartConfig
 public class RegisterPublicacionControl extends HttpServlet {
 
-    
-
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String publicacion = request.getParameter("publicacion");
         Part file = request.getPart("file");
         Connection conexion = ConexionDB.getConexion();
-        RegistrarPublicacion rp = new RegistrarPublicacion(file, publicacion);  
+        RegistrarPublicacion rp = new RegistrarPublicacion(file, publicacion);
         try {
             conexion.setAutoCommit(false);
             rp.insertarPublicacion();
@@ -54,25 +51,22 @@ public class RegisterPublicacionControl extends HttpServlet {
             rp.guardarRutaEnDB();
             conexion.commit();
         } catch (SQLException | IOException ex) {
-            response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(ex.getMessage())));
-            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            ErrorResponse.mostrarError(response, ex.getMessage());
             try {
                 conexion.rollback();
-            } catch (SQLException ex1) {    
+            } catch (SQLException ex1) {
             }
         } catch (Exception ex) {
-            response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(ex.getMessage())));
-            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            ErrorResponse.mostrarError(response, ex.getMessage());
             try {
                 conexion.rollback();
-            } catch (SQLException ex1) {    
+            } catch (SQLException ex1) {
             }
-        } finally{
+        } finally {
             try {
                 conexion.setAutoCommit(true);
             } catch (SQLException ex) {
-                
-            }
+            } 
         }
-    } 
+    }
 }
