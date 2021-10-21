@@ -20,6 +20,10 @@ import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-pr
 import { CrearRevistaFormComponent } from './Componentes/crear-revista-form/crear-revista-form.component';
 import { SubirPublicacionComponent } from './Componentes/subir-publicacion/subir-publicacion.component';
 import { EditarPerfilComponent } from './Componentes/editar-perfil/editar-perfil.component';
+import { ConfEtiquetasComponent } from './Componentes/conf-etiquetas/conf-etiquetas.component';
+import { PrevisualizacionRevistaComponent } from './Componentes/previsualizacion-revista/previsualizacion-revista.component';
+import { PrevisualizacionEditorComponent } from './Componentes/previsualizacion-editor/previsualizacion-editor.component';
+import { RevistaCardComponent } from './Componentes/revista-card/revista-card.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { EditarPerfilComponent } from './Componentes/editar-perfil/editar-perfil
     CrearRevistaFormComponent,
     SubirPublicacionComponent,
     EditarPerfilComponent,
+    ConfEtiquetasComponent,
+    PrevisualizacionRevistaComponent,
+    PrevisualizacionEditorComponent,
+    RevistaCardComponent,
   ],
   imports: [
     BrowserModule,

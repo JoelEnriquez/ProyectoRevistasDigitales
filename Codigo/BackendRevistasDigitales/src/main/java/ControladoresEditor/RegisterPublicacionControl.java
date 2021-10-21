@@ -5,13 +5,12 @@
  */
 package ControladoresEditor;
 
-import Convertidores.Convertidor;
+import ConexionDB.ConexionDB;
 import Convertidores.ErrorBackendModelConverter;
-import EntidadesRevista.Publicacion;
 import ErrorAPI.ErrorBackendModel;
 import RevistasModel.RegistrarPublicacion;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,17 +45,34 @@ public class RegisterPublicacionControl extends HttpServlet {
             throws ServletException, IOException {
         String publicacion = request.getParameter("publicacion");
         Part file = request.getPart("file");
+        Connection conexion = ConexionDB.getConexion();
         RegistrarPublicacion rp = new RegistrarPublicacion(file, publicacion);  
         try {
+            conexion.setAutoCommit(false);
             rp.insertarPublicacion();
             rp.guardarArchivoEnServer();
             rp.guardarRutaEnDB();
+            conexion.commit();
         } catch (SQLException | IOException ex) {
             response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(ex.getMessage())));
             response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            try {
+                conexion.rollback();
+            } catch (SQLException ex1) {    
+            }
         } catch (Exception ex) {
             response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(ex.getMessage())));
             response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-        }     
+            try {
+                conexion.rollback();
+            } catch (SQLException ex1) {    
+            }
+        } finally{
+            try {
+                conexion.setAutoCommit(true);
+            } catch (SQLException ex) {
+                
+            }
+        }
     } 
 }
