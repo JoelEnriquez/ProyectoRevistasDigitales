@@ -15,10 +15,15 @@ import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-pr
 import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
 import { RutasUsuario } from './Objects/RutasUsuario';
 import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
+import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valores-iniciales.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path:"",
+    component:ValoresInicialesComponent
+  },
+  {
+    path: "login",
     component: LoginFormComponent
   },
   {

@@ -32,7 +32,7 @@ public class DBRegister {
             ps.setString(2, editor.getTipo().toString());
             ps.setString(3, editor.getNombre());
             ps.setString(4, editor.getPassword());
-            ps.setBlob(5, editor.getFoto());
+            ps.setBlob(5, editor.getFotoPerfil());
             ps.setString(6, editor.getHobbies());
             ps.setString(7, editor.getDescripcion());
 
@@ -56,7 +56,7 @@ public class DBRegister {
             ps.setString(2, usuario.getTipo().toString());
             ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getPassword());
-            ps.setBlob(5, usuario.getFoto());
+            ps.setBlob(5, usuario.getFotoPerfil());
             ps.setString(6, usuario.getHobbies());
             ps.setString(7, usuario.getDescripcion());
 

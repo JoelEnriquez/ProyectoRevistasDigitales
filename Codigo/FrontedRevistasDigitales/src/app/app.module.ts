@@ -14,7 +14,7 @@ import { HeaderEditorComponent } from './Componentes/header-editor/header-editor
 import { HeaderAdminComponent } from './Componentes/header-admin/header-admin.component';
 import { HeaderUsuarioComponent } from './Componentes/header-usuario/header-usuario.component';
 import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.component';
-import { StrictNumberOnlyDirective } from './Componentes/Herramientas/StrictNumberOnlyDirective';
+import { StrictNumberOnlyDirective } from './Objects/Herramientas/StrictNumberOnlyDirective';
 import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.component';
 import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-propias.component';
 import { CrearRevistaFormComponent } from './Componentes/crear-revista-form/crear-revista-form.component';
@@ -26,6 +26,7 @@ import { PrevisualizacionEditorComponent } from './Componentes/previsualizacion-
 import { RevistaCardComponent } from './Componentes/revista-card/revista-card.component';
 import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
 import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
+import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valores-iniciales.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { UserProfileComponent } from './Modulos/user-profile/user-profile.compon
     RevistaCardComponent,
     EditProfileComponent,
     UserProfileComponent,
+    ValoresInicialesComponent,
   ],
   imports: [
     BrowserModule,

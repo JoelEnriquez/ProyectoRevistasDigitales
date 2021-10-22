@@ -14,30 +14,56 @@ import java.io.InputStream;
 public class Usuario extends Persona {
     private String hobbies;
     private String descripcion;
-    private InputStream foto;
+    private InputStream fotoPerfil;
 
     public Usuario(String userName, String password, String nombre, PersonaEnum tipo) {
         super(userName, password, nombre, tipo);
     }
     
+    /**
+     * Constructor with all info json
+     * @param hobbies
+     * @param descripcion
+     * @param userName
+     * @param password
+     * @param nombre
+     * @param tipo 
+     */
     public Usuario(String hobbies, String descripcion, String userName, String password, String nombre, PersonaEnum tipo) {
         super(userName, password, nombre, tipo);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
     }
+    
+    /**
+     * Constructor with all info
+     * @param hobbies
+     * @param descripcion
+     * @param pathFoto
+     * @param userName
+     * @param password
+     * @param nombre
+     * @param tipo 
+     */
+    public Usuario(String hobbies, String descripcion, InputStream pathFoto, String userName, String password, String nombre, PersonaEnum tipo) {
+        super(userName, password, nombre, tipo);
+        this.hobbies = hobbies;
+        this.descripcion = descripcion;
+        this.fotoPerfil = pathFoto;
+    }
 
-    public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre) {
+    public Usuario(String hobbies, String descripcion, InputStream pathFoto, String userName, String password, String nombre) {
         super(userName, password, nombre);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
-        this.foto = foto;
+        this.fotoPerfil = pathFoto;
     }
 
-    public Usuario(String hobbies, String descripcion, InputStream foto, String userName, String password) {
+    public Usuario(String hobbies, String descripcion, InputStream pathFoto, String userName, String password) {
         super(userName, password);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
-        this.foto = foto;
+        this.fotoPerfil = pathFoto;
     }
 
     
@@ -58,13 +84,15 @@ public class Usuario extends Persona {
         this.descripcion = descripcion;
     }
 
-    public InputStream getFoto() {
-        return foto;
+    public InputStream getFotoPerfil() {
+        return fotoPerfil;
     }
 
-    public void setFoto(InputStream foto) {
-        this.foto = foto;
+    public void setFotoPerfil(InputStream fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
+
+   
     
     
 }

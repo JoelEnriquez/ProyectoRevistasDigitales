@@ -9,7 +9,7 @@ export class Editor extends Persona{
     tipo: PersonaEnum,
     public hobbies?: string,
     public descripcion?:string,
-    public foto?: File | null
+    public pathFoto?: string
   ){
     super(userName, password, nombre, tipo);
   }

@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Persona (
   tipo_usuario VARCHAR(15) NOT NULL,
   nombre VARCHAR(45) NOT NULL,
   password VARCHAR(25) NOT NULL,
-  foto LONGBLOB NULL,
+  foto LONGBLOB(100) NULL,
   hobbies VARCHAR(75) NULL,
   descripcion VARCHAR(200) NULL,
   PRIMARY KEY (user_name));
@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS Publicacion ;
 CREATE TABLE IF NOT EXISTS Publicacion (
   id INT NOT NULL AUTO_INCREMENT,
   nombre_publicacion VARCHAR(60) NOT NULL,
-  contenido VARCHAR(200) NOT NULL,
+  path_publicacion VARCHAR(200) NOT NULL,
   fecha_publicacion DATE NOT NULL,
   nombre_revista VARCHAR(50) NOT NULL,
   PRIMARY KEY (id),

@@ -1,1 +1,80 @@
-<p>editar-perfil works!</p>
+<div class="container">
+  <h3 class="text-center m-5">Editar Perfil</h3>
+  <div *ngIf="_mostrarError" class="alert alert-danger">
+    <h6 class="text-center">{{_mensaje}}</h6>
+  </div>
+  <div *ngIf="_mostrarExito" class="alert alert-danger">
+    <h6 class="text-center">{{_mensaje}}</h6>
+  </div>
+  <div class="row justify-content-center">
+    <div [ngClass]="_claseDiv">
+      <form [formGroup]="_editForm" (ngSubmit)="actualizarInfo()" class="mt-5 border p-3">
+        <div class="form-group row">
+          <label for="inputUserName" class="col-sm-2 col-form-label">Nombre de Usuario</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [readonly]="true"  id="inputUserName" placeholder="Nombre de Usuario"
+              formControlName="userName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputName" placeholder="Nombre" formControlName="nombre">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+              formControlName="password">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <div class="custom-file mb-3">
+              <input [ngClass]=_archivoInvalido type="file" class="custom-file-input" id="fileImage"
+                formControlName="foto" (change)="cargarArchivo($event)" accept=".jpg">
+              <div *ngIf="_archivoInvalido!=''" class="invalid-feedback">
+                Por favor, selecciona una imagen jpg o jpeg
+              </div>
+              <label class="custom-file-label" for="fileImage">Subir Foto</label>
+            </div>
+            <div *ngIf="_fotoPerfil" class="row">
+              <button type="button" class="btn btn-outline-danger ml-3" (click)="eliminarFoto()">Eliminar seleccion</button>
+            </div>
+          </div>
+          <div class="col-8" *ngIf="_fotoPerfil">
+            <div class="card" style="width:400px">
+              <img [src]="_fotoPerfil">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="textHobbies">Hobbies</label>
+          <textarea class="form-control rounded-0" id="textHobbies" rows="1" formControlName="hobbies"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="textDescripcion">Descripcion</label>
+          <textarea class="form-control rounded-0" id="textDescripcion" rows="3"
+            formControlName="descripcion"></textarea>
+        </div>
+        <div class="row justify-content-center">
+          <button [disabled]="_editForm.invalid" type="submit" class="btn btn-primary">Registrarse</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- <div [hidden]="_editUsuario" class="col-3" style="background: rgb(238, 241, 232);">
+      <h4 class="text-center m-2">Seleccione al menos 3 categorias que tenga de preferencia</h4>
+      <app-escoger-categorias *ngFor="let categoria of _listadoCategorias" [categoria]="categoria"
+        (nombreCategoria)="agregarCategoria($event)">
+      </app-escoger-categorias>
+      <div class="row justify-content-center">
+        <button [hidden]="hide_register" (click)="saveUser()" class="m-3 p-3 btn btn-outline-success"
+          style="font-size: 21px;line-height: 27px;letter-spacing: -0.017em;font-weight: 800;">Finalizar
+          Registro</button>
+      </div>
+    </div> -->
+  </div>
+</div>

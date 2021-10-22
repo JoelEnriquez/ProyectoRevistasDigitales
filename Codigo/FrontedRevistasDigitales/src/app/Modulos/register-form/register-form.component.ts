@@ -77,6 +77,14 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
+  eliminarFoto(){
+    this.registerForm.patchValue({
+      foto: null
+    });
+    this.previsualizar = '';
+    this.imagenSeleccionada = null;
+  }
+
   cargarArchivo(event: Event) {
     const files = (event.target as HTMLInputElement).files;
     if (files != null) {

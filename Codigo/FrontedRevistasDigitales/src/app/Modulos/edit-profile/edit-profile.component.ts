@@ -1,15 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { EditarPerfilComponent } from './../../Componentes/editar-perfil/editar-perfil.component';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Editor } from '../../Objects/Editor';
+import { LocalStorageService } from '../../Services/local-storage.service';
+import { Persona } from '../../Objects/Persona';
+import { EditarPerfilService } from '../../Services/editar-perfil.service';
+import { FilesService } from '../../Services/files.service';
+import { FormBuilder } from '@angular/forms';
+import { Base64Service } from '../../Services/base64.service';
+import { PersonaEnum } from '../../Objects/PersonaEnum';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
+  
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(EditarPerfilComponent) child: EditarPerfilComponent ; 
+  _editor: Editor;
+  _fotoPerfil!: string;
+  _tipoPersona!:PersonaEnum;
+
+  constructor(
+    private _localService: LocalStorageService,
+    private _editarService: EditarPerfilService,
+    private _filesService: FilesService,
+    private formBuilder: FormBuilder,
+    private editarPerfilService: EditarPerfilService,
+    private base64Service: Base64Service
+  ) {
+    this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
+    this.obtenerInfoEditor();
+    this._tipoPersona = PersonaEnum.EDITOR;
+    this.child = new EditarPerfilComponent(formBuilder,editarPerfilService,base64Service);
+   }
 
   ngOnInit(): void {
   }
+
+  obtenerInfoEditor(){
+    this._editarService.obtenerInfoEditor(this._editor.userName).subscribe(
+      (editor:Editor) => {
+        this._editor.descripcion = editor.descripcion;
+        this._editor.hobbies = editor.hobbies;
+        this._fotoPerfil = this._filesService.getImage(this._editor.userName);
+        console.log(this._fotoPerfil)
+        //Set data in form
+        this.child.setearFormEditor();
+      }
+    );
+  }
+
+  
+
+
 
 }

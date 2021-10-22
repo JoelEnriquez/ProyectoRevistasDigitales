@@ -30,7 +30,7 @@ public class RegistrarUsuario {
     public Usuario registrarUsuario(String contenido, Part imagen) throws IOException, SQLException, Exception{
         Usuario usuario = cu.fromJson(contenido);
         if (imagen!=null) {
-            usuario.setFoto(imagen.getInputStream());
+            usuario.setFotoPerfil(imagen.getInputStream());
         }
         usuario.setPassword(new Encriptar().encriptar(usuario.getPassword()));
         new DBRegister().insertarUsuario(usuario);
@@ -38,7 +38,7 @@ public class RegistrarUsuario {
     }
     
     public String editorRegistrado(Usuario nuevoUsuario){
-        nuevoUsuario.setFoto(null); //Borrar la foto del objeto usuario
+        nuevoUsuario.setFotoPerfil(null); //Borrar la foto del objeto usuario
         return cu.toJson(nuevoUsuario);
     }
     

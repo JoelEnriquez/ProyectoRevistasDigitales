@@ -9,7 +9,7 @@ export class Usuario extends Persona {
     tipo: PersonaEnum,
     public hobbies?: string,
     public descripcion?:string,
-    public foto?: File
+    public pathFoto?: string
   ){
     super(userName, password, nombre, tipo);
   }

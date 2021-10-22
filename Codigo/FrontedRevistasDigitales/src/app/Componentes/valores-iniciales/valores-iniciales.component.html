@@ -1,0 +1,41 @@
+<div class="container">
+  <div style="height: 800px;">
+    <div class="row justify-content-center" style="height: 100%;">
+      <div class="col-auto align-self-center">
+        <div *ngIf="_mostrarError" class="alert alert-danger">
+          <h6 class="text-center">{{ _mensaje }}</h6>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <form [formGroup]="_valoresInicialesForm" (ngSubmit)="asignarValores()" class="mb-5">
+              <div class="form-group text-center">
+                <label>Porcentaje de Ganancia</label>
+                <input NumberOnly type="text" class="form-control" name="ganancia" placeholder="Ingrese un numero de 1-99"
+                  formControlName="ganancia">
+              </div>
+              <div class="form-group text-center">
+                <label>Costo Anuncio de Texto</label>
+                <input NumberOnly type="text" class="form-control" name="anuncio_texto" placeholder="Ingrese el costo de anuncio"
+                  formControlName="anuncio_texto">
+              </div>
+              <div class="form-group text-center">
+                <label>Costo Anuncio de Imagen</label>
+                <input NumberOnly type="text" class="form-control" name="anuncio_imagen" placeholder="Ingrese el costo de anuncio"
+                  formControlName="anuncio_imagen">
+              </div>
+              <div class="form-group text-center">
+                <label>Costo Anuncio de Video</label>
+                <input NumberOnly type="text" class="form-control" name="anuncio_video" placeholder="Ingrese el costo de anuncio"
+                  formControlName="anuncio_video">
+              </div>
+              <div class="row justify-content-center">
+                <button [disabled]="_valoresInicialesForm.invalid" type="submit"
+                  class="btn btn-outline-success">Registrar Valores</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

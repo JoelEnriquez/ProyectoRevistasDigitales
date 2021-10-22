@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Revista } from '../../Objects/Revista';
 import { PublicacionService } from '../../Services/publicacion.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DateValidator } from '../Herramientas/DateValidator';
+import { DateValidator } from '../../Objects/Herramientas/DateValidator';
 import { Publicacion } from '../../Objects/Publicacion';
 
 @Component({

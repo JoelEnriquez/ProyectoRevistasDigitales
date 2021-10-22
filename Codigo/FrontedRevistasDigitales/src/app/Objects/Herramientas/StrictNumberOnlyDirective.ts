@@ -5,8 +5,7 @@ import { Directive, ElementRef, Input, HostListener } from '@angular/core';
 })
 export class StrictNumberOnlyDirective {
 	
-  //private regex: RegExp = new RegExp('^[0-9]*$');
-  private regex: RegExp = new RegExp(/^[0-9]+(\.[0-9]*){0,1}$/g);  //Decimal Number
+  private regex: RegExp = new RegExp(/^[0-9]+(\.[0-9]*){0,1}$/g);  //Numero Decimal
   private specialKeys: Array<string> = ['Backspace','ArrowLeft','ArrowRight'];
   constructor(private elementRef: ElementRef) {   }
 

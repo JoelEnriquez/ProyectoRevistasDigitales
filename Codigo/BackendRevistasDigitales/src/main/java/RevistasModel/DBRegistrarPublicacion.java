@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class DBRegistrarPublicacion {
 
     private final String guardarPathDBQuery = "UPDATE Publicacion SET contenido = ? WHERE id=?";
-    private final String insertarPublicacionQuery = "INSERT INTO Publicacion (nombre_publicacion, contenido, fecha_publicacion, nombre_revista) VALUES (?,?,?,?)";
+    private final String insertarPublicacionQuery = "INSERT INTO Publicacion (nombre_publicacion, path_publicacion, fecha_publicacion, nombre_revista) VALUES (?,?,?,?)";
     private final Connection conexion = ConexionDB.getConexion();
 
     public int insertarPublicacion(Publicacion publicacion) throws SQLException {

@@ -58,8 +58,11 @@
               </div>
               <label class="custom-file-label" for="fileImage">Subir Foto</label>
             </div>
+            <div *ngIf="imagenSeleccionada" class="row">
+              <button type="button" class="btn btn-outline-danger ml-3" (click)="eliminarFoto()">Eliminar seleccion</button>
+            </div>
           </div>
-          <div class="col-9" *ngIf="previsualizar">
+          <div class="col-8" *ngIf="previsualizar">
             <div class="card" style="width:400px">
               <img [src]="previsualizar">
             </div>

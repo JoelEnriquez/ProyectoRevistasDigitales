@@ -5,7 +5,6 @@
  */
 package Personas;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 /**
@@ -15,7 +14,7 @@ import java.io.InputStream;
 public class Editor extends Persona{
     private String hobbies;
     private String descripcion;
-    private InputStream foto;
+    private InputStream fotoPerfil;
 
     public Editor(String userName, String password, String nombre, PersonaEnum tipo,String hobbies, String descripcion) {
         super(userName, password, nombre, tipo);
@@ -23,22 +22,51 @@ public class Editor extends Persona{
         this.descripcion = descripcion;
     }
 
+    
+    
     public Editor(String userName, String password, String nombre, PersonaEnum tipo) {
         super(userName, password, nombre, tipo);
     }
 
-    public Editor(String hobbies, String descripcion, InputStream foto, String userName, String password, String nombre) {
-        super(userName, password, nombre);
+    
+    /**
+     * Constructor with info json
+     * @param hobbies
+     * @param descripcion
+     * @param userName
+     * @param password
+     * @param nombre
+     * @param tipo 
+     */
+    public Editor(String hobbies, String descripcion, String userName, String password, String nombre, PersonaEnum tipo) {
+        super(userName, password, nombre, tipo);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
-        this.foto = foto;
+    }
+    
+    /**
+     * Constructor with all info
+     * @param hobbies
+     * @param descripcion
+     * @param pathFoto
+     * @param foto
+     * @param userName
+     * @param password
+     * @param nombre
+     * @param tipo 
+     */
+    public Editor(String hobbies, String descripcion, InputStream pathFoto, String userName, String password, String nombre, PersonaEnum tipo) {
+        super(userName, password, nombre, tipo);
+        this.hobbies = hobbies;
+        this.descripcion = descripcion;
+        this.fotoPerfil = pathFoto;
     }
 
-    public Editor(String hobbies, String descripcion, InputStream foto, String userName, String password) {
+    public Editor(String hobbies, String descripcion, InputStream pathFoto, String userName, String password) {
         super(userName, password);
         this.hobbies = hobbies;
         this.descripcion = descripcion;
-        this.foto = foto;
+        this.fotoPerfil = pathFoto;
     }
 
     public String getHobbies() {
@@ -57,13 +85,15 @@ public class Editor extends Persona{
         this.descripcion = descripcion;
     }
 
-    public InputStream getFoto() {
-        return foto;
+    public InputStream getFotoPerfil() {
+        return fotoPerfil;
     }
 
-    public void setFoto(InputStream foto) {
-        this.foto = foto;
+    public void setFotoPerfil(InputStream pathFoto) {
+        this.fotoPerfil = pathFoto;
     }
+
+    
     
     
     

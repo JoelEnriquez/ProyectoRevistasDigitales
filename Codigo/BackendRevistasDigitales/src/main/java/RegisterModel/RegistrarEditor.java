@@ -26,7 +26,7 @@ public class RegistrarEditor {
     public Editor registrarEditor(String contenido, Part imagen) throws IOException, SQLException, Exception{
         Editor editor = ce.fromJson(contenido);
         if (imagen!=null) {
-            editor.setFoto(imagen.getInputStream());
+            editor.setFotoPerfil(imagen.getInputStream());
         }
         editor.setPassword(new Encriptar().encriptar(editor.getPassword()));
         new DBRegister().insertEditor(editor);
@@ -34,7 +34,7 @@ public class RegistrarEditor {
     }
     
     public String editorRegistrado(Editor nuevoEditor){
-        nuevoEditor.setFoto(null); //Borrar la foto del objeto editor
+        nuevoEditor.setFotoPerfil(null); //Borrar la foto del objeto editor
         return ce.toJson(nuevoEditor);
     }
     
