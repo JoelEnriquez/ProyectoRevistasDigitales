@@ -60,4 +60,15 @@ public class InfoPerfil {
             }
         } 
     }
+    
+    public void mostrarFotoNeutral(HttpServletResponse response) throws FileNotFoundException, IOException{
+        try (BufferedInputStream fileStream = new BufferedInputStream(new FileInputStream("/home/joel/Documentos/Image/NoProFilePicture.jpg"))) {
+            response.setContentType("image/jpeg");
+            int data = fileStream.read();
+            while (data > -1) {
+                response.getOutputStream().write(data);
+                data = fileStream.read();
+            }
+        } 
+    }
 }

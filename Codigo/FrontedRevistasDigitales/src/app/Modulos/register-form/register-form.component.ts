@@ -150,7 +150,7 @@ export class RegisterFormComponent implements OnInit {
                 )
               } else {
                 this.mostrarError = true;
-                this.mensaje = "Ya existe dicho nombre de nepe";
+                this.mensaje = "Ya existe dicho nombre";
               }
             },
             (error: any) => {

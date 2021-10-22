@@ -11,6 +11,10 @@ import Convertidores.ConvertidorUsuario;
 import EntidadesRevista.Categoria;
 import Personas.Editor;
 import Personas.Usuario;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -23,24 +27,27 @@ public class EditarPerfil {
     private ConvertidorCategoriaArray cca;
     private DBEditarPerfil dBEditarPerfil;
     private DBInfoPersona dBInfoPersona;
-    String tipoPersona;
-    String userName;
+    String persona;
+    Part foto;
 
-    public EditarPerfil(String tipoPersona, String userName) {
+    public EditarPerfil(String persona, Part foto) {
         this.ce = new ConvertidorEditor(Editor.class);
         this.cu = new ConvertidorUsuario(Usuario.class);
         this.cca = new ConvertidorCategoriaArray(Categoria[].class);
         dBEditarPerfil = new DBEditarPerfil();
         dBInfoPersona = new DBInfoPersona();
-        this.tipoPersona = tipoPersona;
-        this.userName = userName;
+        this.persona = persona;
+        this.foto = foto;
     }
     
-    
-    
-    
-    
-    
-    
-    
+    public String actualizarInfoEditor() throws IOException, SQLException{
+        Editor editor = ce.fromJson(persona);
+        if (foto!=null) {
+            editor.setFotoPerfil(foto.getInputStream());
+        }
+        dBEditarPerfil.actualizarInfoEditor(editor);
+        //Set null foto and send to fronted
+        editor.setFotoPerfil(null);
+        return ce.toJson(editor);
+    }
 }

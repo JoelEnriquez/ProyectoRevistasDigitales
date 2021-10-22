@@ -5,6 +5,7 @@ import { Persona } from '../Objects/Persona';
 import { Observable } from 'rxjs';
 import { Categoria } from '../Objects/Categoria';
 import { Usuario } from '../Objects/Usuario';
+import { Etiqueta } from '../Objects/Etiqueta';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class RegistrarService {
 
   listadoCategorias(action: string): Observable<Categoria[]> {
     return this.httpClient.get<Categoria[]>(Rutas.API_URL + "RegisterControl?action=" + action);
+  }
+
+  listadoCategoriasPreferencia(action: string, userName:string): Observable<Categoria[]> {
+    return this.httpClient.get<Categoria[]>(Rutas.API_URL + "RegisterControl?action=" + action + "&userName="+userName);
   }
 }

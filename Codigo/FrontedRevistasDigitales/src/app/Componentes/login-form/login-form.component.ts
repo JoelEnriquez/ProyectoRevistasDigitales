@@ -7,6 +7,7 @@ import { LoginService } from '../../Services/login.service';
 import { RedirigirService } from '../../Services/redirigir.service';
 import { Rutas } from '../../Objects/Rutas';
 import { LocalStorageService } from '../../Services/local-storage.service';
+import { ValoresInicialesService } from '../../Services/valores-iniciales.service';
 
 @Component({
   selector: 'app-login-form',
@@ -23,8 +24,11 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private redirigirService: RedirigirService,
-    private localStorage: LocalStorageService
-  ) { }
+    private localStorage: LocalStorageService,
+    private valoresService: ValoresInicialesService
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

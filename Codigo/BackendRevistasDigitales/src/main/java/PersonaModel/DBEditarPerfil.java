@@ -28,6 +28,7 @@ public class DBEditarPerfil {
             ps.setBlob(3, editor.getFotoPerfil());
             ps.setString(4, editor.getHobbies());
             ps.setString(5, editor.getDescripcion());
+            ps.setString(6, editor.getUserName());
             ps.executeUpdate();
         } catch (SQLException e) {
             switch (e.getErrorCode()) {

@@ -5,23 +5,30 @@
  */
 package ControladoresPersona;
 
+import ErrorAPI.ErrorResponse;
 import PersonaModel.EditarPerfil;
 import PersonaModel.InfoPerfil;
 import Personas.Editor;
 import Personas.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author joel
  */
 @WebServlet(name = "EditarPerfilControl", urlPatterns = {"/EditarPerfilControl"})
+@MultipartConfig
 public class EditarPerfilControl extends HttpServlet {
 
     @Override
@@ -55,7 +62,27 @@ public class EditarPerfilControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String tipoPersona = request.getParameter("tipo_update");
+        Part part = request.getPart("image");
+        String persona = request.getParameter("persona");
+        EditarPerfil editar = new EditarPerfil(persona, part);
+        switch (tipoPersona) {
+            case "EDITOR": {
+                try {
+                    String editorActualizado = editar.actualizarInfoEditor();
+                    response.getWriter().append(editorActualizado);
+                } catch (SQLException ex) {
+                    ErrorResponse.mostrarError(response, ex.getMessage());
+                }
+            }
+            break;
 
+            case "USUARIO":
+
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
 }

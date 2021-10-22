@@ -50,7 +50,7 @@ public class FileControl extends HttpServlet {
                         ErrorResponse.mostrarError(response, e.getMessage());
                     }
                 } else {
-                    response.getWriter().append("");
+                    info.mostrarFotoNeutral(response);
                 }
                 break;
             default:

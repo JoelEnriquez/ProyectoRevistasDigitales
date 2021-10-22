@@ -8,6 +8,7 @@ import { FilesService } from '../../Services/files.service';
 import { FormBuilder } from '@angular/forms';
 import { Base64Service } from '../../Services/base64.service';
 import { PersonaEnum } from '../../Objects/PersonaEnum';
+import { RegistrarService } from '../../Services/registrar.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -28,12 +29,13 @@ export class EditProfileComponent implements OnInit {
     private _filesService: FilesService,
     private formBuilder: FormBuilder,
     private editarPerfilService: EditarPerfilService,
-    private base64Service: Base64Service
+    private base64Service: Base64Service,
+    private registerService: RegistrarService
   ) {
     this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
     this.obtenerInfoEditor();
     this._tipoPersona = PersonaEnum.EDITOR;
-    this.child = new EditarPerfilComponent(formBuilder,editarPerfilService,base64Service);
+    this.child = new EditarPerfilComponent(formBuilder,editarPerfilService,base64Service,registerService,_localService);
    }
 
   ngOnInit(): void {
@@ -45,7 +47,6 @@ export class EditProfileComponent implements OnInit {
         this._editor.descripcion = editor.descripcion;
         this._editor.hobbies = editor.hobbies;
         this._fotoPerfil = this._filesService.getImage(this._editor.userName);
-        console.log(this._fotoPerfil)
         //Set data in form
         this.child.setearFormEditor();
       }
