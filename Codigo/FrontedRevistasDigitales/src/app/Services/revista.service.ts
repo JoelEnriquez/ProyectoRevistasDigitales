@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Revista } from '../Objects/Revista';
+import { Revista } from '../Objects/Revista/Revista';
 import { Observable } from 'rxjs';
-import { Rutas } from '../Objects/Rutas';
-import { Etiqueta } from '../Objects/Etiqueta';
-import { Categoria } from '../Objects/Categoria';
+import { Rutas } from '../Objects/Rutas/Rutas';
+import { Etiqueta } from '../Objects/Revista/Etiqueta';
+import { Categoria } from '../Objects/Revista/Categoria';
 
 @Injectable({
   providedIn: 'root'

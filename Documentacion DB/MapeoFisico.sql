@@ -216,6 +216,7 @@ CREATE TABLE IF NOT EXISTS Suscripcion (
   id INT NOT NULL AUTO_INCREMENT,
   fecha_suscripcion DATE NOT NULL,
   fecha_caducidad DATE NULL,
+  suscripcion_activa TINYINT NOT NULL,
   nombre_revista VARCHAR(50) NOT NULL,
   user_name VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),

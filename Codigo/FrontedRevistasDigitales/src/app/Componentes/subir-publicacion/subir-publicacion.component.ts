@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Revista } from '../../Objects/Revista';
+import { Revista } from '../../Objects/Revista/Revista';
 import { PublicacionService } from '../../Services/publicacion.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidator } from '../../Objects/Herramientas/DateValidator';
-import { Publicacion } from '../../Objects/Publicacion';
+import { Publicacion } from '../../Objects/Revista/Publicacion';
 
 @Component({
   selector: 'app-subir-publicacion',

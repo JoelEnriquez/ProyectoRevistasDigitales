@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Editor } from '../../Objects/Editor';
 import { LocalStorageService } from '../../Services/local-storage.service';
-import { RutasEditor } from '../../Objects/RutasEditor';
+import { RutasEditor } from '../../Objects/Rutas/RutasEditor';
 
 @Component({
   selector: 'app-inicio-editor',

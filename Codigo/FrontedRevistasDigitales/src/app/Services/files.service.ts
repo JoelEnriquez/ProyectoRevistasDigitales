@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Rutas } from '../Objects/Rutas';
-import { Usuario } from '../Objects/Usuario';
-import { Persona } from '../Objects/Persona';
+import { Rutas } from '../Objects/Rutas/Rutas';
 
 @Injectable({
   providedIn: 'root'

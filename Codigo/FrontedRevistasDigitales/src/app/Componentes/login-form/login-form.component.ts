@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Persona } from '../../Objects/Persona';
 import { EntidadLogin } from '../../Objects/EntidadLogin';
-import { PersonaEnum } from 'src/app/Objects/PersonaEnum';
+import { PersonaEnum } from 'src/app/Objects/Persona/PersonaEnum';
 import { LoginService } from '../../Services/login.service';
 import { RedirigirService } from '../../Services/redirigir.service';
-import { Rutas } from '../../Objects/Rutas';
+import { Rutas } from '../../Objects/Rutas/Rutas';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { ValoresInicialesService } from '../../Services/valores-iniciales.service';
+import { Persona } from '../../Objects/Persona/Persona';
 
 @Component({
   selector: 'app-login-form',

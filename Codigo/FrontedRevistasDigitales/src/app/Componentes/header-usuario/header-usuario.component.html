@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Area de Usuario</a>
+        <a class="navbar-brand" href="{{_rutasUsuario.EDIT_PROFILE}}">Area de Usuario</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,11 @@
                     <a class="nav-link active" aria-current="page" href="#">Visualizar Revistas Suscritas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Editar Perfil</a>
+                    <a class="nav-link active" aria-current="page" href={{_rutasUsuario.EDIT_PROFILE}}>Editar Perfil</a>
                 </li>
             </ul>
             <span class="offset-6 d-flex navbar-text text-white">
-                Nombre: {{usuario.userName}}
+                Nombre: {{_usuario.userName}}
             </span>
             <div class="p-2">
                 <a class="btn btn-primary" href="#">Cerrar Sesion</a>

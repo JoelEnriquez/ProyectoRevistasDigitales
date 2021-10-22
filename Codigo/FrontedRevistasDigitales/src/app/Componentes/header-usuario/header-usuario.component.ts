@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Usuario } from '../../Objects/Usuario';
+import { Usuario } from '../../Objects/Persona/Usuario';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RedirigirService } from '../../Services/redirigir.service';
+import { RutasUsuario } from '../../Objects/Rutas/RutasUsuario';
 
 @Component({
   selector: 'app-header-usuario',
@@ -10,10 +11,13 @@ import { RedirigirService } from '../../Services/redirigir.service';
 })
 export class HeaderUsuarioComponent implements OnInit {
 
-  @Input() usuario!:Usuario;
-  
+  @Input() _usuario!:Usuario;
+  _rutasUsuario = RutasUsuario;
+
   constructor(private localService: LocalStorageService,
-    private redirigir: RedirigirService) { }
+    private redirigir: RedirigirService) { 
+      this._usuario = JSON.parse(`${this.localService.obtenerData('usuario')}`);
+    }
 
   ngOnInit(): void {
   }
@@ -21,6 +25,6 @@ export class HeaderUsuarioComponent implements OnInit {
   cerrarSesion(event: Event){
     event.preventDefault();
     this.localService.clear();
-    this.redirigir.redirigir("/");
+    this.redirigir.redirigir(this._rutasUsuario.MAIN_USER);
   }
 }

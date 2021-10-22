@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Admin } from '../../Objects/Admin';
+import { Admin } from '../../Objects/Persona/Admin';
 import { LocalStorageService } from '../../Services/local-storage.service';
-import { Persona } from '../../Objects/Persona';
 
 @Component({
   selector: 'app-inicio-admin',

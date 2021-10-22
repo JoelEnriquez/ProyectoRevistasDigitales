@@ -1,15 +1,15 @@
+import { Editor } from './../../Objects/Persona/Editor';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RedirigirService } from '../../Services/redirigir.service';
-import { PersonaEnum } from '../../Objects/PersonaEnum';
+import { PersonaEnum } from '../../Objects/Persona/PersonaEnum';
 import { RegistrarService } from '../../Services/registrar.service';
-import { Rutas } from '../../Objects/Rutas';
-import { Editor } from '../../Objects/Editor';
+import { Rutas } from '../../Objects/Rutas/Rutas';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { Base64Service } from '../../Services/base64.service';
-import { Categoria } from '../../Objects/Categoria';
-import { Usuario } from '../../Objects/Usuario';
-import { Persona } from '../../Objects/Persona';
+import { Categoria } from '../../Objects/Revista/Categoria';
+import { Usuario } from '../../Objects/Persona/Usuario';
+import { Persona } from '../../Objects/Persona/Persona';
 
 @Component({
   selector: 'app-register-form',

@@ -1,13 +1,12 @@
+import { Editor } from './../../Objects/Persona/Editor';
 import { EditarPerfilComponent } from './../../Componentes/editar-perfil/editar-perfil.component';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Editor } from '../../Objects/Editor';
 import { LocalStorageService } from '../../Services/local-storage.service';
-import { Persona } from '../../Objects/Persona';
 import { EditarPerfilService } from '../../Services/editar-perfil.service';
 import { FilesService } from '../../Services/files.service';
 import { FormBuilder } from '@angular/forms';
 import { Base64Service } from '../../Services/base64.service';
-import { PersonaEnum } from '../../Objects/PersonaEnum';
+import { PersonaEnum } from '../../Objects/Persona/PersonaEnum';
 import { RegistrarService } from '../../Services/registrar.service';
 
 @Component({
@@ -18,14 +17,13 @@ import { RegistrarService } from '../../Services/registrar.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  @ViewChild(EditarPerfilComponent) child: EditarPerfilComponent ; 
+  @ViewChild(EditarPerfilComponent) child: EditarPerfilComponent; 
   _editor: Editor;
   _fotoPerfil!: string;
   _tipoPersona!:PersonaEnum;
 
   constructor(
     private _localService: LocalStorageService,
-    private _editarService: EditarPerfilService,
     private _filesService: FilesService,
     private formBuilder: FormBuilder,
     private editarPerfilService: EditarPerfilService,
@@ -42,7 +40,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   obtenerInfoEditor(){
-    this._editarService.obtenerInfoEditor(this._editor.userName).subscribe(
+    this.editarPerfilService.obtenerInfoEditor(this._editor.userName).subscribe(
       (editor:Editor) => {
         this._editor.descripcion = editor.descripcion;
         this._editor.hobbies = editor.hobbies;

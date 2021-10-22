@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../Objects/Usuario';
+import { Usuario } from '../../Objects/Persona/Usuario';
 import { LocalStorageService } from '../../Services/local-storage.service';
 
 @Component({

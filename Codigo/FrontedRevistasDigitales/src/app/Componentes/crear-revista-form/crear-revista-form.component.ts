@@ -1,12 +1,12 @@
+import { Editor } from './../../Objects/Persona/Editor';
 import { Component, OnInit } from '@angular/core';
-import { Editor } from '../../Objects/Editor';
-import { Categoria } from '../../Objects/Categoria';
+import { Categoria } from '../../Objects/Revista/Categoria';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Etiqueta } from '../../Objects/Etiqueta';
+import { Etiqueta } from '../../Objects/Revista/Etiqueta';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RegistrarService } from '../../Services/registrar.service';
 import { RevistaService } from '../../Services/revista.service';
-import { Revista } from '../../Objects/Revista';
+import { Revista } from '../../Objects/Revista/Revista';
 
 @Component({
   selector: 'app-crear-revista-form',

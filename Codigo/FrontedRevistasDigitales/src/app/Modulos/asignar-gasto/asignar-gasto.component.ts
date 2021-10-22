@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Revista } from '../../Objects/Revista';
+import { Revista } from '../../Objects/Revista/Revista';
 import { RevistaService } from '../../Services/revista.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

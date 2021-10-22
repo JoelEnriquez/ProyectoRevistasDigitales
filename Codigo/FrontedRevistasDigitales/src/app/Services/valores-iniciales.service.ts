@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { ValoresGlobales } from './../Objects/ValoresGlobales';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Rutas } from '../Objects/Rutas';
+import { Rutas } from '../Objects/Rutas/Rutas';
 
 @Injectable({
   providedIn: 'root'

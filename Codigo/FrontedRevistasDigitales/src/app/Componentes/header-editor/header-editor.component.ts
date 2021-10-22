@@ -1,10 +1,9 @@
+import { Editor } from './../../Objects/Persona/Editor';
 import { Component, Input, OnInit } from '@angular/core';
-import { Persona } from '../../Objects/Persona';
-import { Editor } from '../../Objects/Editor';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RedirigirService } from '../../Services/redirigir.service';
-import { Rutas } from '../../Objects/Rutas';
-import { RutasEditor } from '../../Objects/RutasEditor';
+import { Rutas } from '../../Objects/Rutas/Rutas';
+import { RutasEditor } from '../../Objects/Rutas/RutasEditor';
 
 @Component({
   selector: 'app-header-editor',

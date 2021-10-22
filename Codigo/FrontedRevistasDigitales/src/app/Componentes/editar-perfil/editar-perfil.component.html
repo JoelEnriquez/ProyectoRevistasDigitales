@@ -12,7 +12,7 @@
         <div class="form-group row">
           <label for="inputUserName" class="col-sm-2 col-form-label">Nombre de Usuario</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" [readonly]="true"  id="inputUserName" placeholder="Nombre de Usuario"
+            <input type="text" class="form-control" [readonly]="true" id="inputUserName" placeholder="Nombre de Usuario"
               formControlName="userName">
           </div>
         </div>
@@ -40,7 +40,8 @@
               <label class="custom-file-label" for="fileImage">Subir Foto</label>
             </div>
             <div *ngIf="_fotoPerfil" class="row">
-              <button type="button" class="btn btn-outline-danger ml-3" (click)="eliminarFoto()">Eliminar seleccion</button>
+              <button type="button" class="btn btn-outline-danger ml-3" (click)="eliminarFoto()">Eliminar
+                seleccion</button>
             </div>
           </div>
           <div class="col-8" *ngIf="_fotoPerfil">
@@ -65,11 +66,23 @@
       </form>
     </div>
 
-    <div [hidden]="_editor!=undefined" class="col-3" style="background: rgb(238, 241, 232);">
-      <h4 class="text-center m-2">Seleccione al menos 3 categorias que tenga de preferencia</h4>
-      <app-escoger-categorias *ngFor="let categoria of _listadoCategorias" [categoria]="categoria"
-        (nombreCategoria)="agregarCategoria($event)">
-      </app-escoger-categorias>
+    <div [hidden]="_editor!=undefined" class="col-4" style="background: rgb(238, 241, 232);">
+      <h4 class="text-center m-2">Selecciona las categorias de preferencia que tengas</h4>
+      <div class="tableFixHead table-inverse table-responsive">
+        <table>
+          <tbody>
+            <tr *ngFor="let categoria of _listadoCategorias">
+              <div *ngIf="categoriaSeleccionada(categoria)!=undefined">{{child.pintarSeleccionado()}}</div>
+              <td>
+                <app-escoger-categorias #child [categoria]="categoria"
+                  (nombreCategoria)="agregarCategoria($event)" 
+                >
+                </app-escoger-categorias>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

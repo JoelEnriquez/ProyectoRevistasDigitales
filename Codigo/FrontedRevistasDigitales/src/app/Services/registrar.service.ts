@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Rutas } from '../Objects/Rutas';
-import { Persona } from '../Objects/Persona';
+import { Rutas } from '../Objects/Rutas/Rutas';
 import { Observable } from 'rxjs';
-import { Categoria } from '../Objects/Categoria';
-import { Usuario } from '../Objects/Usuario';
-import { Etiqueta } from '../Objects/Etiqueta';
+import { Categoria } from '../Objects/Revista/Categoria';
+import { Usuario } from '../Objects/Persona/Usuario';
+import { Etiqueta } from '../Objects/Revista/Etiqueta';
+import { Persona } from '../Objects/Persona/Persona';
 
 @Injectable({
   providedIn: 'root'

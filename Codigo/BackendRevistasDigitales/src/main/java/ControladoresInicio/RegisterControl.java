@@ -52,7 +52,12 @@ public class RegisterControl extends HttpServlet {
 
             break;
             case "list_categories":
+                String userName = request.getParameter("userName");
+                if (userName!=null) {
+                    response.getWriter().append(new Gson().toJson(new DBEscogerCategorias().getListadoCategorias(userName)));
+                }else {
                 response.getWriter().append(new Gson().toJson(new DBEscogerCategorias().getListadoCategorias()));
+                }
                 break;
             default:
                 throw new AssertionError();

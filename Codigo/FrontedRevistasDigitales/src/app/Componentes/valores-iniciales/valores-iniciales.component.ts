@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValoresInicialesService } from '../../Services/valores-iniciales.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RedirigirService } from '../../Services/redirigir.service';
-import { Rutas } from '../../Objects/Rutas';
+import { Rutas } from '../../Objects/Rutas/Rutas';
 import { ValoresGlobales } from '../../Objects/ValoresGlobales';
 
 @Component({

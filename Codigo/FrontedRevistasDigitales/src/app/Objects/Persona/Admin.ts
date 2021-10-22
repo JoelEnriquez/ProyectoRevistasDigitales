@@ -1,5 +1,6 @@
-import { Persona } from './Persona';
+
 import { PersonaEnum } from './PersonaEnum';
+import { Persona } from './Persona';
 
 export class Admin extends Persona {
   constructor(

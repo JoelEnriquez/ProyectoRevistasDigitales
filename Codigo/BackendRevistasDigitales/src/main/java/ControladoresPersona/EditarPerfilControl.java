@@ -65,7 +65,8 @@ public class EditarPerfilControl extends HttpServlet {
         String tipoPersona = request.getParameter("tipo_update");
         Part part = request.getPart("image");
         String persona = request.getParameter("persona");
-        EditarPerfil editar = new EditarPerfil(persona, part);
+        String cambioImagen = request.getParameter("cambio_imagen");
+        EditarPerfil editar = new EditarPerfil(persona, part,cambioImagen);
         switch (tipoPersona) {
             case "EDITOR": {
                 try {
@@ -76,9 +77,15 @@ public class EditarPerfilControl extends HttpServlet {
                 }
             }
             break;
-
             case "USUARIO":
-
+                try {
+                    String categorias = request.getParameter("list_categories");
+                    String etiquetas = request.getParameter("list_etiquetas");
+                    String usuarioActualizado = editar.actualizarInfoUsuario(categorias, etiquetas);
+                    response.getWriter().append(usuarioActualizado);
+                } catch (SQLException ex) {
+                    ErrorResponse.mostrarError(response, ex.getMessage());
+                }
                 break;
             default:
                 throw new AssertionError();

@@ -4,16 +4,16 @@ import { LoginFormComponent } from './Componentes/login-form/login-form.componen
 import { InicioUsuarioComponent } from './Modulos/inicio-usuario/inicio-usuario.component';
 import { InicioAdminComponent } from './Modulos/inicio-admin/inicio-admin.component';
 import { InicioEditorComponent } from './Modulos/inicio-editor/inicio-editor.component';
-import { Rutas } from './Objects/Rutas';
+import { Rutas } from './Objects/Rutas/Rutas';
 import { EscogerCategoriasComponent } from './Componentes/escoger-categoria/escoger-categorias.component';
 import { RegisterFormComponent } from './Modulos/register-form/register-form.component';
-import { RutasEditor } from './Objects/RutasEditor';
+import { RutasEditor } from './Objects/Rutas/RutasEditor';
 import { CrearRevistaComponent } from './Modulos/crear-revista/crear-revista.component';
-import { RutasAdmin } from './Objects/RutasAdmin';
+import { RutasAdmin } from './Objects/Rutas/RutasAdmin';
 import { AsignarGastoComponent } from './Modulos/asignar-gasto/asignar-gasto.component';
 import { RevistasPropiasComponent } from './Modulos/revistas-propias/revistas-propias.component';
 import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
-import { RutasUsuario } from './Objects/RutasUsuario';
+import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
 import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
 import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valores-iniciales.component';
 

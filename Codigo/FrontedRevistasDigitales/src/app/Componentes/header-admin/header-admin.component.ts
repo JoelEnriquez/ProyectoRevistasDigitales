@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Admin } from '../../Objects/Admin';
+import { Admin } from '../../Objects/Persona/Admin';
 import { LocalStorageService } from '../../Services/local-storage.service';
 import { RedirigirService } from '../../Services/redirigir.service';
-import { Persona } from '../../Objects/Persona';
-import { RutasAdmin } from '../../Objects/RutasAdmin';
+import { RutasAdmin } from '../../Objects/Rutas/RutasAdmin';
 
 @Component({
   selector: 'app-header-admin',
