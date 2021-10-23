@@ -14,11 +14,10 @@ import RegisterModel.DBEscogerCategorias;
 import RegisterModel.RegistrarEditor;
 import RegisterModel.RegistrarUsuario;
 import RegisterModel.VerificarUsuario;
+import RevistasModel.DBCategoria;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +55,7 @@ public class RegisterControl extends HttpServlet {
                 if (userName!=null) {
                     response.getWriter().append(new Gson().toJson(new DBEscogerCategorias().getListadoCategorias(userName)));
                 }else {
-                response.getWriter().append(new Gson().toJson(new DBEscogerCategorias().getListadoCategorias()));
+                response.getWriter().append(new Gson().toJson(new DBCategoria().getListadoCategorias()));
                 }
                 break;
             default:

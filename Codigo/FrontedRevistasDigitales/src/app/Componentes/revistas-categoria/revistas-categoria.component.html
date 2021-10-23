@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <h1 class="text-center mt-5">Revistas por Categoria</h1>
+  <div class="p-2" *ngFor="let _categoria of _listadoCategorias">
+    <app-categoria-revista-card [_categoria]="_categoria">
+    </app-categoria-revista-card>
+  </div>
+</div>

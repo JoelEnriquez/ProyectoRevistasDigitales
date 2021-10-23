@@ -20,6 +20,12 @@ export class RevistaService {
     return this.httpClient.post<void>(Rutas.API_URL + "RegisterRevistaControl", formData);
   }
 
+  /**
+   * Se actualizan los datos de una revista
+   * @param revista 
+   * @param listadoEtiquetas 
+   * @returns 
+   */
   actualizarRevista(revista: Revista, listadoEtiquetas: Etiqueta[]): Observable<void> {
     const formData: FormData = new FormData();
     formData.set('revista',JSON.stringify(revista));
@@ -41,6 +47,12 @@ export class RevistaService {
     return this.httpClient.get<Revista[]>(Rutas.API_URL+"RevistaControl?editor="+userNameEditor+"&action="+action);
   }
 
+  /**
+   * Obtener el listado de las etiquetas asociadas a una revista
+   * @param nombreRevista 
+   * @param action 
+   * @returns 
+   */
   etiquetasRevista(nombreRevista: string, action:string): Observable<Etiqueta[]>{
     return this.httpClient.get<Etiqueta[]>(Rutas.API_URL+"RevistaControl?revista="+nombreRevista+"&action="+action);
   }
@@ -52,12 +64,27 @@ export class RevistaService {
     return this.httpClient.put<void>(Rutas.API_URL+"RegisterRevistaControl",formData);
   }
 
+  /**
+   * 
+   * @param nombreRevista 
+   * @param statusNuevo 
+   * @param campoModificar LIKES | COMENTS | SUSCRIPCIONES
+   * @returns 
+   */
   cambiarCampoRevista(nombreRevista: string, statusNuevo:boolean, campoModificar:string){
     const formData: FormData = new FormData();
     formData.set('nombreRevista',nombreRevista);
     formData.set('statusNuevo',statusNuevo.toLocaleString());
     formData.set('campoModificar',campoModificar);
     return this.httpClient.put<void>(Rutas.API_URL+"RevistaControl",formData);
+  }
+
+  obtenerListadoCategoriasPreferencia(_userName: string): Observable<Categoria[]>{
+    return this.httpClient.get<Categoria[]>(Rutas.API_URL+"ControlInfoRevistas?action=listado_categorias&user_name="+_userName);
+  }
+
+  obtenerRevistasPorCategoria(_nombreCategoria:string): Observable<Revista[]>{
+    return this.httpClient.get<Revista[]>(Rutas.API_URL+"ControlInfoRevistas?action=revistas_categoria&categoria="+_nombreCategoria);
   }
 
 }

@@ -8,7 +8,6 @@ import { PersonaEnum } from '../../Objects/Persona/PersonaEnum';
 import { Categoria } from '../../Objects/Revista/Categoria';
 import { RegistrarService } from '../../Services/registrar.service';
 import { LocalStorageService } from '../../Services/local-storage.service';
-import { EscogerCategoriasComponent } from '../escoger-categoria/escoger-categorias.component';
 import { Etiqueta } from '../../Objects/Revista/Etiqueta';
 
 @Component({

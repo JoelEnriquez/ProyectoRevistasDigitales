@@ -46,7 +46,7 @@ public class VerificarValores {
         }
         ValoresGlobales valoresGlobales = cvg.fromJson(valores);
         vdb.insertarValoresGlobales(valoresGlobales);
-        vdb.crearPersonas();
+        vdb.crearPersonas(); //Insertar personas con contraseña encriptada
     }
     
 }

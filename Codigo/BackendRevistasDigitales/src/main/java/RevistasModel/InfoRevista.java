@@ -5,6 +5,11 @@
  */
 package RevistasModel;
 
+import Convertidores.ConvertidorCategoriaArray;
+import Convertidores.ConvertidorRevistaArray;
+import EntidadesRevista.Categoria;
+import EntidadesRevista.Revista;
+import RegisterModel.DBEscogerCategorias;
 import com.google.gson.Gson;
 import java.sql.SQLException;
 
@@ -14,8 +19,24 @@ import java.sql.SQLException;
  */
 public class InfoRevista {
 
+    private ConvertidorCategoriaArray categoriaArray;
+    private ConvertidorRevistaArray revistaArray;
+
+    public InfoRevista() {
+        this.categoriaArray = new ConvertidorCategoriaArray(Categoria[].class);
+        this.revistaArray = new ConvertidorRevistaArray(Revista[].class);
+    }
+    
     public String getlistadoRevistasPropias(String userNameEditor) {
         return new Gson().toJson(new DBRevista().obtenerRevistasPropias(userNameEditor));
+    }
+    
+    public String getListadoCategoriasPreferencia(String userName) {
+        return new Gson().toJson(new DBEscogerCategorias().getListadoCategorias(userName));
+    }
+    
+    public String getListadoRevistasPorCategoria(String categoria) {
+        return new Gson().toJson(new DBRevista().obtenerRevistasPorCategoria(categoria));
     }
     
     public String getListadoEtiquetasRevista(String nombreRevista) {

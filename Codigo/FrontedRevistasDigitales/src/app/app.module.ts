@@ -27,6 +27,9 @@ import { RevistaCardComponent } from './Componentes/revista-card/revista-card.co
 import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
 import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
 import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valores-iniciales.component';
+import { EtiquetaRevistaCardComponent } from './Componentes/etiqueta-revista-card/etiqueta-revista-card.component';
+import { CategoriaRevistaCardComponent } from './Componentes/categoria-revista-card/categoria-revista-card.component';
+import { RevistasCategoriaComponent } from './Componentes/revistas-categoria/revistas-categoria.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valor
     EditProfileComponent,
     UserProfileComponent,
     ValoresInicialesComponent,
+    EtiquetaRevistaCardComponent,
+    CategoriaRevistaCardComponent,
+    RevistasCategoriaComponent,
   ],
   imports: [
     BrowserModule,

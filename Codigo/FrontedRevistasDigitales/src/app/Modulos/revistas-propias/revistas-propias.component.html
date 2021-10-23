@@ -3,7 +3,7 @@
   <h3 class="text-center m-5">Listado de Revistas Propias</h3>
   <div class="row">
     <div class="col">
-      <div *ngIf="_listRevistas!=undefined&&_listRevistas.length>0"
+      <div *ngIf="_listRevistas&&_listRevistas.length>0"
         class="tableFixHeadRevistas table-inverse table-responsive">
         <table>
           <thead>
@@ -58,17 +58,15 @@
                   <label class="custom-control-label" for="{{revista.nombre}}reaccionar"></label>
                 </div>
               </td>
-              <td>
-                <div *ngIf="revista.costoDia==0; else elseBlock">
-                  <div class="alert alert-info" role="alert">
-                    En Espera
-                  </div>
+              <td *ngIf="revista.costoDia">       
+                <div class="alert alert-success" role="alert">
+                  Aprobada
                 </div>
-                <ng-template #elseBlock>
-                  <div class="alert alert-success" role="alert">
-                    Aprobada
-                  </div>
-                </ng-template>
+              </td>
+              <td *ngIf="!revista.costoDia">       
+                <div class="alert alert-info" role="alert">
+                  En Espera
+                </div>
               </td>
             </tr>
           </tbody>

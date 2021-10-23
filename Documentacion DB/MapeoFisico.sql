@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Persona (
   tipo_usuario VARCHAR(15) NOT NULL,
   nombre VARCHAR(45) NOT NULL,
   password VARCHAR(25) NOT NULL,
-  foto LONGBLOB(100) NULL,
+  foto LONGBLOB NULL,
   hobbies VARCHAR(75) NULL,
   descripcion VARCHAR(200) NULL,
   PRIMARY KEY (user_name));
@@ -389,12 +389,29 @@ FLUSH PRIVILEGES;
 -- INSERTS DE PRUEBA
 -- -------------------------------------------------
 
-INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('RobertPg','USUARIO','Roberto',123);
-INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('Gerson98','EDITOR','Gerson',123);
-INSERT INTO Persona (user_name,tipo_usuario, nombre, password) VALUES ('LuciaStar','ADMIN','Lucia',123);
 
+insert into Categoria (nombre) values ('Action|Crime|Drama|Thriller');
+insert into Categoria (nombre) values ('Comedy|Drama|War');
+insert into Categoria (nombre) values ('Drama');
+insert into Categoria (nombre) values ('Drama|Romance');
+insert into Categoria (nombre) values ('Comedy|Romance');
+insert into Categoria (nombre) values ('Crime|Mystery');
+insert into Categoria (nombre) values ('Thriller');
+insert into Categoria (nombre) values ('Comedy|Drama');
+insert into Categoria (nombre) values ('Children|Drama');
+insert into Categoria (nombre) values ('Adventure|Comedy|Fantasy|Musical');
+insert into Categoria (nombre) values ('Crime|Drama|Film-Noir|Romance|Thriller');
+insert into Categoria (nombre) values ('Documentary');
+insert into Categoria (nombre) values ('Animation|Horror|Mystery|Thriller');
+insert into Categoria (nombre) values ('Action|Crime');
+insert into Categoria (nombre) values ('Comedy|Musical|Romance');
+insert into Categoria (nombre) values ('Comedy|Thriller');
+insert into Categoria (nombre) values ('Adventure|Comedy|Crime|Romance');
+insert into Categoria (nombre) values ('Drama|Horror|Thriller');
+insert into Categoria (nombre) values ('Romance');
+insert into Categoria (nombre) values ('Drama|Musical|Romance');
+insert into Categoria (nombre) values ('Drama|Mystery|Sci-Fi');
 INSERT INTO Categoria VALUES ('Terror');
-INSERT INTO Categoria VALUES ('Drama');
 INSERT INTO Categoria VALUES ('Misterio');
 INSERT INTO Categoria VALUES ('Comedia');
 INSERT INTO Categoria VALUES ('Belleza');
@@ -406,5 +423,4 @@ INSERT INTO Categoria VALUES ('Actualidad');
 INSERT INTO Categoria VALUES ('Cine');
 INSERT INTO Categoria VALUES ('Musica');
 
-INSERT INTO Valores_Global VALUES (30, 25,45,60);
 
