@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Revista } from '../../Objects/Revista/Revista';
 
 @Component({
   selector: 'app-revista-card',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RevistaCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() _revista!:Revista;
+
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
   }

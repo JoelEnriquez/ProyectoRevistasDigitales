@@ -32,8 +32,7 @@ public class ControlInfoRevistas extends HttpServlet {
                 break;
             case "revistas_categoria":
                 String categoria = request.getParameter("categoria");
-                response.getWriter().append(new InfoRevista().getListadoRevistasPorCategoria(categoria));
-                response.getWriter();
+                response.getWriter().append(new InfoRevista().getListadoRevistasPorCategoriaInicio(categoria));
                 break;
             default:
                 throw new AssertionError();

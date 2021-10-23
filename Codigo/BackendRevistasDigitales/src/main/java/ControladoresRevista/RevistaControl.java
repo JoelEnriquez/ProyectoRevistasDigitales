@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladoresEditor;
+package ControladoresRevista;
 
 import Convertidores.ErrorBackendModelConverter;
 import ErrorAPI.ErrorBackendModel;
@@ -51,10 +51,13 @@ public class RevistaControl extends HttpServlet {
                 String nombreRevista = request.getParameter("revista");
                 response.getWriter().append(new InfoRevista().getListadoEtiquetasRevista(nombreRevista));
                 break;
+            case "reacciones":
+                String revista = request.getParameter("revista");
+                response.getWriter().append(new InfoRevista().numeroReaccionesRevista(revista));
+                break;
             default:
                 throw new AssertionError();
         }
-        
     }
 
     /**

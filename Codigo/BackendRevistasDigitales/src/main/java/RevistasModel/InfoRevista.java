@@ -27,16 +27,21 @@ public class InfoRevista {
         this.revistaArray = new ConvertidorRevistaArray(Revista[].class);
     }
     
+    
     public String getlistadoRevistasPropias(String userNameEditor) {
-        return new Gson().toJson(new DBRevista().obtenerRevistasPropias(userNameEditor));
+        return new Gson().toJson(new DBRevista().obtenerRevistasParametro(userNameEditor,"revistasPropias"));
     }
     
     public String getListadoCategoriasPreferencia(String userName) {
         return new Gson().toJson(new DBEscogerCategorias().getListadoCategorias(userName));
     }
     
-    public String getListadoRevistasPorCategoria(String categoria) {
-        return new Gson().toJson(new DBRevista().obtenerRevistasPorCategoria(categoria));
+    public String getListadoRevistasPorCategoriaInicio(String categoria) {
+        return new Gson().toJson(new DBRevista().obtenerRevistasParametro(categoria,"revistasCategoriaInicio"));
+    }
+    
+    public String numeroReaccionesRevista(String nombreRevista){
+        return new Gson().toJson(new DBRevista().numeroReaccionesRevista(nombreRevista));
     }
     
     public String getListadoEtiquetasRevista(String nombreRevista) {

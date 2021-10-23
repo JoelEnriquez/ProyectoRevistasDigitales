@@ -57,6 +57,10 @@ export class RevistaService {
     return this.httpClient.get<Etiqueta[]>(Rutas.API_URL+"RevistaControl?revista="+nombreRevista+"&action="+action);
   }
 
+  cantidadReaccionesRevista(nombreRevista: string, action:string): Observable<number>{
+    return this.httpClient.get<number>(Rutas.API_URL+"RevistaControl?revista="+nombreRevista+"&action="+action);
+  }
+
   asignarCostoDiario(nombre: string, costoDiario: number): Observable<void> {
     const formData: FormData = new FormData();
     formData.set('nombreRevista',nombre);

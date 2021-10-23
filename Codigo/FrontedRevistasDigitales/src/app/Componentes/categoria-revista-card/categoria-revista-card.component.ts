@@ -11,27 +11,26 @@ import { Categoria } from '../../Objects/Revista/Categoria';
 export class CategoriaRevistaCardComponent implements OnInit {
 
   constructor(private _revistaService: RevistaService) { 
-    this.obtenerListadoRevistasPorCategoria();
+    
   }
 
   @Input('_categoria') _categoria!:Categoria
   _listadoRevistas!: Revista[]
 
   ngOnInit(): void {
+    this.obtenerListadoRevistasPorCategoria();
   }
 
   obtenerListadoRevistasPorCategoria(){
-    if (this._categoria!=undefined) {
       this._revistaService.obtenerRevistasPorCategoria(this._categoria.nombre).subscribe(
         (_listadoRevistas:Revista[]) => {
           this._listadoRevistas = _listadoRevistas;
+          console.log(this._listadoRevistas);
         },
         (error) => {
           console.log(error.error.message);
         }
       )
-    }
-    
   }
 
   mostrarMasRevistas(event: Event){

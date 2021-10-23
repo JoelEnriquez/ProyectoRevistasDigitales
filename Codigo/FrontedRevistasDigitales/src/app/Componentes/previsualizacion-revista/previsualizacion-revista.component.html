@@ -1,1 +1,20 @@
-<p>previsualizacion-revista works!</p>
+<div class="container">
+  <h3 class="text-center">{{_revista.nombre}}</h3>
+  <blockquote class="border p-2">
+    {{_revista.descripcion}}
+  </blockquote>
+  <div class="row">
+    <a style="font-size: 20px;line-height: 42px;letter-spacing: 0.02em;font-weight: 200;">Categoria: {{_revista.nombreCategoria}}</a>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+          <img src="/assets/images/Like.png" alt="Lights" height="100px">
+          <div class="caption">
+            <p>{{_numeroReacciones}} reacciones</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
