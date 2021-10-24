@@ -28,20 +28,16 @@ public class InfoRevista {
     }
     
     
-    public String getlistadoRevistasPropias(String userNameEditor) {
-        return new Gson().toJson(new DBRevista().obtenerRevistasParametro(userNameEditor,"revistasPropias"));
+    public String getlistadoRevistasFiltro(String filtroBusqueda, String busqueda) {
+        return new Gson().toJson(new DBRevista().obtenerRevistasParametro(filtroBusqueda,busqueda));
     }
     
     public String getListadoCategoriasPreferencia(String userName) {
         return new Gson().toJson(new DBEscogerCategorias().getListadoCategorias(userName));
     }
     
-    public String getListadoRevistasPorCategoriaInicio(String categoria) {
-        return new Gson().toJson(new DBRevista().obtenerRevistasParametro(categoria,"revistasCategoriaInicio"));
-    }
-    
-    public String numeroReaccionesRevista(String nombreRevista){
-        return new Gson().toJson(new DBRevista().numeroReaccionesRevista(nombreRevista));
+    public String cantidadEstadisticaRevista(String nombreRevista, String estadistica){
+        return new Gson().toJson(new DBEstadisticasRevista().cantidadEstadisticaRevista(nombreRevista,estadistica));
     }
     
     public String getListadoEtiquetasRevista(String nombreRevista) {

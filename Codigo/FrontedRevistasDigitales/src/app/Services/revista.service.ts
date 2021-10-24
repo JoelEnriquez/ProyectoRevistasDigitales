@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Rutas } from '../Objects/Rutas/Rutas';
 import { Etiqueta } from '../Objects/Revista/Etiqueta';
 import { Categoria } from '../Objects/Revista/Categoria';
+import { FiltroEnum } from '../Objects/Revista/FiltroEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -57,8 +58,8 @@ export class RevistaService {
     return this.httpClient.get<Etiqueta[]>(Rutas.API_URL+"RevistaControl?revista="+nombreRevista+"&action="+action);
   }
 
-  cantidadReaccionesRevista(nombreRevista: string, action:string): Observable<number>{
-    return this.httpClient.get<number>(Rutas.API_URL+"RevistaControl?revista="+nombreRevista+"&action="+action);
+  cantidadEstadisticaRevista(nombreRevista: string, estadistica:string): Observable<number>{
+    return this.httpClient.get<number>(Rutas.API_URL+"RevistaControl?revista="+nombreRevista+"&action=estadistica&estadistica="+estadistica);
   }
 
   asignarCostoDiario(nombre: string, costoDiario: number): Observable<void> {
@@ -90,5 +91,12 @@ export class RevistaService {
   obtenerRevistasPorCategoria(_nombreCategoria:string): Observable<Revista[]>{
     return this.httpClient.get<Revista[]>(Rutas.API_URL+"ControlInfoRevistas?action=revistas_categoria&categoria="+_nombreCategoria);
   }
+  
+  obtenerRevistasPorFiltro(_nombreBusqueda:string, filtro: FiltroEnum): Observable<Revista[]>{
+    return this.httpClient.get<Revista[]>(Rutas.API_URL+"ControlInfoRevistas?action=filtro&filtro="+filtro+"&busqueda="+_nombreBusqueda);
+  }
 
+  obtenerRevistaPorNombre(_nombreRevista:string): Observable<Revista[]>{
+    return this.httpClient.get<Revista[]>(Rutas.API_URL+"ControlInfoRevistas?action=info_revista&nombre="+_nombreRevista);
+  }
 }

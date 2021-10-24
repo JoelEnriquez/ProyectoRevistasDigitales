@@ -45,15 +45,16 @@ public class RevistaControl extends HttpServlet {
         switch (action) {
             case "revistas_propias":
                 String userNameEditor = request.getParameter("editor");
-                response.getWriter().append(new InfoRevista().getlistadoRevistasPropias(userNameEditor));
+                response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(userNameEditor,action));
                 break;
             case "etiquetas_revista":
                 String nombreRevista = request.getParameter("revista");
                 response.getWriter().append(new InfoRevista().getListadoEtiquetasRevista(nombreRevista));
                 break;
-            case "reacciones":
+            case "estadistica":
                 String revista = request.getParameter("revista");
-                response.getWriter().append(new InfoRevista().numeroReaccionesRevista(revista));
+                String estadistica = request.getParameter("estadistica");
+                response.getWriter().append(new InfoRevista().cantidadEstadisticaRevista(revista,estadistica));
                 break;
             default:
                 throw new AssertionError();

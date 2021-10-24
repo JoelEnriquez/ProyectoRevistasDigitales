@@ -21,7 +21,7 @@ import { CrearRevistaFormComponent } from './Componentes/crear-revista-form/crea
 import { SubirPublicacionComponent } from './Componentes/subir-publicacion/subir-publicacion.component';
 import { EditarPerfilComponent } from './Componentes/editar-perfil/editar-perfil.component';
 import { ConfEtiquetasComponent } from './Componentes/conf-etiquetas/conf-etiquetas.component';
-import { PrevisualizacionRevistaComponent } from './Componentes/previsualizacion-revista/previsualizacion-revista.component';
+import { PrevisualizacionRevistaComponent } from './Modulos/previsualizacion-revista/previsualizacion-revista.component';
 import { PrevisualizacionEditorComponent } from './Componentes/previsualizacion-editor/previsualizacion-editor.component';
 import { RevistaCardComponent } from './Componentes/revista-card/revista-card.component';
 import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.component';
@@ -30,6 +30,10 @@ import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valor
 import { EtiquetaRevistaCardComponent } from './Componentes/etiqueta-revista-card/etiqueta-revista-card.component';
 import { CategoriaRevistaCardComponent } from './Componentes/categoria-revista-card/categoria-revista-card.component';
 import { RevistasCategoriaComponent } from './Componentes/revistas-categoria/revistas-categoria.component';
+import { BuscarRevistasComponent } from './Modulos/buscar-revistas/buscar-revistas.component';
+import { RevistasSuscritasComponent } from './Componentes/revistas-suscritas/revistas-suscritas.component';
+import { RouterModule } from '@angular/router';
+import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
 
 @NgModule({
   declarations: [
@@ -60,12 +64,18 @@ import { RevistasCategoriaComponent } from './Componentes/revistas-categoria/rev
     EtiquetaRevistaCardComponent,
     CategoriaRevistaCardComponent,
     RevistasCategoriaComponent,
+    BuscarRevistasComponent,
+    RevistasSuscritasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // RouterModule.forRoot([
+    //   {path:RutasUsuario.SEARCH+'/:nombre/:action/:filtro', component: BuscarRevistasComponent},
+    //   {path:'prev-magazine/:nombre', component: PrevisualizacionRevistaComponent},
+    // ])
   ],
   providers: [],
   bootstrap: [AppComponent]

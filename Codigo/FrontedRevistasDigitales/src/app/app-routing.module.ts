@@ -16,6 +16,9 @@ import { EditProfileComponent } from './Modulos/edit-profile/edit-profile.compon
 import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
 import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
 import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valores-iniciales.component';
+import { BuscarRevistasComponent } from './Modulos/buscar-revistas/buscar-revistas.component';
+import { RevistasSuscritasComponent } from './Componentes/revistas-suscritas/revistas-suscritas.component';
+import { PrevisualizacionRevistaComponent } from './Modulos/previsualizacion-revista/previsualizacion-revista.component';
 
 const routes: Routes = [
   {
@@ -65,6 +68,18 @@ const routes: Routes = [
   {
     path: RutasUsuario.EDIT_PROFILE,
     component: UserProfileComponent
+  },
+  {
+    path: RutasUsuario.SEARCH,
+    component: BuscarRevistasComponent
+  },
+  {
+    path: RutasUsuario.SUSCRIBED_MAGAZINES,
+    component: RevistasSuscritasComponent
+  },
+  {
+    path: RutasUsuario.PREV_MAGAZINE+"/:nombre",
+    component: PrevisualizacionRevistaComponent
   }
 
 ];

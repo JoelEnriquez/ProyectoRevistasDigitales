@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Revista } from '../../Objects/Revista/Revista';
+import { Revista } from './../../Objects/Revista/Revista';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { RutasUsuario } from '../../Objects/Rutas/RutasUsuario';
 
 @Component({
   selector: 'app-revista-card',
@@ -9,12 +10,19 @@ import { Revista } from '../../Objects/Revista/Revista';
 export class RevistaCardComponent implements OnInit {
 
   @Input() _revista!:Revista;
+  _revistaPrevisualizar!:Revista;
+  _rutas = RutasUsuario
 
   constructor() {
     
-   }
+  }
 
   ngOnInit(): void {
+  }
+
+
+  solicitarPrevisualizar(_revista: Revista) {
+    this._revistaPrevisualizar = _revista;
   }
 
 }

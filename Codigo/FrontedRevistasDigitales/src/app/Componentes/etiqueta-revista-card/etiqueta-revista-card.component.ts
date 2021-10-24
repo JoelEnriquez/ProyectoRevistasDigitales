@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Etiqueta } from '../../Objects/Revista/Etiqueta';
 
 @Component({
   selector: 'app-etiqueta-revista-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./etiqueta-revista-card.component.css']
 })
 export class EtiquetaRevistaCardComponent implements OnInit {
+
+  @Input() _etiqueta!:Etiqueta;
 
   constructor() { }
 

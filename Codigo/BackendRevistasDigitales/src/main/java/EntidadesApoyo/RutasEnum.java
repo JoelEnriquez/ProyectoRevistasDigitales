@@ -9,12 +9,14 @@ package EntidadesApoyo;
  *
  * @author joel
  */
-public enum Rutas {
+public enum RutasEnum {
 
-    RUTA_TO_SAVE_PDF("/home/joel/Documentos/PDFS/");
+    RUTA_TO_SAVE_PDF("/home/joel/Documentos/PDFS/"),
+    RUTA_FROM_NO_PROFILE_PICTURE("/home/joel/Documentos/Image/NoProFilePicture.jpg");
+    
     private String ruta;
 
-    private Rutas(String ruta) {
+    private RutasEnum(String ruta) {
         this.ruta = ruta;
     }
 

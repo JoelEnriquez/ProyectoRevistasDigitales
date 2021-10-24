@@ -25,7 +25,6 @@ export class CategoriaRevistaCardComponent implements OnInit {
       this._revistaService.obtenerRevistasPorCategoria(this._categoria.nombre).subscribe(
         (_listadoRevistas:Revista[]) => {
           this._listadoRevistas = _listadoRevistas;
-          console.log(this._listadoRevistas);
         },
         (error) => {
           console.log(error.error.message);
@@ -35,7 +34,6 @@ export class CategoriaRevistaCardComponent implements OnInit {
 
   mostrarMasRevistas(event: Event){
     event.preventDefault();
-    
   }
 
 }

@@ -18,30 +18,42 @@ import java.util.ArrayList;
  */
 public class DBRevista {
 
-    private final String numeroReaccionesQuery = "SELECT COUNT(*) FROM Me_Gusta WHERE nombre_revista = ?";
+    private final String revistaPorNombre = "SELECT * FROM Revista WHERE nombre = ?";
     private final String obtenerRevistasSinCostoDiarioQuery = "SELECT * FROM Revista WHERE costo_dia IS NULL";
     private final String obtenerRevistasPropiasQuery = "SELECT * FROM Revista WHERE user_name = ?";
     private final String revistasPorCategoriaQuery = "SELECT * FROM Revista WHERE nombre_categoria = ?";
-    private final String revistasPorCategoriaQueryInicio = revistasPorCategoriaQuery+"ORDER BY RAND () LIMIT 5";
+    private final String revistasPorCategoriaQueryInicio = revistasPorCategoriaQuery + " ORDER BY RAND () LIMIT 5";
+    private final String revistasPorEtiquetaQuery = "select r.* from Revista r inner join Etiquetas_Revista er on r.nombre = er.nombre_revista where er.nombre_etiqueta = ?";
+    private final String revistasPorEtiquetaQueryInicio = revistasPorEtiquetaQuery + " ORDER BY RAND () LIMIT 5";
     private final Connection conexion = ConexionDB.getConexion();
 
     /**
      * Obtiene un listado de revistas en base a un parametro solicitado
+     *
      * @param parameter
      * @param query
-     * @return 
+     * @return
      */
     public ArrayList<Revista> obtenerRevistasParametro(String parameter, String query) {
         switch (query) {
-            case "revistasPropias":
+            case "revistas_propias":
                 query = obtenerRevistasPropiasQuery;
                 break;
-            case "revistasCategoria":
+            case "categoria":
                 query = revistasPorCategoriaQuery;
                 break;
-            case "revistasCategoriaInicio":
+            case "revistas_categoria":
                 query = revistasPorCategoriaQueryInicio;
-                break;    
+                break;
+            case "etiqueta":
+                query = revistasPorEtiquetaQuery;
+                break;
+            case "revistas_etiqueta":
+                query = revistasPorEtiquetaQueryInicio;
+                break;
+            case "info_revista":
+                query = revistaPorNombre;
+                break;
         }
         ArrayList<Revista> listadoRevitas = new ArrayList<>();
         try ( PreparedStatement ps = conexion.prepareStatement(query)) {
@@ -66,12 +78,10 @@ public class DBRevista {
         }
         return listadoRevitas;
     }
-    
-    
 
     public ArrayList<Revista> obtenerRevistasSinCostoDiario() {
         ArrayList<Revista> listadoRevitas = new ArrayList<>();
-        try ( PreparedStatement ps = conexion.prepareStatement(obtenerRevistasSinCostoDiarioQuery); ResultSet rs = ps.executeQuery()) {
+        try ( PreparedStatement ps = conexion.prepareStatement(obtenerRevistasSinCostoDiarioQuery);  ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 listadoRevitas.add(
                         new Revista(rs.getString(1),
@@ -90,24 +100,9 @@ public class DBRevista {
         }
         return listadoRevitas;
     }
-    
-    public Integer numeroReaccionesRevista(String nombreRevista){
-        try (PreparedStatement ps = conexion.prepareStatement(numeroReaccionesQuery)){
-            ps.setString(1, nombreRevista);
-            try(ResultSet rs = ps.executeQuery()){
-                if (rs.next()) {
-                    return rs.getInt(1);
-                }
-            }
-            
-        } catch (Exception e) {
-        }
-        return 0;
-    }
+
     
     
     
-    
-    
-    
+
 }

@@ -6,7 +6,7 @@
 package RevistasModel;
 
 import Convertidores.ConvertidorPublicacion;
-import EntidadesApoyo.Rutas;
+import EntidadesApoyo.RutasEnum;
 import EntidadesRevista.Publicacion;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class RegistrarPublicacion {
                 System.out.println(line);
                 line = in.readLine();
             }
-            filePath = Rutas.RUTA_TO_SAVE_PDF.getRuta()+file.getSubmittedFileName();
+            filePath = RutasEnum.RUTA_TO_SAVE_PDF.getRuta()+file.getSubmittedFileName();
             file.write(filePath);
         } catch (IOException ex) {
             throw new IOException("No se ha podido guardar el archivo. Es probable que no haya provisto el formato correcto");

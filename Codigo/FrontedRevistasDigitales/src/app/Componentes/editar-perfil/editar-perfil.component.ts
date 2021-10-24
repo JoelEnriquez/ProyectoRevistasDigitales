@@ -22,6 +22,7 @@ export class EditarPerfilComponent implements OnInit {
   @Input() _editor!: Editor
   @Input() _fotoPerfil!: string
 
+  _claseContainer : string = '';
   _colorButton : string = '';
   _listadoCategorias!: Categoria[]; //Todas las categorias
   _categoriasPreferencia!: Categoria[]; //Categorias Escogidas
@@ -105,6 +106,7 @@ export class EditarPerfilComponent implements OnInit {
     });
 
     this._claseDiv = 'col-12'
+    this._claseContainer = 'container';
   }
 
   setearFormUsuario() {
@@ -116,7 +118,8 @@ export class EditarPerfilComponent implements OnInit {
       descripcion: this._usuario.descripcion,
     });
 
-    this._claseDiv = 'col-8'
+    this._claseContainer = 'container-fluid';
+    this._claseDiv = 'col-7'
     this.getListadoCategoriasUsuario()
     this.getListadoCategorias();
   }

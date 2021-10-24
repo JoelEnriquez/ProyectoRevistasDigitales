@@ -1,7 +1,7 @@
 
 .tableFixHead {
   overflow-y: auto;
-  height:600px;
+  height:700px;
 }
 .tableFixHead thead th {
   position: sticky;
@@ -13,12 +13,22 @@ table {
   text-align: center;
 }
 
+.prueba {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+table tr {
+  padding: 0px;
+  margin: 0px;
+}
+
 input {
 text-align: center;
 }
 
 th,td {
-  padding: 8px 16px;
+  /* padding: 4px 10px; */
   border: 1px solid #ccc;
 }
 th {

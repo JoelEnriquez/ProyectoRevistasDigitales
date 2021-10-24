@@ -1,0 +1,31 @@
+<app-header-usuario></app-header-usuario>
+<div class="container-fluid">
+  <div class="row justify-content-center mt-5">
+    <form [formGroup]="_formBusqueda" (ngSubmit)="realizarBusqueda()" class="form-inline">
+      <h5 class="mr-3">Busqueda de Revista Por Filtro</h5>
+      <div class="form-check form-check-inline">
+        <input formControlName="filtro" class="form-check-input" type="radio" name="filtro" id="inlineRadio1" value="{{_filtro.CATEGORIA}}">
+        <label  class="form-check-label" for="inlineRadio1">Categoria</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input formControlName="filtro" class="form-check-input" type="radio" name="filtro" id="inlineRadio2" value="{{_filtro.ETIQUETA}}">
+        <label  class="form-check-label" for="inlineRadio2">Etiqueta</label>
+      </div>
+      <div class="form-group mb-2">
+        <label for="search" class="sr-only">Filtro</label>
+        <input type="text" formControlName="text" class="form-control" id="search">
+      </div>
+      <button [disabled]="_formBusqueda.invalid" type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+  </div>
+  <div>
+    <div class="row justify-content-center p-3">
+      <div class="card-deck justify-content-center">
+        <app-revista-card class="mt-2" *ngFor="let revista of _listadoRevistas" [_revista] = revista></app-revista-card>
+      </div>
+    </div>
+    <div *ngIf="_listadoRevistas && _listadoRevistas.length==0" class="alet alert-warning text-center mt-5">
+      <h2>No se han encontrado resultados con la busqueda</h2>
+    </div>
+  </div>
+</div>

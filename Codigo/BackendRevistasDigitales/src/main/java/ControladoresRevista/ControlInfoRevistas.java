@@ -5,6 +5,7 @@
  */
 package ControladoresRevista;
 
+import EntidadesApoyo.FiltroEnum;
 import RevistasModel.InfoRevista;
 import java.io.IOException;
 import javax.servlet.annotation.MultipartConfig;
@@ -32,7 +33,24 @@ public class ControlInfoRevistas extends HttpServlet {
                 break;
             case "revistas_categoria":
                 String categoria = request.getParameter("categoria");
-                response.getWriter().append(new InfoRevista().getListadoRevistasPorCategoriaInicio(categoria));
+                response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(categoria,action));
+                break;
+            case "revistas_etiqueta":
+                String etiqueta = request.getParameter("etiqueta");
+                response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(etiqueta,action));
+                break;
+            case "filtro":
+                String busqueda = request.getParameter("busqueda");
+                String filtro = request.getParameter("filtro");
+                if (filtro.equals(FiltroEnum.CATEGORIA.getFiltro())) {
+                    response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(busqueda,filtro));
+                } else if (filtro.equals(FiltroEnum.ETIQUETA.getFiltro())) {
+                    response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(busqueda,filtro));
+                }
+                break;
+            case "info_revista":
+                String nombreRevista = request.getParameter("nombre");
+                response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(nombreRevista,action));
                 break;
             default:
                 throw new AssertionError();

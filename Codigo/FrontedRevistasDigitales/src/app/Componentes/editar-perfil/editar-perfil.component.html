@@ -1,4 +1,4 @@
-<div class="container">
+<div class="{{_claseContainer}}">
   <h3 class="text-center mt-5 mb-1">Editar Perfil</h3>
   <div *ngIf="_mostrarError" class="alert alert-danger">
     <h6 class="text-center mt-3" style="font-size: 1.5rem;line-height: 1.2;letter-spacing: 0.005em;">{{_mensaje}}</h6>
@@ -66,12 +66,12 @@
       </form>
     </div>
 
-    <div [hidden]="_editor!=undefined" class="col-4" style="background: rgb(238, 241, 232);">
-      <h4 class="text-center m-2">Selecciona las categorias de preferencia que tengas</h4>
+    <div [hidden]="_editor!=undefined" class="col-5" style="background: rgb(238, 241, 232);">
+      <h4 class="text-center m-2">Selecciona las categorias de preferencia que desee tener</h4>
       <div class="tableFixHead table-inverse table-responsive">
         <table>
           <tbody>
-            <tr *ngFor="let categoria of _listadoCategorias">
+            <tr class="prueba" *ngFor="let categoria of _listadoCategorias">
               <div *ngIf="categoriaSeleccionada(categoria)!=undefined">{{child.pintarSeleccionado()}}</div>
               <td>
                 <app-escoger-categorias #child [categoria]="categoria"

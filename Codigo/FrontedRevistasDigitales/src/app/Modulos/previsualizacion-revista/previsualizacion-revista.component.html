@@ -1,0 +1,109 @@
+<app-header-usuario></app-header-usuario>
+<div class="container">
+  <div *ngIf="_mostrarInfoRevista" class="row mt-5">
+    <div class="col-12">
+      <div class="row justify-content-center mb-5">
+        <h2 class="text-center mr-3">{{_revista.nombre}}</h2>
+        <h5 class="text-center">Hecha por {{_revista.userName}}</h5>
+      </div>
+
+      <div id="accordianId" role="tablist" aria-multiselectable="true">
+        <div class="card">
+          <div class="card-header" role="tab" id="section1HeaderId">
+            <h5 class="mb-0">
+              <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true"
+                aria-controls="section1ContentId">
+                Informacion de Revista
+              </a>
+            </h5>
+          </div>
+          <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId">
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-5">
+                  <div class="row">
+                    <blockquote>
+                      <h4 style="font-size: 2rem;">Descripcion</h4>
+                      <p>{{_revista.descripcion}}</p>
+                    </blockquote>
+                  </div>    
+                </div>
+                <div class="col-4">
+                  <div class="row">
+                    <a style="font-size: 32px; line-height: 42px; letter-spacing: 0.02em; font-weight: 200;">
+                      Categoria: {{_revista.nombreCategoria}}
+                    </a>
+                  </div>
+                  <div class="row" style="font-size: 22px;line-height: 36px;letter-spacing: 0.023em;">
+                    <div *ngIf="_revista.pago; else elseBlock">Costo suscripcion: Q{{_revista.costoSuscripcion}}</div>
+                    <ng-template #elseBlock>Revista gratis</ng-template>
+                  </div>
+                  <div class="row" style="font-size: 22px;line-height: 36px;letter-spacing: 0.023em;">
+                    <div *ngIf="_revista.reaccionar; else elseBlock">Se puede reaccionar</div>
+                    <ng-template #elseBlock>No se puede reaccionar</ng-template>
+                  </div>
+                  <div class="row" style="font-size: 22px;line-height: 36px;letter-spacing: 0.023em;">
+                    <div *ngIf="_revista.comentar; else elseBlock">Se puede comentar</div>
+                    <ng-template #elseBlock>No se puede comentar</ng-template>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-action list-group-item-info" style="font-size: 22px;">Etiquetas Asociadas</li>
+                    <li *ngFor="let etiqueta of _etiquetasRevista" class="list-group-item text-center" style="font-size: 18px;">{{etiqueta.nombre}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" role="tab" id="section2HeaderId">
+            <h5 class="mb-0">
+              <a data-toggle="collapse" data-parent="#accordianId" href="#section2ContentId" aria-expanded="true"
+                aria-controls="section2ContentId">
+                Estadisticas Revista
+              </a>
+            </h5>
+          </div>
+          <div id="section2ContentId" class="collapse in" role="tabpanel" aria-labelledby="section2HeaderId">
+            <div class="card-body">
+              <div class="row justify-content-between">
+                <div class="col-4">
+                  <div class="thumbnail">
+                    <img src="/assets/images/Like.png" alt="Lights" height="100px">
+                    <div class="caption">
+                      <p>{{_numeroReacciones}} reacciones</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="thumbnail">
+                    <img src="/assets/images/Coment.png" alt="Lights" height="100px">
+                    <div class="caption">
+                      <p>{{_numeroComentarios}} comentarios</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="thumbnail">
+                    <img src="/assets/images/Suscribe.png" alt="Lights" height="100px">
+                    <div class="caption">
+                      <p>{{_numeroSuscripciones}} suscripciones activas</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>

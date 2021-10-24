@@ -8,6 +8,7 @@ package PersonaModel;
 import Convertidores.ConvertidorCategoriaArray;
 import Convertidores.ConvertidorEditor;
 import Convertidores.ConvertidorUsuario;
+import EntidadesApoyo.RutasEnum;
 import EntidadesRevista.Categoria;
 import Personas.Editor;
 import Personas.Usuario;
@@ -62,7 +63,7 @@ public class InfoPerfil {
     }
     
     public void mostrarFotoNeutral(HttpServletResponse response) throws FileNotFoundException, IOException{
-        try (BufferedInputStream fileStream = new BufferedInputStream(new FileInputStream("/home/joel/Documentos/Image/NoProFilePicture.jpg"))) {
+        try (BufferedInputStream fileStream = new BufferedInputStream(getClass().getClassLoader().getResourceAsStream("NoProFilePicture.jpg"))) {
             response.setContentType("image/jpeg");
             int data = fileStream.read();
             while (data > -1) {
