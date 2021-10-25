@@ -19,8 +19,10 @@ import java.sql.SQLException;
  */
 public class DBSuscripcion {
     private final Connection conexion = ConexionDB.getConexion();
+    private final String anularSuscripcion = "UPDATE Suscripcion SET suscripcion_activa = 0 WHERE nombre_revista=? AND user_name=?";
     private final String registrarPagoQuery = "INSERT INTO Pago (monto, porcentaje_ganancia, fecha_pago, id_suscripcion) VALUES (?,?,?,?)";
     private final String verificarSuscripcionQuery = "select count(*) from Suscripcion WHERE nombre_revista = ? AND user_name = ? AND suscripcion_activa = 1";
+    private final String verificarSuscripcionPagoQuery = verificarSuscripcionQuery + "and date(now()) < fecha_caducidad";
     private final String registrarSuscripcionQuery = "insert into Suscripcion (fecha_suscripcion, suscripcion_activa, nombre_revista, user_name) values (?,?,?,?)";
     private final String registrarSuscripcionPagoQuery = "insert into Suscripcion (fecha_suscripcion,fecha_caducidad, suscripcion_activa, nombre_revista, user_name) values (?,?,?,?,?)";
     
@@ -36,6 +38,29 @@ public class DBSuscripcion {
         } catch (Exception e) {
         }
         return false;
+    }
+    
+    public Boolean suscripcionActivaPago(String nombreRevista, String userNameLector){
+        try (PreparedStatement ps = conexion.prepareStatement(verificarSuscripcionPagoQuery)){
+            ps.setString(1, nombreRevista);
+            ps.setString(2, userNameLector);
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getInt(1)==1;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    
+    public void anularSuscripcion(String nombreRevista, String userNameLector){
+        try (PreparedStatement ps = conexion.prepareStatement(anularSuscripcion)){
+            ps.setString(1, nombreRevista);
+            ps.setString(2, userNameLector);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
     
     public void registrarNuevaSuscripcion(Suscripcion suscripcion) throws SQLException{

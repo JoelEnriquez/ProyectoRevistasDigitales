@@ -5,12 +5,9 @@
  */
 package ControladoresRevista;
 
-import Convertidores.ErrorBackendModelConverter;
-import ErrorAPI.ErrorBackendModel;
 import ErrorAPI.ErrorResponse;
 import RevistasModel.ActualizarDatosRevista;
 import RevistasModel.InfoRevista;
-import RevistasModel.RegistrarRevista;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;

@@ -153,7 +153,7 @@ export class RevistasPropiasComponent implements OnInit {
     this._isInvalidMessage = '';
     this._cantidadInvalida = '';
     this._mostrarError = false;
-    this._mostrarError = false;
+    this._mostrarExito = false;
     this._mensajeEdit = '';
     this.obtenerListadoEtiquetas();
   }

@@ -72,7 +72,7 @@ const routes: Routes = [
     component: UserProfileComponent
   },
   {
-    path: RutasUsuario.SEARCH,
+    path: RutasUsuario.SEARCH+"/:categoria/:etiqueta",
     component: BuscarRevistasComponent
   },
   {

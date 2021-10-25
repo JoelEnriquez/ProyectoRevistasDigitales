@@ -6,6 +6,7 @@
 package RevistasModel;
 
 import Convertidores.ConvertidorSuscripcion;
+import EntidadesRevista.Etiqueta;
 import EntidadesRevista.Pago;
 import EntidadesRevista.Suscripcion;
 import ValoresGlobalesModel.DBValoresGlobales;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,7 +31,14 @@ public class SuscripcionModel {
     } 
     
     public String verificarSuscripcionActiva(String nombreRevista, String userName){
-        return new Gson().toJson(new DBSuscripcion().suscripcionActiva(nombreRevista, userName));
+        Boolean estadoActual = dBSuscripcion.suscripcionActiva(nombreRevista, userName);
+        if (new DBRevista().getCostoSuscripcion(nombreRevista)>0.0) {
+            estadoActual = dBSuscripcion.suscripcionActivaPago(nombreRevista, userName);
+            if (!estadoActual) {
+                dBSuscripcion.anularSuscripcion(nombreRevista, userName);
+            }
+        }
+        return new Gson().toJson(estadoActual);
     }
     
     public void registrarSuscripcion(String infoSuscripcion) throws SQLException{
@@ -63,6 +72,16 @@ public class SuscripcionModel {
             
         } else {
         dBSuscripcion.registrarNuevaSuscripcion(suscripcion);
+        }
+        
+        //Asociar etiquetas al usuario suscriptor
+        DBEtiqueta dBEtiqueta = new DBEtiqueta();
+        ArrayList<Etiqueta> etiquetasRevista = dBEtiqueta.getEtiquetasRevista(suscripcion.getNombreRevista());
+        for (Etiqueta etiqueta : etiquetasRevista) {
+            try {
+                dBEtiqueta.asociarEtiqueta(suscripcion.getUserName(), etiqueta);
+            } catch (SQLException e) {
+            }            
         }
     }
     

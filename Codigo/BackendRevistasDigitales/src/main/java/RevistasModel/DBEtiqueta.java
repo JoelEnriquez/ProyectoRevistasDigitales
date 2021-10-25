@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class DBEtiqueta {
 
     private final String insertEtiqueta = "INSERT INTO Etiqueta VALUES (?)";
+    private final String asociarEtiquetaUsuario = "INSERT INTO Preferencias_Usuario VALUES (?,?)";
     private final String listadoEtiquetasRevistaQuery = "SELECT nombre_etiqueta FROM Etiquetas_Revista WHERE nombre_revista = ?";
     private final Connection conexion = ConexionDB.getConexion();
 
@@ -53,5 +54,15 @@ public class DBEtiqueta {
         } catch (Exception e) {
         }
         return etiquetasRevista;
+    }
+    
+    public void asociarEtiqueta(String nombreUsuario, Etiqueta etiqueta) throws SQLException{
+        try (PreparedStatement ps = conexion.prepareStatement(asociarEtiquetaUsuario)){
+            ps.setString(1, etiqueta.getNombre());
+            ps.setString(2, nombreUsuario);
+            ps.execute();
+        } catch (SQLException e) {
+            throw new SQLException("Se repite la llave primaria");
+        }
     }
 }

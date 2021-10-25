@@ -3,7 +3,7 @@
     <div class="col-4">
       <h4>{{_categoria.nombre}}</h4>
     </div>
-    <button (click)="mostrarMasRevistas($event)" href="#">
+    <button (click)="mostrarMasRevistas($event)" [routerLink]="['/'+_rutas.SEARCH,_categoria.nombre,'']">
       Mostrar mas...
     </button>
   </div>

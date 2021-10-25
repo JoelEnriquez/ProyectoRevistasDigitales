@@ -2,6 +2,7 @@ import { RevistaService } from './../../Services/revista.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Revista } from '../../Objects/Revista/Revista';
 import { Categoria } from '../../Objects/Revista/Categoria';
+import { RutasUsuario } from '../../Objects/Rutas/RutasUsuario';
 
 @Component({
   selector: 'app-categoria-revista-card',
@@ -16,6 +17,7 @@ export class CategoriaRevistaCardComponent implements OnInit {
 
   @Input('_categoria') _categoria!:Categoria
   _listadoRevistas!: Revista[]
+  _rutas = RutasUsuario;
 
   ngOnInit(): void {
     this.obtenerListadoRevistasPorCategoria();
