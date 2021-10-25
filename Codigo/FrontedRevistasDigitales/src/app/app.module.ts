@@ -34,6 +34,9 @@ import { BuscarRevistasComponent } from './Modulos/buscar-revistas/buscar-revist
 import { RevistasSuscritasComponent } from './Componentes/revistas-suscritas/revistas-suscritas.component';
 import { RouterModule } from '@angular/router';
 import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
+import { SuscribirseFormComponent } from './Modulos/suscribirse-form/suscribirse-form.component';
+import { RevistaSuscritaComponent } from './Modulos/revista-suscrita/revista-suscrita.component';
+import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revista.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,9 @@ import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
     RevistasCategoriaComponent,
     BuscarRevistasComponent,
     RevistasSuscritasComponent,
+    SuscribirseFormComponent,
+    RevistaSuscritaComponent,
+    LecturaRevistaComponent,
   ],
   imports: [
     BrowserModule,

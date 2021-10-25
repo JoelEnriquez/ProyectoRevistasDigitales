@@ -3,8 +3,7 @@
   <h3 class="text-center m-5">Listado de Revistas Propias</h3>
   <div class="row">
     <div class="col">
-      <div *ngIf="_listRevistas&&_listRevistas.length>0"
-        class="tableFixHeadRevistas table-inverse table-responsive">
+      <div *ngIf="_listRevistas&&_listRevistas.length>0" class="tableFixHeadRevistas table-inverse table-responsive">
         <table>
           <thead>
             <tr>
@@ -58,12 +57,12 @@
                   <label class="custom-control-label" for="{{revista.nombre}}reaccionar"></label>
                 </div>
               </td>
-              <td *ngIf="revista.costoDia">       
+              <td *ngIf="revista.costoDia">
                 <div class="alert alert-success" role="alert">
                   Aprobada
                 </div>
               </td>
-              <td *ngIf="!revista.costoDia">       
+              <td *ngIf="!revista.costoDia">
                 <div class="alert alert-info" role="alert">
                   En Espera
                 </div>
@@ -110,119 +109,122 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container-fluid">
-          <div *ngIf="_mostrarError" class="alert alert-danger">
-            <h6 class="text-center">{{_mensajeEdit}}</h6>
-          </div>
-          <div *ngIf="_mostrarExito" class="alert alert-success">
-            <h6 class="text-center">{{_mensajeEdit}}</h6>
-          </div>
-          <div class="row mt-5">
-            <div class="col-8">
-              <form [formGroup]='_editarRevistaForm' (ngSubmit)="actualizarRevista()" class="border p-3">
-                <div class="form-group row">
-                  <label for="inputName" class="col-2 col-form-label">Nombre</label>
-                  <div class="col-10">
-                    <input type="text" class="form-control" formControlName="nombre" id="inputName" [readonly]="true">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="textDescripcion">Descripcion</label>
-                  <textarea class="form-control rounded-0 " id="textDescripcion" rows="3" max-rows="6"
-                    formControlName="descripcion"></textarea>
-                </div>
-                <fieldset class="form-group">
-                  <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Tipo de Cobro</legend>
-                    <div class="col-sm-10">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cobro" id="gridGratis" value="false"
-                          formControlName="cobro">
-                        <label class="form-check-label" for="gridGratis">
-                          Gratis
-                        </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cobro" id="gridPago" value="true"
-                          formControlName="cobro">
-                        <label class="form-check-label" for="gridPago">
-                          Pago
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-                <div class="form-group row">
-                  <label for="priceRevistas" class="col-sm-2 col-form-label">Costo</label>
-                  <div class="col-sm-10">
-                    <input *ngIf="_editarRevistaForm.value.cobro === 'true'" [ngClass]="_cantidadInvalida" type="text"
-                      class="form-control" id="priceRevistas" placeholder="Precio de Suscripcion"
-                      formControlName="costo" NumberOnly>
-                    <div *ngIf="_cantidadInvalida!=''" class="invalid-feedback">
-                      Por favor, ingrese una cantidad mayor a 0
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="categoriaRevista" class="col-sm-2 col-form-label">Categoria de Revista</label>
-                  <div class="col-sm-10">
-                    <select class="form-control" id="categoriaRevista" formControlName="categoria">
-                      <option [ngValue]="null">Seleccione una categoria para la revista...</option>
-                      <option *ngFor="let categoria of _listadoCategorias" [ngValue]="categoria.nombre">
-                        {{categoria.nombre}}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <button [disabled]="_editarRevistaForm.invalid" type="submit" class="btn btn-primary">
-                    Guardar Cambios
-                  </button>
-                </div>
-              </form>
+        <div *ngIf="_revistaToEdit">
+          <div class="container-fluid">
+            <div *ngIf="_mostrarError" class="alert alert-danger">
+              <h6 class="text-center">{{_mensajeEdit}}</h6>
             </div>
-            <div class="col-4 border">
-              <div class="row">
-                <h5 class="text-center p-4">Agrega etiquetas para asociarlas a tu revista</h5>
-                <form [formGroup]="_etiquetaForm" (ngSubmit)="agregarEtiqueta()">
-                  <div class="input-group mb-3">
-                    <div class="input-group mb-3 justify-content-center">
-                      <label class="input-group-text mb-1" for="nombre_etiqueta">Etiqueta</label>
-                      <div class="col-auto">
-                        <input formControlName="etiqueta" [ngClass]="_isInvalid" style="text-align: center" type="text"
-                          class="form-control" name="nombre_etiqueta" id="nombre_etiqueta"
-                          placeholder="Ingresa la etiqueta">
-                        <div *ngIf="_isInvalid!=''" class="invalid-feedback">
-                          {{_isInvalidMessage}}
+            <div *ngIf="_mostrarExito" class="alert alert-success">
+              <h6 class="text-center">{{_mensajeEdit}}</h6>
+            </div>
+            <div class="row mt-5">
+              <div class="col-8">
+                <form [formGroup]='_editarRevistaForm' (ngSubmit)="actualizarRevista()" class="border p-3">
+                  <div class="form-group row">
+                    <label for="inputName" class="col-2 col-form-label">Nombre</label>
+                    <div class="col-10">
+                      <input type="text" class="form-control" formControlName="nombre" id="inputName" [readonly]="true">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="textDescripcion">Descripcion</label>
+                    <textarea class="form-control rounded-0 " id="textDescripcion" rows="3" max-rows="6"
+                      formControlName="descripcion"></textarea>
+                  </div>
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <legend class="col-form-label col-sm-2 pt-0">Tipo de Cobro</legend>
+                      <div class="col-sm-10">
+                        <div *ngIf="!_revistaToEdit.pago" class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="cobro" id="gridGratis" value="false"
+                            formControlName="cobro">
+                          <label class="form-check-label" for="gridGratis">
+                            Gratis
+                          </label>
+                        </div>
+                        <div *ngIf="_revistaToEdit.pago" class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="cobro" id="gridPago" value="true"
+                            formControlName="cobro">
+                          <label class="form-check-label" for="gridPago">
+                            Pago
+                          </label>
                         </div>
                       </div>
                     </div>
-                    <div class="input-group">
-                      <div class="input-group justify-content-center">
-                        <button type="submit" [disabled]="_etiquetaForm.invalid" class="btn btn-outline-success">Agregar
-                          etiqueta</button>
+                  </fieldset>
+                  <div class="form-group row">
+                    <label for="priceRevistas" class="col-sm-2 col-form-label">Costo</label>
+                    <div class="col-sm-10">
+                      <input *ngIf="_editarRevistaForm.value.cobro === 'true'" [ngClass]="_cantidadInvalida" type="text"
+                        class="form-control" id="priceRevistas" placeholder="Precio de Suscripcion"
+                        formControlName="costo" NumberOnly>
+                      <div *ngIf="_cantidadInvalida!=''" class="invalid-feedback">
+                        Por favor, ingrese una cantidad mayor a 0
                       </div>
                     </div>
                   </div>
+                  <div class="form-group row">
+                    <label for="categoriaRevista" class="col-sm-2 col-form-label">Categoria de Revista</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="categoriaRevista" formControlName="categoria">
+                        <option [ngValue]="null">Seleccione una categoria para la revista...</option>
+                        <option *ngFor="let categoria of _listadoCategorias" [ngValue]="categoria.nombre">
+                          {{categoria.nombre}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <button [disabled]="_editarRevistaForm.invalid" type="submit" class="btn btn-primary">
+                      Guardar Cambios
+                    </button>
+                  </div>
                 </form>
               </div>
-              <div class="row mt-3">
-                <div class="tableFixHeadEtiqueta table-inverse table-responsive">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Nombre de Etiqueta</th>
-                        <th>Accion</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let etiqueta of _listadoEtiquetas">
-                        <td>{{etiqueta.nombre}}</td>
-                        <td><button class="btn btn-outline-danger"
-                            (click)="eliminarEtiqueta(etiqueta)">Eliminar</button></td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div class="col-4 border">
+                <div class="row">
+                  <h5 class="text-center p-4">Agrega etiquetas para asociarlas a tu revista</h5>
+                  <form [formGroup]="_etiquetaForm" (ngSubmit)="agregarEtiqueta()">
+                    <div class="input-group mb-3">
+                      <div class="input-group mb-3 justify-content-center">
+                        <label class="input-group-text mb-1" for="nombre_etiqueta">Etiqueta</label>
+                        <div class="col-auto">
+                          <input formControlName="etiqueta" [ngClass]="_isInvalid" style="text-align: center"
+                            type="text" class="form-control" name="nombre_etiqueta" id="nombre_etiqueta"
+                            placeholder="Ingresa la etiqueta">
+                          <div *ngIf="_isInvalid!=''" class="invalid-feedback">
+                            {{_isInvalidMessage}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <div class="input-group justify-content-center">
+                          <button type="submit" [disabled]="_etiquetaForm.invalid"
+                            class="btn btn-outline-success">Agregar
+                            etiqueta</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="row mt-3">
+                  <div class="tableFixHeadEtiqueta table-inverse table-responsive">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Nombre de Etiqueta</th>
+                          <th>Accion</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let etiqueta of _listadoEtiquetas">
+                          <td>{{etiqueta.nombre}}</td>
+                          <td><button class="btn btn-outline-danger"
+                              (click)="eliminarEtiqueta(etiqueta)">Eliminar</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>

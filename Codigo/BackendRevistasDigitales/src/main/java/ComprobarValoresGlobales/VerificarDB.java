@@ -101,7 +101,7 @@ public class VerificarDB {
     }
     
     /**
-     * Crear Primeras personas en sistema
+     * Crear Primeras personas en sistema para pruebas en el sistema
      * @throws Exception 
      */
     public void crearPersonas() throws Exception{

@@ -19,6 +19,8 @@ import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valor
 import { BuscarRevistasComponent } from './Modulos/buscar-revistas/buscar-revistas.component';
 import { RevistasSuscritasComponent } from './Componentes/revistas-suscritas/revistas-suscritas.component';
 import { PrevisualizacionRevistaComponent } from './Modulos/previsualizacion-revista/previsualizacion-revista.component';
+import { SuscribirseFormComponent } from './Modulos/suscribirse-form/suscribirse-form.component';
+import { RevistaSuscritaComponent } from './Modulos/revista-suscrita/revista-suscrita.component';
 
 const routes: Routes = [
   {
@@ -80,6 +82,14 @@ const routes: Routes = [
   {
     path: RutasUsuario.PREV_MAGAZINE+"/:nombre",
     component: PrevisualizacionRevistaComponent
+  },
+  {
+    path: RutasUsuario.SUSCRIBE+"/:nombre",
+    component: SuscribirseFormComponent
+  },
+  {
+    path: RutasUsuario.SUSCRIBED_MAGAZINE+"/:nombre",
+    component: RevistaSuscritaComponent
   }
 
 ];

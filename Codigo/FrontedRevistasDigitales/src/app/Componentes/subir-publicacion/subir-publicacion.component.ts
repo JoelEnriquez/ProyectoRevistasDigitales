@@ -30,6 +30,9 @@ export class SubirPublicacionComponent implements OnInit {
       fecha: ['', Validators.required],
       file: [null, Validators.required]
     })
+    this._mensaje = '';
+    this._mostrarExito = false;
+    this._mostrarError = false;
   }
 
   subirPublicacion() {
@@ -42,7 +45,7 @@ export class SubirPublicacionComponent implements OnInit {
           this._mostrarExito = true;
           this._mostrarError = false;
           this._mensaje = 'Se ha subida la publicacion correctamente';
-
+          this.resetInputs();
         },
         (error) => {
           console.log(error);

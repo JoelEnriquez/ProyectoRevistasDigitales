@@ -18,6 +18,7 @@ import java.util.ArrayList;
  */
 public class DBRevista {
 
+    private final String precioSuscripcionRevista = "SELECT costo_suscripcion FROM Revista WHERE nombre = ?";
     private final String revistaPorNombre = "SELECT * FROM Revista WHERE nombre = ?";
     private final String obtenerRevistasSinCostoDiarioQuery = "SELECT * FROM Revista WHERE costo_dia IS NULL";
     private final String obtenerRevistasPropiasQuery = "SELECT * FROM Revista WHERE user_name = ?";
@@ -99,6 +100,19 @@ public class DBRevista {
         } catch (Exception e) {
         }
         return listadoRevitas;
+    }
+    
+    public Double getCostoSuscripcion(String nombreRevista){
+        try (PreparedStatement ps = conexion.prepareStatement(precioSuscripcionRevista)){
+            ps.setString(1, nombreRevista);
+            try(ResultSet rs = ps.executeQuery()){
+                if (rs.next()) {
+                    return rs.getDouble(1);
+                }
+            }
+        } catch (Exception e) {
+        }
+        return 0.0;
     }
 
     

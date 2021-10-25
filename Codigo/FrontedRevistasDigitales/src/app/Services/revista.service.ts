@@ -6,6 +6,7 @@ import { Rutas } from '../Objects/Rutas/Rutas';
 import { Etiqueta } from '../Objects/Revista/Etiqueta';
 import { Categoria } from '../Objects/Revista/Categoria';
 import { FiltroEnum } from '../Objects/Revista/FiltroEnum';
+import { Suscripcion } from '../Objects/Revista/Suscripcion';
 
 @Injectable({
   providedIn: 'root'
@@ -98,5 +99,20 @@ export class RevistaService {
 
   obtenerRevistaPorNombre(_nombreRevista:string): Observable<Revista[]>{
     return this.httpClient.get<Revista[]>(Rutas.API_URL+"ControlInfoRevistas?action=info_revista&nombre="+_nombreRevista);
+  }
+
+  suscripcionActiva(_nombreRevista:string, _nombreUsuario:string){
+    return this.httpClient.get<boolean>(Rutas.API_URL+"SuscripcionControl?nombre_revista="+_nombreRevista+"&usuario="+_nombreUsuario);
+  }
+
+  /**
+   * Registrar una nueva suscripcion al sistema
+   * @param _suscripcion 
+   * @returns 
+   */
+  registrarSuscripcion(_suscripcion: Suscripcion): Observable<void>{
+     const _formData: FormData = new FormData();
+    _formData.append('suscripcion',JSON.stringify(_suscripcion));
+    return this.httpClient.post<void>(Rutas.API_URL+"SuscripcionControl",_formData);
   }
 }

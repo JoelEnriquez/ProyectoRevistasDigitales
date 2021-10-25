@@ -1,0 +1,76 @@
+<app-header-usuario></app-header-usuario>
+<div class="container mt-5">
+  <div *ngIf="_mostrarInfoRevista">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center">Suscribirse Form</h2>
+        <div *ngIf="_mostrarError" class="alert alert-danger mb-3">
+          <h4 class="text-center">{{_mensaje}}</h4>
+        </div>
+        <form [formGroup]="_suscribirseForm" (ngSubmit)="guardarSuscripcion()">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="nombre_revista"
+                style="font-size: 22px;line-height: 36px;letter-spacing: 0.028em;font-weight: 400;">Nombre de
+                Revista</label>
+              <input type="text" class="form-control text-center"
+                style="font-size: 1.5rem;letter-spacing: 0.08em;font-weight: 500;" id="nombre_revista"
+                [value]="_revista.nombre" [readOnly]=true>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fecha_suscripcion"
+              style="font-size: 22px;line-height: 36px;letter-spacing: 0.028em;font-weight: 400;">Fecha de
+              Suscripcion</label>
+            <input formControlName="fecha" type="date" class="form-control text-center"
+              style="font-size: 1.5rem;letter-spacing: 0.08em;font-weight: 500;" id="fecha_suscripcion">
+          </div>
+          <div *ngIf="_revista.pago">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="precio_suscripcion"
+                  style="font-size: 22px;line-height: 36px;letter-spacing: 0.028em;font-weight: 400;">Precio de
+                  Suscripcion</label>
+                <input type="text" class="form-control text-center"
+                  style="font-size: 1.5rem;letter-spacing: 0.08em;font-weight: 500;" id="nombre_revista"
+                  [value]="_revista.costoSuscripcion" [readOnly]=true>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="mr-5" for="precio_suscripcion"
+                  style="font-size: 22px;line-height: 36px;letter-spacing: 0.028em;font-weight: 400;">Tipo de
+                  Suscripcion</label>
+                <div class="form-check form-check-inline">
+                  <input formControlName="tipo_pago" class="form-check-input" type="radio" name="tipo_pago"
+                    id="radio_mensual" value="mensual">
+                  <label class="form-check-label" for="radio_mensual"
+                    style="font-size: 22px;line-height: 54px;letter-spacing: 0.095em;">Mensual</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input formControlName="tipo_pago" class="form-check-input" type="radio" name="tipo_pago"
+                    id="radio_anual" value="anual">
+                  <label class="form-check-label" for="radio_anual"
+                    style="font-size: 22px;line-height: 54px;letter-spacing: 0.095em;">Anual</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="precio_suscripcion"
+                  style="font-size: 22px;line-height: 36px;letter-spacing: 0.028em;font-weight: 400;">Cantidad de tiempo
+                  a suscribirse</label>
+                <input formControlName="cantidad_tiempo" type="number" min="1" class="form-control text-center"
+                  style="font-size: 1.5rem;letter-spacing: 0.08em;font-weight: 500;" id="cantidad_tiempo"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-5">
+            <button [disabled]="_suscribirseForm.invalid" type="submit" class="btn btn-lg btn-outline-success">Suscribirse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

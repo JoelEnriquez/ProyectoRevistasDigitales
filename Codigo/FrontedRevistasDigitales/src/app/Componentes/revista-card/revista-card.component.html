@@ -1,18 +1,20 @@
 <div class="card text-white bg-dark" style="width: 18rem;">
   <div class="card-header">
-    <h5 class="text-center card-title">{{_revista.nombre}}</h5>
+    <h5 class="text-center card-title">
+      <div *ngIf="_revista.pago; else elseBlock">Revista de Pago</div>
+        <ng-template #elseBlock>Revista Gratis</ng-template>
+    </h5>
   </div>
   <div class="card-body">
     <p class="text-center" style="font-size: 27px;line-height: 65px;letter-spacing: -0.002em;font-weight: 300;">
       <small>
-        <div *ngIf="_revista.pago; else elseBlock">Revista de Pago</div>
-        <ng-template #elseBlock>Revista Gratis</ng-template>
+        {{_revista.nombre}}
       </small>
     </p>
   </div>
   <div class="card-footer">
     <div class="row justify-content-center">
-      <a href="#" class="card-link">Suscribirse</a>
+      <a [routerLink]="['/'+_rutas.SUSCRIBE,_revista.nombre]" class="card-link">Suscribirse</a>
       <a [routerLink]="['/'+_rutas.PREV_MAGAZINE,_revista.nombre]" class="card-link">Previsualizar</a>
     </div>
   </div>

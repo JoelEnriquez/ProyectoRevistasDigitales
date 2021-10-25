@@ -46,6 +46,10 @@
                     <div *ngIf="_revista.comentar; else elseBlock">Se puede comentar</div>
                     <ng-template #elseBlock>No se puede comentar</ng-template>
                   </div>
+                  <div class="row" style="font-size: 22px;line-height: 36px;letter-spacing: 0.023em;">
+                    <div *ngIf="_revista.suscribir; else elseBlock">Se puede suscribir</div>
+                    <ng-template #elseBlock>No se puede suscribir</ng-template>
+                  </div>
                 </div>
                 <div class="col-3">
                   <ul class="list-group">
@@ -100,10 +104,4 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
 </div>

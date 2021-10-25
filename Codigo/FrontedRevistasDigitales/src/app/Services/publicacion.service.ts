@@ -15,6 +15,6 @@ export class PublicacionService {
     const formData: FormData = new FormData();
     formData.append('publicacion',JSON.stringify(_publicacion));
     formData.append('file',_file, _file.name);
-    return this.httpClient.post<void>(Rutas.API_URL+"ClaseTemporal",formData);
+    return this.httpClient.post<void>(Rutas.API_URL+"RegisterPublicacionControl",formData);
   }
 }

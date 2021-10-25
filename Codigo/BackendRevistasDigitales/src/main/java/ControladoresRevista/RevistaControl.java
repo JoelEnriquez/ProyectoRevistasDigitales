@@ -7,6 +7,7 @@ package ControladoresRevista;
 
 import Convertidores.ErrorBackendModelConverter;
 import ErrorAPI.ErrorBackendModel;
+import ErrorAPI.ErrorResponse;
 import RevistasModel.ActualizarDatosRevista;
 import RevistasModel.InfoRevista;
 import RevistasModel.RegistrarRevista;
@@ -77,8 +78,7 @@ public class RevistaControl extends HttpServlet {
         try {
             new ActualizarDatosRevista().actualizarDatosRevista(revista, etiquetas);
         } catch (SQLException e) {
-            response.getWriter().append(new ErrorBackendModelConverter(ErrorBackendModel.class).toJson(new ErrorBackendModel(e.getMessage())));
-            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            ErrorResponse.mostrarError(response, e.getMessage());
         }
     }
 

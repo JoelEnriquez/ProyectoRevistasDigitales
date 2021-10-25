@@ -28,10 +28,6 @@ export class PrevisualizacionRevistaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.actualizarInfo();
-    // this.obtenerCantidadReacciones();
-    // console.log(this._revista.nombre)
-    // console.log(this._revista.userName)
     let nombre = this._route.snapshot.paramMap.get('nombre');
     this.obtenerRevistaPorNombre(nombre);
   }
