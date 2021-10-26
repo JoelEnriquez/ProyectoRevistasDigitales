@@ -57,7 +57,7 @@ public class RevistaControl extends HttpServlet {
                 case "reaccion":
                 String userName = request.getParameter("userName");
                 String nameRevista = request.getParameter("revista");
-                response.getWriter().append(new InfoRevista().getReaccionRevista(userName,nameRevista));
+                response.getWriter().append(new InfoRevista().getReaccionRevista(nameRevista,userName));
                 break;
                 case "publicaciones":
                 String revistaName = request.getParameter("revista");

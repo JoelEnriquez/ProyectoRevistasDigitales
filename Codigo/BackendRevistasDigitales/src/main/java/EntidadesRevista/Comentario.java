@@ -28,6 +28,16 @@ public class Comentario {
         this.userName = userName;
     }
 
+    public Comentario(int id, String contenido, Date fechaComentarioDate, String nombreRevista, String userName) {
+        this.id = id;
+        this.contenido = contenido;
+        this.nombreRevista = nombreRevista;
+        this.userName = userName;
+        this.fechaComentarioDate = fechaComentarioDate;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

@@ -22,6 +22,9 @@ import { PrevisualizacionRevistaComponent } from './Modulos/previsualizacion-rev
 import { SuscribirseFormComponent } from './Modulos/suscribirse-form/suscribirse-form.component';
 import { RevistaSuscritaComponent } from './Modulos/revista-suscrita/revista-suscrita.component';
 import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revista.component';
+import { ReporteComentariosComponent } from './Modulos/ReportesEditor/reporte-comentarios/reporte-comentarios.component';
+import { ReporteSuscripcionesComponent } from './Modulos/ReportesEditor/reporte-suscripciones/reporte-suscripciones.component';
+import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/reporte-ganancias-editor/reporte-ganancias-editor.component';
 
 const routes: Routes = [
   {
@@ -96,6 +99,18 @@ const routes: Routes = [
   {
     path: RutasUsuario.READ_MAGAZINE+"/:path",
     component: LecturaRevistaComponent
+  },
+  {
+    path: RutasEditor.COMENTS_REPORT,
+    component: ReporteComentariosComponent
+  },
+  {
+    path: RutasEditor.SUSCRIPTIONS_REPORT,
+    component: ReporteSuscripcionesComponent
+  },
+  {
+    path: RutasEditor.EARNING_MONEY_REPORT,
+    component: ReporteGananciasEditorComponent
   }
 
 ];

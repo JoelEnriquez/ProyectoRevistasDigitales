@@ -31,7 +31,6 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getServletContext().getRealPath(""));
         try {
             ComprobarCredenciales cc = new ComprobarCredenciales(request.getReader());
             Persona persona = cc.verificarPersona();

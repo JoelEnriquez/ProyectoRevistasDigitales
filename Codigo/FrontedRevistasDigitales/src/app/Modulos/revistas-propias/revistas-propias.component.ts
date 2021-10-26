@@ -185,7 +185,8 @@ export class RevistasPropiasComponent implements OnInit {
             () => {
               this.limpiarErroresEtiqueta();
               //Setear revista modificada al array[]
-              this._listRevistas[this.indiceRevistaModificar(this._revistaToEdit)] = revista;
+              this.obtenerListaRevistas();
+              //this._listRevistas[this.indiceRevistaModificar(this._revistaToEdit)] = revista;
               this._mostrarError = false;
               this._mostrarExito = true;
               this._cantidadInvalida = '';

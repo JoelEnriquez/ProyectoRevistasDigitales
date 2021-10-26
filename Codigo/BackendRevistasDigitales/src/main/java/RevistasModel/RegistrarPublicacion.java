@@ -26,14 +26,16 @@ public class RegistrarPublicacion {
     private DBRegistrarPublicacion dbrp;
     private Part file;
     private String publicacion;
+    private String pathRelativo;
     private String filePath = "";
     private int idPublicacion = 0;
 
-    public RegistrarPublicacion(Part file, String publicacion) {
+    public RegistrarPublicacion(Part file, String publicacion, String pathRelativo) {
         this.cp = new ConvertidorPublicacion(Publicacion.class);
         this.file = file;
         this.publicacion = publicacion;
         dbrp = new DBRegistrarPublicacion();
+        this.pathRelativo = pathRelativo;
     }
     
     public void insertarPublicacion() throws DateTimeParseException, SQLException, Exception{
@@ -50,7 +52,7 @@ public class RegistrarPublicacion {
                 System.out.println(line);
                 line = in.readLine();
             }
-            filePath = RutasEnum.RUTA_TO_SAVE_PDF.getRuta()+file.getSubmittedFileName();
+            filePath = pathRelativo + RutasEnum.RUTA_TO_SAVE_PDF.getRuta()+file.getSubmittedFileName();
             file.write(filePath);
         } catch (IOException ex) {
             throw new IOException("No se ha podido guardar el archivo. Es probable que no haya provisto el formato correcto");

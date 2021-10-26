@@ -13,6 +13,7 @@ import java.time.LocalDate;
  * @author joel
  */
 public class Suscripcion {
+    private int id;
     private String fechaSuscripcion;
     private boolean suscripcionActiva;
     private String nombreRevista;
@@ -22,7 +23,29 @@ public class Suscripcion {
     private String fechaCaducidad;
     private Date fechaSuscripcionDate;
     private Date fechaCaducidadDate;
+    
+    private Double montoGanancia;
 
+    /**
+     * Constructor for get data to DB
+     * @param id
+     * @param fechaSuscripcionDate
+     * @param fechaCaducidadDate
+     * @param suscripcionActiva
+     * @param nombreRevista
+     * @param userName 
+     */
+    public Suscripcion(int id, Date fechaSuscripcionDate, Date fechaCaducidadDate, boolean suscripcionActiva,String nombreRevista,String userName) {
+        this.id = id;
+        this.fechaSuscripcionDate = fechaSuscripcionDate;
+        this.fechaCaducidadDate = fechaCaducidadDate;
+        this.suscripcionActiva = suscripcionActiva;
+        this.nombreRevista = nombreRevista;
+        this.userName = userName;
+    }
+
+    
+    
     public Suscripcion(String fechaSuscripcion, boolean suscripcionActiva, String nombreRevista, String userName) {
         this.fechaSuscripcion = fechaSuscripcion;
         this.suscripcionActiva = suscripcionActiva;
@@ -39,6 +62,26 @@ public class Suscripcion {
         this.cantidadTiempo = cantidadTiempo;
         this.fechaCaducidad = fechaCaducidad;
     }
+
+    /**
+     * Constructor for jasper
+     * @param id
+     * @param suscripcionActiva
+     * @param userName
+     * @param fechaSuscripcionDate
+     * @param fechaCaducidadDate 
+     * @param montoGanancia 
+     */
+    public Suscripcion(int id, Date fechaSuscripcionDate, Date fechaCaducidadDate,boolean suscripcionActiva, String userName,  Double montoGanancia) {
+        this.id = id;
+        this.suscripcionActiva = suscripcionActiva;
+        this.userName = userName;
+        this.fechaSuscripcionDate = fechaSuscripcionDate;
+        this.fechaCaducidadDate = fechaCaducidadDate;
+        this.montoGanancia = montoGanancia;
+    }
+    
+    
 
     public String getFechaSuscripcion() {
         return fechaSuscripcion;
@@ -110,6 +153,22 @@ public class Suscripcion {
 
     public void setFechaCaducidadDate(Date fechaCaducidadDate) {
         this.fechaCaducidadDate = fechaCaducidadDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Double getMontoGanancia() {
+        return montoGanancia;
+    }
+
+    public void setMontoGanancia(Double montoGanancia) {
+        this.montoGanancia = montoGanancia;
     }
     
     

@@ -39,6 +39,10 @@ import { RevistaSuscritaComponent } from './Modulos/revista-suscrita/revista-sus
 import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revista.component';
 import { RevistasEtiquetaComponent } from './Componentes/revistas-etiqueta/revistas-etiqueta.component';
 import { RevistaSuscritaCardComponent } from './Componentes/revista-suscrita-card/revista-suscrita-card.component';
+import { ReporteComentariosComponent } from './Modulos/ReportesEditor/reporte-comentarios/reporte-comentarios.component';
+import { ReporteSuscripcionesComponent } from './Modulos/ReportesEditor/reporte-suscripciones/reporte-suscripciones.component';
+import { ReporteRevistasGustadasComponent } from './Modulos/ReportesEditor/reporte-revistas-gustadas/reporte-revistas-gustadas.component';
+import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/reporte-ganancias-editor/reporte-ganancias-editor.component';
 
 
 @NgModule({
@@ -77,6 +81,10 @@ import { RevistaSuscritaCardComponent } from './Componentes/revista-suscrita-car
     LecturaRevistaComponent,
     RevistasEtiquetaComponent,
     RevistaSuscritaCardComponent,
+    ReporteComentariosComponent,
+    ReporteSuscripcionesComponent,
+    ReporteRevistasGustadasComponent,
+    ReporteGananciasEditorComponent,
   ],
   imports: [
     BrowserModule,

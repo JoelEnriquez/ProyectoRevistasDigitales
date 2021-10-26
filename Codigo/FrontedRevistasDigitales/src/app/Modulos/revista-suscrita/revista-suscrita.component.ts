@@ -61,6 +61,7 @@ export class RevistaSuscritaComponent implements OnInit {
     this._revistaService.obtenerEstadoReaccion(this._revista.nombre, this._usuario.userName).subscribe(
       (_meGusta:MeGusta) => {
         this._meGusta = _meGusta;
+        console.log(_meGusta);
         if (_meGusta.nombreRevista.length>0&&_meGusta.userName.length>0) {
           this._classButton = this._classPrimary;
         } else {

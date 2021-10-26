@@ -5,7 +5,8 @@
       <!-- Listado de Publicaciones -->
       <h2 class="text-center text-black">Listado de Publicaciones</h2>
       <div class="list-group">
-        <a *ngFor="let _publicacion of _listadoPublicaciones" [routerLink]="['/'+_rutas.READ_MAGAZINE,_publicacion.pathArchivo]"
+        <a *ngFor="let _publicacion of _listadoPublicaciones"
+          [routerLink]="['/'+_rutas.READ_MAGAZINE,_publicacion.pathArchivo]"
           class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Publicacion #{{_publicacion.id}}</h5>
@@ -108,9 +109,15 @@
             <div class="row">
               <div class="col-sm-5 col-md-6 col-12 pb-4">
                 <h3 class="text-center">Comentarios</h3>
-                <div *ngFor="let _comentario of _listadoComentarios" class="comment mt-4 text-justify">
-                  <h4>{{_comentario.userName}}</h4> <span>- {{_comentario.fechaComentario}}</span> <br>
-                  <p>{{_comentario.contenido}}</p>
+                <div class="tableFixHeadEtiqueta table-inverse table-responsive">
+                  <table>
+                    <tbody>
+                      <tr *ngFor="let _comentario of _listadoComentarios" class="comment mt-1 text-justify" style="font-size: 22px;letter-spacing: 0.073em;font-weight: 200;">
+                        <h4>{{_comentario.userName}}</h4> <span>- {{_comentario.fechaComentario}}</span> <br>
+                        <p>{{_comentario.contenido}}</p>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
@@ -119,10 +126,10 @@
                   <div class="form-group">
                     <h4>Deja un comentario</h4> <label for="mensaje">Mensaje</label> <textarea name="mensaje" id="" msg
                       cols="30" rows="5" formControlName="mensaje" class="form-control text-white"
-                      style="background-color: black;"></textarea>
+                      style="background-color: black;" [disabled]="!_revista.comentar"></textarea>
                   </div>
                   <div class="form-group"> <label for="fecha">Fecha de Comentario</label>
-                    <input formControlName="fecha" type="date" name="fecha" id="fecha" class="form-control text-white">
+                    <input [disabled]="!_revista.comentar" formControlName="fecha" type="date" name="fecha" id="fecha" class="form-control text-white">
                   </div>
                   <div class="text-center form-group"> <button [disabled]="_comentForm.invalid" type="submit" id="post"
                       class="btn">Publicar</button> </div>

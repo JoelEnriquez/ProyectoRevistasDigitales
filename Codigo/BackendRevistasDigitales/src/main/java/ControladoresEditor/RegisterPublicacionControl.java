@@ -43,7 +43,7 @@ public class RegisterPublicacionControl extends HttpServlet {
         String publicacion = request.getParameter("publicacion");
         Part file = request.getPart("file");
         Connection conexion = ConexionDB.getConexion();
-        RegistrarPublicacion rp = new RegistrarPublicacion(file, publicacion);
+        RegistrarPublicacion rp = new RegistrarPublicacion(file, publicacion, request.getServletContext().getRealPath("")+"../");
         try {
             conexion.setAutoCommit(false);
             rp.insertarPublicacion();
