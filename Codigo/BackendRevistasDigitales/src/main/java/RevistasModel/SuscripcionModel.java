@@ -32,12 +32,6 @@ public class SuscripcionModel {
     
     public String verificarSuscripcionActiva(String nombreRevista, String userName){
         Boolean estadoActual = dBSuscripcion.suscripcionActiva(nombreRevista, userName);
-        if (new DBRevista().getCostoSuscripcion(nombreRevista)>0.0) {
-            estadoActual = dBSuscripcion.suscripcionActivaPago(nombreRevista, userName);
-            if (!estadoActual) {
-                dBSuscripcion.anularSuscripcion(nombreRevista, userName);
-            }
-        }
         return new Gson().toJson(estadoActual);
     }
     
@@ -63,6 +57,13 @@ public class SuscripcionModel {
                 caducidadLD = caducidadLD.plusYears(cantidadTiempo);
                 monto*=12;
             }
+            
+            //Verificar que no exista una suscripcion activa, de ser asi, cancelarla
+            int idSuscripcionAnterior = dBSuscripcion.verificarSuscripcionExistente(suscripcion.getNombreRevista(), suscripcion.getUserName());
+            if (idSuscripcionAnterior!=0) {
+                dBSuscripcion.anularSuscripcionById(idSuscripcionAnterior);
+            }
+            
             //Convert LocalDate en Date y Guardar en DB
             suscripcion.setFechaCaducidadDate(Date.valueOf(caducidadLD));
             int idSuscripcion = dBSuscripcion.registrarNuevaSuscripcionPago(suscripcion);

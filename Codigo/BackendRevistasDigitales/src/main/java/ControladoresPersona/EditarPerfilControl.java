@@ -7,7 +7,7 @@ package ControladoresPersona;
 
 import ErrorAPI.ErrorResponse;
 import PersonaModel.EditarPerfil;
-import PersonaModel.InfoPerfil;
+import FileModel.FileModel;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -31,7 +31,7 @@ public class EditarPerfilControl extends HttpServlet {
             throws ServletException, IOException {
         String tipoPersona = request.getParameter("tipo");
         String userName = request.getParameter("userName");
-        InfoPerfil infoPerfil = new InfoPerfil();
+        FileModel infoPerfil = new FileModel();
         switch (tipoPersona) {
             case "editor":
                 String editor = infoPerfil.obtenerInfoEditor(userName);

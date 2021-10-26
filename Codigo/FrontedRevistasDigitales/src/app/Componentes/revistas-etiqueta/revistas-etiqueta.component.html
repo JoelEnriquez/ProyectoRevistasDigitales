@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <h1 class="text-center mt-5">Revistas por Etiqueta</h1>
+  <div class="p-2" *ngFor="let _etiqueta of _listadoEtiquetas">
+    <app-etiqueta-revista-card [_etiqueta]="_etiqueta">
+    </app-etiqueta-revista-card>
+  </div>
+</div>

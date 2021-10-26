@@ -31,12 +31,15 @@ import { EtiquetaRevistaCardComponent } from './Componentes/etiqueta-revista-car
 import { CategoriaRevistaCardComponent } from './Componentes/categoria-revista-card/categoria-revista-card.component';
 import { RevistasCategoriaComponent } from './Componentes/revistas-categoria/revistas-categoria.component';
 import { BuscarRevistasComponent } from './Modulos/buscar-revistas/buscar-revistas.component';
-import { RevistasSuscritasComponent } from './Componentes/revistas-suscritas/revistas-suscritas.component';
+import { RevistasSuscritasComponent } from './Modulos/revistas-suscritas/revistas-suscritas.component';
 import { RouterModule } from '@angular/router';
 import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
 import { SuscribirseFormComponent } from './Modulos/suscribirse-form/suscribirse-form.component';
 import { RevistaSuscritaComponent } from './Modulos/revista-suscrita/revista-suscrita.component';
 import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revista.component';
+import { RevistasEtiquetaComponent } from './Componentes/revistas-etiqueta/revistas-etiqueta.component';
+import { RevistaSuscritaCardComponent } from './Componentes/revista-suscrita-card/revista-suscrita-card.component';
+
 
 @NgModule({
   declarations: [
@@ -72,16 +75,14 @@ import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revis
     SuscribirseFormComponent,
     RevistaSuscritaComponent,
     LecturaRevistaComponent,
+    RevistasEtiquetaComponent,
+    RevistaSuscritaCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // RouterModule.forRoot([
-    //   {path:RutasUsuario.SEARCH+'/:nombre/:action/:filtro', component: BuscarRevistasComponent},
-    //   {path:'prev-magazine/:nombre', component: PrevisualizacionRevistaComponent},
-    // ])
   ],
   providers: [],
   bootstrap: [AppComponent]

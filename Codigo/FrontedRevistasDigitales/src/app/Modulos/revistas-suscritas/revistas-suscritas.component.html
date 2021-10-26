@@ -1,0 +1,9 @@
+<app-header-usuario></app-header-usuario>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-revista-suscrita-card class="p-2" *ngFor="let _revista of _listadoRevistasSuscritas" [_revista]="_revista">
+      </app-revista-suscrita-card>
+    </div>
+  </div>
+</div>

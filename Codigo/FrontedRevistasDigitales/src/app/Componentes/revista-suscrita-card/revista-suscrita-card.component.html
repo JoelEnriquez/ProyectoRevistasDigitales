@@ -1,0 +1,49 @@
+<div class="container-fluid bg-secondary mt-4">
+  <div class="row justify-content-between p-3">
+    <div class="col-4">
+      <div class="col-12">
+        <h4>{{_revista.nombre}}</h4>
+      </div>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-info btn-lg" [routerLink]="['/'+_rutas.SUSCRIBED_MAGAZINE,_revista.nombre]">
+        Leer Publicaciones
+      </button>
+    </div>
+    <div class="col-4">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger btn-lg" (click)="setRevistaCancelar(_revista)" data-toggle="modal"
+        data-target="#modelId">
+        Cancelar Suscripcion
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="_revistaCancelarSuscripcion">
+  <!-- Modal -->
+  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cancelar suscricion</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5> ¿Seguro que quieres cancelar tu suscripion?</h5>
+
+        </div>
+        <div class="modal-footer justify-content-center">
+          <div class="row">
+            <button type="button" class="btn btn-outline-secondary mr-5" data-dismiss="modal">Cancelar</button>
+            <button type="button" (click)="cancelarSuscripcion()" class="btn btn-outline-danger">Eliminar Suscripcion</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,10 +17,11 @@ import { RutasUsuario } from './Objects/Rutas/RutasUsuario';
 import { UserProfileComponent } from './Modulos/user-profile/user-profile.component';
 import { ValoresInicialesComponent } from './Componentes/valores-iniciales/valores-iniciales.component';
 import { BuscarRevistasComponent } from './Modulos/buscar-revistas/buscar-revistas.component';
-import { RevistasSuscritasComponent } from './Componentes/revistas-suscritas/revistas-suscritas.component';
+import { RevistasSuscritasComponent } from './Modulos/revistas-suscritas/revistas-suscritas.component';
 import { PrevisualizacionRevistaComponent } from './Modulos/previsualizacion-revista/previsualizacion-revista.component';
 import { SuscribirseFormComponent } from './Modulos/suscribirse-form/suscribirse-form.component';
 import { RevistaSuscritaComponent } from './Modulos/revista-suscrita/revista-suscrita.component';
+import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revista.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,7 @@ const routes: Routes = [
     component: UserProfileComponent
   },
   {
+    //path: RutasUsuario.SEARCH,
     path: RutasUsuario.SEARCH+"/:categoria/:etiqueta",
     component: BuscarRevistasComponent
   },
@@ -90,6 +92,10 @@ const routes: Routes = [
   {
     path: RutasUsuario.SUSCRIBED_MAGAZINE+"/:nombre",
     component: RevistaSuscritaComponent
+  },
+  {
+    path: RutasUsuario.READ_MAGAZINE+"/:path",
+    component: LecturaRevistaComponent
   }
 
 ];

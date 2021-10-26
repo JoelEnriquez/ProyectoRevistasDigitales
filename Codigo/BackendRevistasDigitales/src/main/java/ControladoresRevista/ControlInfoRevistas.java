@@ -31,6 +31,10 @@ public class ControlInfoRevistas extends HttpServlet {
                 String userName = request.getParameter("user_name");
                 response.getWriter().append(new InfoRevista().getListadoCategoriasPreferencia(userName));
                 break;
+            case "listado_etiquetas":
+                String usuario = request.getParameter("user_name");
+                response.getWriter().append(new InfoRevista().getListadoEtiquetasPreferencia(usuario));
+                break;
             case "revistas_categoria":
                 String categoria = request.getParameter("categoria");
                 response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(categoria,action));
@@ -52,6 +56,10 @@ public class ControlInfoRevistas extends HttpServlet {
                 String nombreRevista = request.getParameter("nombre");
                 response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(nombreRevista,action));
                 break;
+            case "revistas_suscrito":
+                String nombreUsuario = request.getParameter("user_name");
+                response.getWriter().append(new InfoRevista().getlistadoRevistasFiltro(nombreUsuario,action));
+                break;    
             default:
                 throw new AssertionError();
         }

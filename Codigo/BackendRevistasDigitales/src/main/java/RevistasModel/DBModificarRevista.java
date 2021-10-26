@@ -6,7 +6,9 @@
 package RevistasModel;
 
 import ConexionDB.ConexionDB;
+import EntidadesRevista.Comentario;
 import EntidadesRevista.Etiqueta;
+import EntidadesRevista.MeGusta;
 import EntidadesRevista.Revista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +19,10 @@ import java.sql.SQLException;
  * @author joel
  */
 public class DBModificarRevista {
-
+    
+    private final String agregarComentario = "INSERT INTO Comentario (contenido, fecha_comentario, nombre_revista, user_name) VALUES (?,?,?,?)";
+    private final String agregarReaccionUsuario= "INSERT INTO Me_Gusta VALUES (?,?)";
+    private final String eliminarReaccionUsuario = "DELETE from Me_Gusta where nombre_revista = ? AND user_name = ?";
     private final String eliminarEtiquetasAsociadasQuery = "DELETE FROM Etiquetas_Revista WHERE nombre_revista = ?";
     private final String actualizarDatosRevistaQuery = "UPDATE Revista SET descripcion = ?,suscribir = ?,comentar = ?,reaccionar = ?,pago = ?,costo_suscripcion = ?,nombre_categoria = ? WHERE nombre = ?";
     private final String actualizarSuscripcionQuery = "UPDATE Revista SET suscribir = ? WHERE nombre = ?";
@@ -84,6 +89,37 @@ public class DBModificarRevista {
             ps.execute();
         } catch (Exception e) {
         }
+    }
+    
+    public void agregarReaccionUsuario(MeGusta meGusta){
+        try (PreparedStatement ps = conexion.prepareStatement(agregarReaccionUsuario)){
+            ps.setString(1, meGusta.getNombreRevista());
+            ps.setString(2, meGusta.getUserName());
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void agregarComentario(Comentario comentario) throws SQLException{
+        try (PreparedStatement ps = conexion.prepareStatement(agregarComentario)){
+            ps.setString(1, comentario.getContenido());
+            ps.setDate(2, java.sql.Date.valueOf(comentario.getFechaComentario()));
+            ps.setString(3, comentario.getNombreRevista());
+            ps.setString(4,  comentario.getUserName());
+            ps.execute();
+        } catch (SQLException e) {
+            throw new SQLException("Fecha en formato incorrecto");
+        }
+    }
+    
+    public MeGusta eliminarReaccionUsuario(MeGusta meGusta){
+        try (PreparedStatement ps = conexion.prepareStatement(eliminarReaccionUsuario)){
+            ps.setString(1, meGusta.getNombreRevista());
+            ps.setString(2, meGusta.getUserName());
+            ps.execute();
+        } catch (Exception e) {
+        }
+        return new MeGusta("", "");
     }
     
     

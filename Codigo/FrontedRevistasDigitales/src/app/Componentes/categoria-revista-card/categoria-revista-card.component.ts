@@ -12,7 +12,6 @@ import { RutasUsuario } from '../../Objects/Rutas/RutasUsuario';
 export class CategoriaRevistaCardComponent implements OnInit {
 
   constructor(private _revistaService: RevistaService) { 
-    
   }
 
   @Input('_categoria') _categoria!:Categoria

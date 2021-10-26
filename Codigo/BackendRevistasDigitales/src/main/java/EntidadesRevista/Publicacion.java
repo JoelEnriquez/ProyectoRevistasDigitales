@@ -20,12 +20,13 @@ public class Publicacion {
     private String nombreRevista;
     private String pathArchivo;
 
-    public Publicacion(int id, String nombrePublicacion, String fechaPublicacion, String nombreRevista, String pathArchivo) {
+    public Publicacion(int id, String nombrePublicacion, String pathArchivo, String fechaPublicacion, String nombreRevista) {
         this.id = id;
         this.nombrePublicacion = nombrePublicacion;
+        this.pathArchivo = pathArchivo;
         this.fechaPublicacion = fechaPublicacion;
         this.nombreRevista = nombreRevista;
-        this.pathArchivo = pathArchivo;
+        
     }
 
     public Publicacion(String nombrePublicacion, String fechaPublicacion, String nombreRevista, String pathArchivo) {

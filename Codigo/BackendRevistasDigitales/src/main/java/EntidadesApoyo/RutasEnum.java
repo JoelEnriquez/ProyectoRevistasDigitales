@@ -11,8 +11,8 @@ package EntidadesApoyo;
  */
 public enum RutasEnum {
 
-    RUTA_TO_SAVE_PDF("/home/joel/Documentos/PDFS/"),
-    RUTA_FROM_NO_PROFILE_PICTURE("/home/joel/Documentos/Image/NoProFilePicture.jpg");
+    RUTA_TO_SAVE_PDF("PDFS/"),
+    RUTA_FROM_NO_PROFILE_PICTURE("Image/NoProFilePicture.jpg");
     
     private String ruta;
 

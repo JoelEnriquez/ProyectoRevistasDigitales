@@ -5,5 +5,6 @@ export enum RutasUsuario {
   SUSCRIBED_MAGAZINES = "user/subscribed-magazines",
   PREV_MAGAZINE = "user/prev-magazine",
   SUSCRIBE = "user/suscribe",
-  SUSCRIBED_MAGAZINE = "user/suscribed"
+  SUSCRIBED_MAGAZINE = "user/suscribed",
+  READ_MAGAZINE = "user/read"
 }

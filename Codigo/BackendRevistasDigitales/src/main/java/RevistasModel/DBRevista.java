@@ -6,6 +6,8 @@
 package RevistasModel;
 
 import ConexionDB.ConexionDB;
+import EntidadesRevista.Comentario;
+import EntidadesRevista.Publicacion;
 import EntidadesRevista.Revista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
  */
 public class DBRevista {
 
+    private final String listadoComentariosQuery = "SELECT * FROM Comentario WHERE nombre_revista = ?";
+    private final String listadoPublicacionesQuery = "SELECT * FROM Publicacion WHERE nombre_revista = ?";
     private final String precioSuscripcionRevista = "SELECT costo_suscripcion FROM Revista WHERE nombre = ?";
     private final String revistaPorNombre = "SELECT * FROM Revista WHERE nombre = ?";
     private final String obtenerRevistasSinCostoDiarioQuery = "SELECT * FROM Revista WHERE costo_dia IS NULL";
@@ -26,6 +30,7 @@ public class DBRevista {
     private final String revistasPorCategoriaQueryInicio = revistasPorCategoriaQuery + " ORDER BY RAND () LIMIT 5";
     private final String revistasPorEtiquetaQuery = "select r.* from Revista r inner join Etiquetas_Revista er on r.nombre = er.nombre_revista where er.nombre_etiqueta = ?";
     private final String revistasPorEtiquetaQueryInicio = revistasPorEtiquetaQuery + " ORDER BY RAND () LIMIT 5";
+    private final String revistasSuscritoQuery = "SELECT R.* FROM Revista R INNER JOIN Suscripcion S ON R.nombre = S.nombre_revista WHERE S.user_name = ? AND ((S.suscripcion_activa=1 AND isnull(S.fecha_caducidad)) OR (S.suscripcion_activa = 1 AND date(now()) < fecha_caducidad))";
     private final Connection conexion = ConexionDB.getConexion();
 
     /**
@@ -55,6 +60,9 @@ public class DBRevista {
             case "info_revista":
                 query = revistaPorNombre;
                 break;
+            case "revistas_suscrito":
+                query = revistasSuscritoQuery;
+                break;    
         }
         ArrayList<Revista> listadoRevitas = new ArrayList<>();
         try ( PreparedStatement ps = conexion.prepareStatement(query)) {
@@ -115,7 +123,45 @@ public class DBRevista {
         return 0.0;
     }
 
+    public ArrayList<Publicacion> getListadoPublicaciones(String nombreRevista){
+        ArrayList<Publicacion> listadoPublicaciones = new ArrayList<>();
+        try (PreparedStatement ps = conexion.prepareStatement(listadoPublicacionesQuery)){
+            ps.setString(1, nombreRevista);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    listadoPublicaciones.add(
+                    new Publicacion(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getDate(4).toString(),
+                            rs.getString(5)));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+        return listadoPublicaciones;
+    }
     
+     public ArrayList<Comentario> getListadoComentarios(String nombreRevista){
+        ArrayList<Comentario> listadoComentarios = new ArrayList<>();
+        try (PreparedStatement ps = conexion.prepareStatement(listadoComentariosQuery)){
+            ps.setString(1, nombreRevista);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    listadoComentarios.add(
+                    new Comentario(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getDate(3).toString(),
+                            rs.getString(4),
+                            rs.getString(5)));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+        return listadoComentarios;
+    }
     
     
 

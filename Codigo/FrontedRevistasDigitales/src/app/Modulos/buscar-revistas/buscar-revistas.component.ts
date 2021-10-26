@@ -33,12 +33,13 @@ export class BuscarRevistasComponent implements OnInit {
 
     let categoria = this._route.snapshot.paramMap.get('categoria');
     let etiqueta = this._route.snapshot.paramMap.get('etiqueta');
-    if (categoria?.length!=0 && categoria!=null) {
-      this.realizarBusqueda(categoria, FiltroEnum.CATEGORIA);
-    } else if (etiqueta?.length!=0 && etiqueta!=null) {
-      this.realizarBusqueda(etiqueta, FiltroEnum.ETIQUETA);
+    if (categoria!=null && etiqueta!=null) {
+      if (categoria?.length != 0 && categoria != null) {
+        this.realizarBusqueda(categoria, FiltroEnum.CATEGORIA);
+      } else if (etiqueta?.length != 0 && etiqueta != null) {
+        this.realizarBusqueda(etiqueta, FiltroEnum.ETIQUETA);
+      }
     }
-    
   }
 
   obtenerDatos() {
@@ -50,7 +51,7 @@ export class BuscarRevistasComponent implements OnInit {
     }
   }
 
-  realizarBusqueda(texto:string, filtro:FiltroEnum){
+  realizarBusqueda(texto: string, filtro: FiltroEnum) {
     this._revistaService.obtenerRevistasPorFiltro(texto, filtro).subscribe(
       (_listadoRevistas: Revista[]) => {
         this._listadoRevistas = _listadoRevistas;

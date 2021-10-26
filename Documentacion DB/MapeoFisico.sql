@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Anunciante (
 DROP TABLE IF EXISTS Anuncio ;
 
 CREATE TABLE IF NOT EXISTS Anuncio (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   tipo_anuncio INT NOT NULL,
   texto_anuncio VARCHAR(200) NULL,
   foto_anuncio LONGBLOB NULL,
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS Etiquetas_Revista (
 DROP TABLE IF EXISTS Comentario ;
 
 CREATE TABLE IF NOT EXISTS Comentario (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   contenido VARCHAR(200) NOT NULL,
   fecha_comentario DATE NOT NULL,
   nombre_revista VARCHAR(50) NOT NULL,
@@ -390,27 +390,14 @@ FLUSH PRIVILEGES;
 -- -------------------------------------------------
 
 
-insert into Categoria (nombre) values ('Action|Crime|Drama|Thriller');
-insert into Categoria (nombre) values ('Comedy|Drama|War');
 insert into Categoria (nombre) values ('Drama');
-insert into Categoria (nombre) values ('Drama|Romance');
-insert into Categoria (nombre) values ('Comedy|Romance');
-insert into Categoria (nombre) values ('Crime|Mystery');
 insert into Categoria (nombre) values ('Thriller');
-insert into Categoria (nombre) values ('Comedy|Drama');
-insert into Categoria (nombre) values ('Children|Drama');
+insert into Categoria (nombre) values ('Comedy&Drama');
+insert into Categoria (nombre) values ('Children&Drama');
 insert into Categoria (nombre) values ('Adventure|Comedy|Fantasy|Musical');
-insert into Categoria (nombre) values ('Crime|Drama|Film-Noir|Romance|Thriller');
 insert into Categoria (nombre) values ('Documentary');
-insert into Categoria (nombre) values ('Animation|Horror|Mystery|Thriller');
-insert into Categoria (nombre) values ('Action|Crime');
-insert into Categoria (nombre) values ('Comedy|Musical|Romance');
-insert into Categoria (nombre) values ('Comedy|Thriller');
-insert into Categoria (nombre) values ('Adventure|Comedy|Crime|Romance');
-insert into Categoria (nombre) values ('Drama|Horror|Thriller');
+insert into Categoria (nombre) values ('Action&Crime');
 insert into Categoria (nombre) values ('Romance');
-insert into Categoria (nombre) values ('Drama|Musical|Romance');
-insert into Categoria (nombre) values ('Drama|Mystery|Sci-Fi');
 INSERT INTO Categoria VALUES ('Terror');
 INSERT INTO Categoria VALUES ('Misterio');
 INSERT INTO Categoria VALUES ('Comedia');

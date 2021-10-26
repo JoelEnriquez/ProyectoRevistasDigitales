@@ -1,8 +1,137 @@
 <app-header-usuario></app-header-usuario>
-<div class="container">
+<div *ngIf="_mostrarInfoRevista" class="container-fluid mt-5">
   <div class="row">
-    <div class="col-12">
-      
+    <div class="col-6">
+      <!-- Listado de Publicaciones -->
+      <h2 class="text-center text-black">Listado de Publicaciones</h2>
+      <div class="list-group">
+        <a *ngFor="let _publicacion of _listadoPublicaciones" [routerLink]="['/'+_rutas.READ_MAGAZINE,_publicacion.pathArchivo]"
+          class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Publicacion #{{_publicacion.id}}</h5>
+            <small class="text-muted">{{_publicacion.fechaPublicacion}}</small>
+          </div>
+          <p style="font-size: 28px;line-height: 44px;letter-spacing: 0.014em;font-weight: 300;font-style: normal;"
+            class="mb-1 text-center">{{_publicacion.nombrePublicacion}}</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <!-- Info de Revista -->
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col-4">
+              <div class="row">
+                <a
+                  style="font-size: 32px; text-align: center; line-height: 42px; letter-spacing: 0.02em; font-weight: 200;">
+                  Categoria: {{_revista.nombreCategoria}}
+                </a>
+              </div>
+              <div class="row text-center" style="font-size: 18px; line-height: 36px;letter-spacing: 0.023em;">
+                <div *ngIf="_revista.pago; else elseBlock">Costo suscripcion: Q{{_revista.costoSuscripcion}}</div>
+                <ng-template #elseBlock>Revista gratis</ng-template>
+              </div>
+              <div class="row" style="font-size: 18px;line-height: 36px;letter-spacing: 0.023em;">
+                <div *ngIf="_revista.reaccionar; else elseBlock">Se puede reaccionar</div>
+                <ng-template #elseBlock>No se puede reaccionar</ng-template>
+              </div>
+              <div class="row" style="font-size: 18px;line-height: 36px;letter-spacing: 0.023em;">
+                <div *ngIf="_revista.comentar; else elseBlock">Se puede comentar</div>
+                <ng-template #elseBlock>No se puede comentar</ng-template>
+              </div>
+              <div class="row" style="font-size: 18px;line-height: 36px;letter-spacing: 0.023em;">
+                <div *ngIf="_revista.suscribir; else elseBlock">Se puede suscribir</div>
+                <ng-template #elseBlock>No se puede suscribir</ng-template>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="row">
+                <blockquote>
+                  <h4 style="font-size: 2rem;">Descripcion</h4>
+                  <p>{{_revista.descripcion}}</p>
+                </blockquote>
+              </div>
+            </div>
+            <div class="col-5">
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-action list-group-item-info" style="font-size: 22px;">
+                  Etiquetas Asociadas</li>
+                <li *ngFor="let etiqueta of _etiquetasRevista" class="list-group-item text-center"
+                  style="font-size: 18px;">{{etiqueta.nombre}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-4 align-self-center">
+              <button [disabled]="!_revista.reaccionar" [ngClass]="_classButton" (click)="otorgarReaccion()">Me
+                Gusta</button>
+            </div>
+            <div class="col-8">
+              <div class="row">
+                <div class="col-4">
+                  <div class="thumbnail">
+                    <img src="/assets/images/Like.png" alt="Lights" height="100px">
+                    <div class="caption">
+                      <p>{{_numeroReacciones}} reacciones</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="thumbnail">
+                    <img src="/assets/images/Coment.png" alt="Lights" height="100px">
+                    <div class="caption">
+                      <p>{{_numeroComentarios}} comentarios</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="thumbnail">
+                    <img src="/assets/images/Suscribe.png" alt="Lights" height="100px">
+                    <div class="caption">
+                      <p>{{_numeroSuscripciones}} suscripciones activas</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-5 col-md-6 col-12 pb-4">
+                <h3 class="text-center">Comentarios</h3>
+                <div *ngFor="let _comentario of _listadoComentarios" class="comment mt-4 text-justify">
+                  <h4>{{_comentario.userName}}</h4> <span>- {{_comentario.fechaComentario}}</span> <br>
+                  <p>{{_comentario.contenido}}</p>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                <form [formGroup]="_comentForm" (ngSubmit)="guardarComentario()" id="algin-form">
+                  <div class="form-group">
+                    <h4>Deja un comentario</h4> <label for="mensaje">Mensaje</label> <textarea name="mensaje" id="" msg
+                      cols="30" rows="5" formControlName="mensaje" class="form-control text-white"
+                      style="background-color: black;"></textarea>
+                  </div>
+                  <div class="form-group"> <label for="fecha">Fecha de Comentario</label>
+                    <input formControlName="fecha" type="date" name="fecha" id="fecha" class="form-control text-white">
+                  </div>
+                  <div class="text-center form-group"> <button [disabled]="_comentForm.invalid" type="submit" id="post"
+                      class="btn">Publicar</button> </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </div>

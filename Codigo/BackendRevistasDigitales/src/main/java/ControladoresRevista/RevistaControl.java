@@ -54,6 +54,19 @@ public class RevistaControl extends HttpServlet {
                 String estadistica = request.getParameter("estadistica");
                 response.getWriter().append(new InfoRevista().cantidadEstadisticaRevista(revista,estadistica));
                 break;
+                case "reaccion":
+                String userName = request.getParameter("userName");
+                String nameRevista = request.getParameter("revista");
+                response.getWriter().append(new InfoRevista().getReaccionRevista(userName,nameRevista));
+                break;
+                case "publicaciones":
+                String revistaName = request.getParameter("revista");
+                response.getWriter().append(new InfoRevista().getListadoPublicaciones(revistaName));
+                break;
+                case "comentarios":
+                String revistaNombre = request.getParameter("revista");
+                response.getWriter().append(new InfoRevista().getListadoComentarios(revistaNombre));
+                break;
             default:
                 throw new AssertionError();
         }
@@ -70,10 +83,24 @@ public class RevistaControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Modificar Revista
         String revista = request.getParameter("revista");
         String etiquetas = request.getParameter("etiquetas");
+        
+        //Otorgar Reaccion
+        String meGusta = request.getParameter("me_gusta");
+        
+        //Otorgar Comentario
+        String comentario = request.getParameter("comentario");
+        
         try {
-            new ActualizarDatosRevista().actualizarDatosRevista(revista, etiquetas);
+            if (revista!=null && etiquetas!=null) {
+                new ActualizarDatosRevista().actualizarDatosRevista(revista, etiquetas);
+            } else if (meGusta!=null) {
+                response.getWriter().append(new ActualizarDatosRevista().actualizarReaccion(meGusta));
+            } else if (comentario!=null) {
+                response.getWriter().append(new ActualizarDatosRevista().publicarComentario(comentario));
+            }
         } catch (SQLException e) {
             ErrorResponse.mostrarError(response, e.getMessage());
         }

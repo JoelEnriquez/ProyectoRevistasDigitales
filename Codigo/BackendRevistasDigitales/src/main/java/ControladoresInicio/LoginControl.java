@@ -7,14 +7,8 @@ package ControladoresInicio;
 
 import ErrorAPI.ErrorResponse;
 import LoginModel.ComprobarCredenciales;
-import LoginModel.DBLogin;
-import Personas.Editor;
 import Personas.Persona;
-import Personas.PersonaEnum;
-import Personas.Usuario;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +31,7 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println(request.getServletContext().getRealPath(""));
         try {
             ComprobarCredenciales cc = new ComprobarCredenciales(request.getReader());
             Persona persona = cc.verificarPersona();

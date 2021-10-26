@@ -6,7 +6,7 @@
 package ControladoresFile;
 
 import ErrorAPI.ErrorResponse;
-import PersonaModel.InfoPerfil;
+import FileModel.FileModel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -38,21 +38,41 @@ public class FileControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        InfoPerfil info = new InfoPerfil();
+        FileModel fileModel = new FileModel();
         switch (action) {
             case "image":
                 String userName = request.getParameter("userName");
-                InputStream foto = info.getFotoPerfil(userName);
+                InputStream foto = fileModel.getFotoPerfil(userName);
                 if (foto!=null) {
                     try {
-                        info.mostrarFoto(foto,response);
+                        fileModel.mostrarFoto(foto,response);
                     } catch (IOException e) {
                         ErrorResponse.mostrarError(response, e.getMessage());
                     }
                 } else {
-                    info.mostrarFotoNeutral(response);
+                    fileModel.mostrarFotoNeutral(response);
                 }
                 break;
+            case "pdf":
+                String pathPDF = request.getParameter("ruta_pdf");
+                if (pathPDF!=null) {
+                    try {
+                        fileModel.mostrarPDF(response,pathPDF);
+                    } catch (IOException e) {
+                        ErrorResponse.mostrarError(response, e.getMessage());
+                    }
+                }
+                break;
+            case "descargar":
+                String path = request.getParameter("ruta_pdf");
+                if (path!=null) {
+                    try {
+                        fileModel.descargarPDF(response,path);
+                    } catch (IOException e) {
+                        ErrorResponse.mostrarError(response, e.getMessage());
+                    }
+                }
+                break;    
             default:
                 throw new AssertionError();
         }
