@@ -43,6 +43,10 @@ import { ReporteComentariosComponent } from './Modulos/ReportesEditor/reporte-co
 import { ReporteSuscripcionesComponent } from './Modulos/ReportesEditor/reporte-suscripciones/reporte-suscripciones.component';
 import { ReporteRevistasGustadasComponent } from './Modulos/ReportesEditor/reporte-revistas-gustadas/reporte-revistas-gustadas.component';
 import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/reporte-ganancias-editor/reporte-ganancias-editor.component';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './Objects/Herramientas/material.module';
+
 
 
 @NgModule({
@@ -91,6 +95,9 @@ import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/report
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MdbCheckboxModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

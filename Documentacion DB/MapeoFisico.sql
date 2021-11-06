@@ -243,6 +243,7 @@ DROP TABLE IF EXISTS Me_Gusta ;
 CREATE TABLE IF NOT EXISTS Me_Gusta (
   nombre_revista VARCHAR(50) NOT NULL,
   user_name VARCHAR(30) NOT NULL,
+  fecha_reaccion DATE NOT NULL,
   PRIMARY KEY (nombre_revista, user_name),
   INDEX fk_Me_Gusta_Usuario1_idx (user_name ASC) VISIBLE,
   CONSTRAINT fk_Me_Gusta_Revista1

@@ -7,7 +7,6 @@ package RevistasModel;
 
 import ConexionDB.ConexionDB;
 import EntidadesRevista.Comentario;
-import EntidadesRevista.Etiqueta;
 import EntidadesRevista.MeGusta;
 import EntidadesRevista.Revista;
 import java.sql.Connection;
@@ -21,7 +20,7 @@ import java.sql.SQLException;
 public class DBModificarRevista {
     
     private final String agregarComentario = "INSERT INTO Comentario (contenido, fecha_comentario, nombre_revista, user_name) VALUES (?,?,?,?)";
-    private final String agregarReaccionUsuario= "INSERT INTO Me_Gusta VALUES (?,?)";
+    private final String agregarReaccionUsuario= "INSERT INTO Me_Gusta VALUES (?,?,?)";
     private final String eliminarReaccionUsuario = "DELETE from Me_Gusta where nombre_revista = ? AND user_name = ?";
     private final String eliminarEtiquetasAsociadasQuery = "DELETE FROM Etiquetas_Revista WHERE nombre_revista = ?";
     private final String actualizarDatosRevistaQuery = "UPDATE Revista SET descripcion = ?,suscribir = ?,comentar = ?,reaccionar = ?,pago = ?,costo_suscripcion = ?,nombre_categoria = ? WHERE nombre = ?";
@@ -95,6 +94,7 @@ public class DBModificarRevista {
         try (PreparedStatement ps = conexion.prepareStatement(agregarReaccionUsuario)){
             ps.setString(1, meGusta.getNombreRevista());
             ps.setString(2, meGusta.getUserName());
+            ps.setDate(3, meGusta.getFechaReaccionDate());
             ps.execute();
         } catch (Exception e) {
         }
@@ -119,7 +119,7 @@ public class DBModificarRevista {
             ps.execute();
         } catch (Exception e) {
         }
-        return new MeGusta("", "");
+        return new MeGusta("","","");
     }
     
     

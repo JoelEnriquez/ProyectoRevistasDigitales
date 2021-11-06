@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteComentarios" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="46d1e9a9-b3eb-419a-97b7-2d1a465f6339">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="RevistasAdapter"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="suscripcionActiva" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[suscripcionActiva]]></fieldDescription>
+	</field>
+	<field name="fechaSuscripcionDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[fechaSuscripcionDate]]></fieldDescription>
+	</field>
+	<field name="fechaCaducidadDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[fechaCaducidadDate]]></fieldDescription>
+	</field>
+	<field name="userName" class="java.lang.String">
+		<fieldDescription><![CDATA[userName]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="bb8a9984-2e65-4788-af5d-b411324402a0"/>
+				<staticText>
+					<reportElement x="10" y="30" width="370" height="43" forecolor="#FFFFFF" uuid="5db1ff81-78c0-47d3-bce3-d4ac8b9b4ae9"/>
+					<textElement>
+						<font size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reporte Suscripciones]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="390" y="20" width="180" height="53" forecolor="#FFFFFF" uuid="40ac53dc-3332-466e-992c-20ac8805d037"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Estas son las suscripciones a dichas revista, en este intervalo de tiempo]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="460c87bc-346a-4058-b74d-143c0c02eb33"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="21" uuid="fceb256b-cece-4344-ac52-bc86ce827502">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="388bcea0-68f2-4749-a09a-44b5d9e95938"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="21" uuid="7b154c01-6fb4-4449-960c-ec31fd55900b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cb4b2117-71ea-45c7-8495-8c87a03d7029"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Suscripcion Activa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="21" uuid="c6986fd5-c971-494e-bc9d-a359ecdec9a4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdd2a4fd-214e-45d7-817b-76dee993ebdc"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de Suscripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="21" uuid="7e18e1f0-6edf-44f6-9892-030322d1e661">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d185d9f-7d15-4db5-b1a8-d03ab7965378"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de Caducidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="21" uuid="8a7a77ef-4937-49c2-b3f0-20512cb939bd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8875c485-9106-4416-ac8b-ba5f52a466ca"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de Usuario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39">
+			<textField>
+				<reportElement x="0" y="9" width="111" height="30" uuid="f0139bbc-0f41-45da-80dd-fdbfc22b3956">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="388bcea0-68f2-4749-a09a-44b5d9e95938"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="9" width="111" height="30" uuid="e029200c-b515-4f0c-a8e7-18140178e4cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cb4b2117-71ea-45c7-8495-8c87a03d7029"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[IF($F{suscripcionActiva},"Activa","Deshactivada")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="9" width="111" height="30" uuid="17ccfec9-710f-467b-a873-22f391fa0159">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdd2a4fd-214e-45d7-817b-76dee993ebdc"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fechaSuscripcionDate})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="9" width="111" height="30" uuid="4cf82c93-1a7d-40fc-9dad-2f20cb94992f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d185d9f-7d15-4db5-b1a8-d03ab7965378"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[IF($F{fechaCaducidadDate}!=null,new SimpleDateFormat("dd/MM/yyyy").format($F{fechaCaducidadDate}),"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="9" width="111" height="30" uuid="4fd90a21-28d5-46a4-a613-c4ec9cbdf53f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8875c485-9106-4416-ac8b-ba5f52a466ca"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="cda01854-aee3-4752-8868-075463906b70"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="61604146-5154-4ea0-a071-e1f38b1ba342"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="be4439e8-a9b3-412f-8dd8-939bd03cacd7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

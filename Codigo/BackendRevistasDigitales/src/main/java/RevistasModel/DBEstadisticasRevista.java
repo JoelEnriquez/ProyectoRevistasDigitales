@@ -55,13 +55,13 @@ public class DBEstadisticasRevista {
             ps.setString(2, nombreUsuario);
             try(ResultSet rs = ps.executeQuery()){
                 if (rs.next()) {
-                    return new MeGusta(rs.getString(1), rs.getString(2));
+                    return new MeGusta(rs.getString(1), rs.getString(2), rs.getDate(3));
                 }
             }
         } catch (Exception e) {
             
         }
-        return new MeGusta("", "");
+        return new MeGusta("", "","");
     }
 
 }

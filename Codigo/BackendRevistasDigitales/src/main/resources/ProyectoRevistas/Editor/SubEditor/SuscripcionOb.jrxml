@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SuscripcionOb" pageWidth="554" pageHeight="842" columnWidth="554" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8707bbd3-3480-43fb-9837-aeded69f7bbd">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NoFuncionaEsaOnda"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="userName" class="java.lang.String">
+		<fieldDescription><![CDATA[userName]]></fieldDescription>
+	</field>
+	<field name="suscripcionActiva" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[suscripcionActiva]]></fieldDescription>
+	</field>
+	<field name="fechaSuscripcionDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[fechaSuscripcionDate]]></fieldDescription>
+	</field>
+	<field name="fechaCaducidadDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[fechaCaducidadDate]]></fieldDescription>
+	</field>
+	<field name="montoGanancia" class="java.lang.Double">
+		<fieldDescription><![CDATA[montoGanancia]]></fieldDescription>
+	</field>
+	<variable name="sumaGanancia" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoGanancia}]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="30" uuid="69a91125-f345-4aea-82e3-4306f07c8e33">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="565ed05d-52e7-4b98-b10f-a0c948703364"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="150" height="30" uuid="ac4eb348-a007-4fdc-9e42-98c6e636e671">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b72f102f-e612-45dd-b863-acb275208059"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[USUARIO LECTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="61" height="30" uuid="d3ab61e4-016d-44ec-a6b5-dd163955afb1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0569c822-ebe6-4f00-976d-78c4ad579826"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="0" width="99" height="30" uuid="2a0087f1-9960-4d42-9994-42fd60e2b221">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cd6cae9-84d4-42ce-af8f-59110ae20dcb"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[SUSCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="99" height="30" uuid="4f1427a7-5832-41bd-9bbe-46b5191c7bf8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d1691658-b84a-4dcc-8563-1d23fb1de318"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CADUCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="0" width="95" height="30" uuid="d0eb8c3c-a36c-4fa7-9251-f6b718bb18c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f70e53f5-2f5e-429f-8f07-cb86b6614b71"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[GANANCIA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="30" uuid="09ff51a2-ecfd-4b39-bda4-febfc089eefe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="565ed05d-52e7-4b98-b10f-a0c948703364"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="150" height="30" uuid="91b2bf6b-a333-4e7e-9a44-a706dc2efb2d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b72f102f-e612-45dd-b863-acb275208059"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="61" height="30" uuid="7772c917-381a-40c3-b7b7-7a00b6f05f30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0569c822-ebe6-4f00-976d-78c4ad579826"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{suscripcionActiva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="0" width="99" height="30" uuid="7f47a1d3-892c-4c54-bb53-53dd6599c06e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cd6cae9-84d4-42ce-af8f-59110ae20dcb"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaSuscripcionDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="99" height="30" uuid="9f8dbf59-a4e2-40db-8bdd-d727fcb176bd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d1691658-b84a-4dcc-8563-1d23fb1de318"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaCaducidadDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="0" width="95" height="30" uuid="f27c09e8-73f9-464c-8045-75f9ac649598">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f70e53f5-2f5e-429f-8f07-cb86b6614b71"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{montoGanancia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="459" height="20" uuid="89f1ac04-d1dc-4857-9726-e189ca6a5d74"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[GANANCIA TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="459" y="0" width="95" height="20" uuid="4d2eddad-b011-4c62-bedc-2f9854e3c942"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{sumaGanancia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

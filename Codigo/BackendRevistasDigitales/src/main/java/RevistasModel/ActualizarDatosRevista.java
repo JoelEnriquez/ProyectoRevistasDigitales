@@ -13,6 +13,7 @@ import EntidadesRevista.Comentario;
 import EntidadesRevista.Etiqueta;
 import EntidadesRevista.MeGusta;
 import EntidadesRevista.Revista;
+import java.sql.Date;
 import java.sql.SQLException;
 
 /**
@@ -58,6 +59,7 @@ public class ActualizarDatosRevista {
         MeGusta meGusta = cmg.fromJson(contenidoMeGusta);
         MeGusta reaccionActual = new DBEstadisticasRevista().getReaccionUser(meGusta.getNombreRevista(), meGusta.getUserName());
         if (reaccionActual.getNombreRevista().equals("") && reaccionActual.getUserName().equals("")) {
+            meGusta.setFechaReaccionDate(Date.valueOf(meGusta.getFechaReaccion())); //Transform the string to date
             modificarRevista.agregarReaccionUsuario(meGusta);
             return cmg.toJson(meGusta);
         } else {

@@ -5,6 +5,8 @@
  */
 package EntidadesRevista;
 
+import java.sql.Date;
+
 /**
  *
  * @author joel
@@ -12,12 +14,23 @@ package EntidadesRevista;
 public class MeGusta {
     private String nombreRevista;
     private String userName;
+    private String fechaReaccion;
+    private Date fechaReaccionDate;
 
-    public MeGusta(String nombreRevista, String userName) {
+    public MeGusta(String nombreRevista, String userName, String fechaReaccion) {
         this.nombreRevista = nombreRevista;
         this.userName = userName;
+        this.fechaReaccion = fechaReaccion;
     }
 
+    public MeGusta(String nombreRevista, String userName, Date fechaReaccionDate) {
+        this.nombreRevista = nombreRevista;
+        this.userName = userName;
+        this.fechaReaccionDate = fechaReaccionDate;
+    }
+
+    
+    
     public String getNombreRevista() {
         return nombreRevista;
     }
@@ -32,6 +45,22 @@ public class MeGusta {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFechaReaccion() {
+        return fechaReaccion;
+    }
+
+    public void setFechaReaccion(String fechaReaccion) {
+        this.fechaReaccion = fechaReaccion;
+    }
+
+    public Date getFechaReaccionDate() {
+        return fechaReaccionDate;
+    }
+
+    public void setFechaReaccionDate(Date fechaReaccionDate) {
+        this.fechaReaccionDate = fechaReaccionDate;
     }
     
     

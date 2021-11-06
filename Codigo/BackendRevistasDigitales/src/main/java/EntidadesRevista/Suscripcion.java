@@ -80,6 +80,20 @@ public class Suscripcion {
         this.fechaCaducidadDate = fechaCaducidadDate;
         this.montoGanancia = montoGanancia;
     }
+
+    /**
+     * Constructor for report of revistas populares
+     * @param id
+     * @param fechaSuscripcionDate
+     * @param nombreRevista
+     * @param userName 
+     */
+    public Suscripcion(int id, Date fechaSuscripcionDate, String nombreRevista, String userName) {
+        this.id = id;
+        this.fechaSuscripcionDate = fechaSuscripcionDate;
+        this.nombreRevista = nombreRevista;
+        this.userName = userName;
+    }
     
     
 

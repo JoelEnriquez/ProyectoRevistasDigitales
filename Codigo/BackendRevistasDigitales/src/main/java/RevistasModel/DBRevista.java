@@ -26,9 +26,9 @@ public class DBRevista {
     private final String revistaPorNombre = "SELECT * FROM Revista WHERE nombre = ?";
     private final String obtenerRevistasSinCostoDiarioQuery = "SELECT * FROM Revista WHERE costo_dia IS NULL";
     private final String obtenerRevistasPropiasQuery = "SELECT * FROM Revista WHERE user_name = ?";
-    private final String revistasPorCategoriaQuery = "SELECT * FROM Revista WHERE nombre_categoria = ?";
+    private final String revistasPorCategoriaQuery = "SELECT * FROM Revista WHERE nombre_categoria = ? AND costo_dia IS NOT NULL";
     private final String revistasPorCategoriaQueryInicio = revistasPorCategoriaQuery + " ORDER BY RAND () LIMIT 5";
-    private final String revistasPorEtiquetaQuery = "select r.* from Revista r inner join Etiquetas_Revista er on r.nombre = er.nombre_revista where er.nombre_etiqueta = ?";
+    private final String revistasPorEtiquetaQuery = "select r.* from Revista r inner join Etiquetas_Revista er on r.nombre = er.nombre_revista where er.nombre_etiqueta = ? AND costo_dia IS NOT NULL";
     private final String revistasPorEtiquetaQueryInicio = revistasPorEtiquetaQuery + " ORDER BY RAND () LIMIT 5";
     private final String revistasSuscritoQuery = "SELECT R.* FROM Revista R INNER JOIN Suscripcion S ON R.nombre = S.nombre_revista WHERE S.user_name = ? AND ((S.suscripcion_activa=1 AND isnull(S.fecha_caducidad)) OR (S.suscripcion_activa = 1 AND date(now()) < fecha_caducidad))";
     private final Connection conexion = ConexionDB.getConexion();

@@ -25,6 +25,7 @@ import { LecturaRevistaComponent } from './Modulos/lectura-revista/lectura-revis
 import { ReporteComentariosComponent } from './Modulos/ReportesEditor/reporte-comentarios/reporte-comentarios.component';
 import { ReporteSuscripcionesComponent } from './Modulos/ReportesEditor/reporte-suscripciones/reporte-suscripciones.component';
 import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/reporte-ganancias-editor/reporte-ganancias-editor.component';
+import { ReporteRevistasGustadasComponent } from './Modulos/ReportesEditor/reporte-revistas-gustadas/reporte-revistas-gustadas.component';
 
 const routes: Routes = [
   {
@@ -111,6 +112,10 @@ const routes: Routes = [
   {
     path: RutasEditor.EARNING_MONEY_REPORT,
     component: ReporteGananciasEditorComponent
+  },
+  {
+    path: RutasEditor.LIKES_REPORT,
+    component: ReporteRevistasGustadasComponent
   }
 
 ];

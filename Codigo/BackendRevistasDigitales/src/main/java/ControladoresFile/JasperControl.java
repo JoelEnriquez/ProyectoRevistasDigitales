@@ -7,6 +7,7 @@ package ControladoresFile;
 
 import EntidadesApoyo.RutasEnum;
 import EntidadesJasper.GananciaEditor;
+import EntidadesJasper.RevistaReaccion;
 import EntidadesRevista.Comentario;
 import EntidadesRevista.Suscripcion;
 import ErrorAPI.ErrorResponse;
@@ -14,14 +15,11 @@ import JasperModel.JasperService;
 import ReporteModel.ValidadorParametros;
 import ReportesEditor.ReporteComentarios;
 import ReportesEditor.ReporteGananciasEditor;
+import ReportesEditor.ReporteReacciones;
 import ReportesEditor.ReporteSuscripciones;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -79,7 +77,6 @@ public class JasperControl extends HttpServlet {
     private void printEditorReport(HttpServletRequest request, HttpServletResponse response, boolean fechaIngresada, Date date1, Date date2, String usuarioEditor, String filtro) throws IOException, JRException {
         JasperService js = new JasperService();
         String subPath = RutasEnum.RUTA_TO_EDITOR_REPORTS.getRuta();
-        String subPathSub = RutasEnum.RUTA_TO_EDITOR_SUB_REPORTS.getRuta();
         String pathReport = "";
         JRDataSource source;
         switch (request.getParameter("action")) {
@@ -96,12 +93,15 @@ public class JasperControl extends HttpServlet {
                 js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
                 break;
             case "mas_gustadas":
-
+                List<RevistaReaccion> listadoMeGusta = new ReporteReacciones().getListadoRevistasMeGusta(date1, date2, fechaIngresada, usuarioEditor);
+                source = new JRBeanCollectionDataSource(listadoMeGusta);
+                pathReport = subPath + "ReporteSuscripciones.jasper";
+                js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
                 break;
             case "ganancias_editor":
                 List<GananciaEditor> listadoGanancia = new ReporteGananciasEditor().gananciasEditor(date1, date2, filtro, fechaIngresada, usuarioEditor);
                 source = new JRBeanCollectionDataSource(listadoGanancia);
-                pathReport = subPathSub + "ReporteGananciasEditor.jasper";
+                pathReport = subPath + "GananciasEditor.jasper";
                 js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
                 break;
         }

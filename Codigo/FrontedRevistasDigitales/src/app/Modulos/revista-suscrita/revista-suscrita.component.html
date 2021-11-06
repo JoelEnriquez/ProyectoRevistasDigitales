@@ -49,7 +49,7 @@
             <div class="col-3">
               <div class="row">
                 <blockquote>
-                  <h4 style="font-size: 2rem;">Descripcion</h4>
+                  <h2 class="text-center text-black">Descripcion</h2>
                   <p>{{_revista.descripcion}}</p>
                 </blockquote>
               </div>
@@ -69,8 +69,11 @@
         <div class="col-12">
           <div class="row">
             <div class="col-4 align-self-center">
-              <button [disabled]="!_revista.reaccionar" [ngClass]="_classButton" (click)="otorgarReaccion()">Me
-                Gusta</button>
+              <form [formGroup]="_meGustaForm" (ngSubmit)="otorgarReaccion()">
+                <input [hidden]="_classButton==_classPrimary" formControlName="date" type="date" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="startDate" is-open="openedStart" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <button [disabled]="!_revista.reaccionar || (this._meGustaForm.invalid && _classButton==_classSecondary)" type="submit" [ngClass]="_classButton" >Me
+                  Gusta</button>
+              </form>
             </div>
             <div class="col-8">
               <div class="row">
@@ -131,7 +134,7 @@
                   <div class="form-group"> <label for="fecha">Fecha de Comentario</label>
                     <input [disabled]="!_revista.comentar" formControlName="fecha" type="date" name="fecha" id="fecha" class="form-control text-white">
                   </div>
-                  <div class="text-center form-group"> <button [disabled]="_comentForm.invalid" type="submit" id="post"
+                  <div class="text-center form-group"> <button [disabled]="_comentForm.invalid && !_revista.comentar" type="submit" id="post"
                       class="btn">Publicar</button> </div>
                 </form>
               </div>

@@ -1,1 +1,75 @@
-<p>reporte-revistas-gustadas works!</p>
+<app-header-editor></app-header-editor>
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-12">
+      <h3 *ngIf="_mostrarError" class="alert alert-danger">{{_mensajeError}}</h3>
+      <form [formGroup]="_filtrarDatosForm" (ngSubmit)="generarReporte()">
+        <div class="form-row align-items-center">
+          <div class="col-12">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="fechaInicial">Fecha Inicial</label>
+                <input formControlName="fecha1" type="date" class="form-control" id="fechaInicial">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="fechaFinal">Fecha Final</label>
+                <input formControlName="fecha2" type="date" class="form-control" id="fechaFinal">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="fechaFinal">Filtrar por Revista</label>
+                <select formControlName="revista" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                  <option [ngValue]="null">Seleccione una categoria para la revista..</option>
+                  <option *ngFor="let _revista of _listadoRevistasPropias" [ngValue]="_revista.nombre">
+                    {{_revista.nombre}}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <button type="submit" class="mt-4 offset-1 btn btn-primary">Generar Reporte</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="_dataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="revista">
+            <th mat-header-cell *matHeaderCellDef> Nombre de Revista </th>
+            <td mat-cell *matCellDef="let element"> {{element.revista}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Categoria </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Nombre de Editor </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Costo de Suscripcion </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </div>
+
+  </div>
+</div>

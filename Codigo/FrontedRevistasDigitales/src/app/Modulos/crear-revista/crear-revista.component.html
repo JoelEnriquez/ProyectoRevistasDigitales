@@ -1,11 +1,11 @@
 <app-header-editor></app-header-editor>
 <div class="container">
-  <h3 class="text-center m-5">Formulario de Creacion de Revista</h3>
+  <h3 class="text-center m-5" style="font-size: 38px;">Formulario de Creacion de Revista</h3>
   <div *ngIf="_mostrarError" class="alert alert-danger">
-    <h6 class="text-center">{{_mensaje}}</h6>
+    <h6 class="text-center" style="font-size: 24px;">{{_mensaje}}</h6>
   </div>
   <div *ngIf="_mostrarExito" class="alert alert-success">
-    <h6 class="text-center">{{_mensaje}}</h6>
+    <h6 class="text-center" style="font-size: 24px;">{{_mensaje}}</h6>
   </div>
   <div class="row mt-5">
     <div class="col-8">
@@ -72,7 +72,7 @@
     </div>
     <div class="col-4 border">
       <div class="row">
-        <h5 class="text-center p-4">Agrega etiquetas para asociarlas a tu revista</h5>
+        <h5 class="text-center p-4" style="font-size: 17px;">Agrega etiquetas para asociarlas a tu revista</h5>
         <form [formGroup]="_etiquetaForm" (ngSubmit)="agregarEtiqueta()">
           <div class="input-group mb-3">
             <div class="input-group mb-3 justify-content-center">

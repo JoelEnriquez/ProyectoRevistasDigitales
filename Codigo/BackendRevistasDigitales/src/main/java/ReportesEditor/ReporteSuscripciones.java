@@ -6,13 +6,11 @@
 package ReportesEditor;
 
 import ConexionDB.ConexionDB;
-import EntidadesRevista.Comentario;
 import EntidadesRevista.Suscripcion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**

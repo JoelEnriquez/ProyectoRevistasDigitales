@@ -24,17 +24,18 @@ export class RevistaSuscritaComponent implements OnInit {
   _revista!: Revista;
   _rutas = RutasUsuario;
   _listadoComentarios!: Comentario[];
-  _listadoPublicaciones!:Publicacion[];
+  _listadoPublicaciones!: Publicacion[];
   _meGusta!: MeGusta;
-  _classButton:string = '';
-  _classPrimary:string = "btn btn-primary btn-lg btn-block";
-  _classSecondary:string = 'btn btn-secondary btn-lg btn-block';
+  _classButton: string = '';
+  _classPrimary: string = "btn btn-primary btn-lg btn-block";
+  _classSecondary: string = 'btn btn-secondary btn-lg btn-block';
   _mostrarInfoRevista: boolean = false;
   _etiquetasRevista!: Etiqueta[];
   _numeroReacciones!: number;
   _numeroComentarios!: number;
   _numeroSuscripciones!: number;
   _comentForm!: FormGroup;
+  _meGustaForm!: FormGroup;
 
   constructor(private _route: ActivatedRoute,
     private _revistaService: RevistaService,
@@ -49,20 +50,24 @@ export class RevistaSuscritaComponent implements OnInit {
   ngOnInit(): void {
 
     this._comentForm = this._formBuilder.group({
-      mensaje: ['',Validators.required],
-      fecha: ['',Validators.required]
+      mensaje: ['', Validators.required],
+      fecha: ['', Validators.required]
+    })
+
+    this._meGustaForm = this._formBuilder.group({
+      date: ['', Validators.required]
     })
 
     let _nombre = this._route.snapshot.paramMap.get('nombre');
     this.obtenerRevistaPorNombre(_nombre, this._usuario.userName);
   }
 
-  obtenerReaccion(){
+  obtenerReaccion() {
     this._revistaService.obtenerEstadoReaccion(this._revista.nombre, this._usuario.userName).subscribe(
-      (_meGusta:MeGusta) => {
+      (_meGusta: MeGusta) => {
         this._meGusta = _meGusta;
         console.log(_meGusta);
-        if (_meGusta.nombreRevista.length>0&&_meGusta.userName.length>0) {
+        if (_meGusta.nombreRevista.length > 0 && _meGusta.userName.length > 0) {
           this._classButton = this._classPrimary;
         } else {
           this._classButton = this._classSecondary;
@@ -71,21 +76,28 @@ export class RevistaSuscritaComponent implements OnInit {
     );
   }
 
-  otorgarReaccion(){
-    const _meGusta: MeGusta = new MeGusta(this._revista.nombre, this._usuario.userName);
-    console.log(_meGusta.nombreRevista)
-    this._revistaService.otorgarReaccion(_meGusta).subscribe(
-      (_meGusta:MeGusta) => {
-        this._meGusta = _meGusta;
-        if (this._classButton == this._classPrimary) {
-          this._classButton = this._classSecondary;
-          this._numeroReacciones--;
-        } else {
-          this._classButton = this._classPrimary;
-          this._numeroReacciones++;
-        }
+  otorgarReaccion() {
+    if (this._meGustaForm.valid || this._classButton==this._classPrimary) {
+      let _fechaReaccion:string = '';
+      if (this._classButton==this._classSecondary) {
+        _fechaReaccion = this._meGustaForm.value.date;
       }
-    )
+      const _meGusta: MeGusta = new MeGusta(this._revista.nombre, this._usuario.userName, _fechaReaccion);
+      console.log(_meGusta.nombreRevista)
+      this._revistaService.otorgarReaccion(_meGusta).subscribe(
+        (_meGusta: MeGusta) => {
+          this._meGusta = _meGusta;
+          //Pintar del color correcto el boton de me gusta
+          if (this._classButton == this._classPrimary) {
+            this._classButton = this._classSecondary;
+            this._numeroReacciones--;
+          } else {
+            this._classButton = this._classPrimary;
+            this._numeroReacciones++;
+          }
+        }
+      )
+    }
   }
 
   obtenerRevistaPorNombre(_nombreRevista: string | null, _userNameUsuario: string) {
@@ -114,11 +126,11 @@ export class RevistaSuscritaComponent implements OnInit {
     }
   }
 
-  guardarComentario(){
+  guardarComentario() {
     if (this._comentForm.valid) {
       const _mensaje = this._comentForm.value.mensaje;
       const _fecha = this._comentForm.value.fecha;
-      let _comentario:Comentario = new Comentario(0,_mensaje,_fecha, this._revista.nombre,this._usuario.userName);
+      let _comentario: Comentario = new Comentario(0, _mensaje, _fecha, this._revista.nombre, this._usuario.userName);
       console.log(_comentario)
       this._revistaService.registrarComentario(_comentario).subscribe(
         (_comentarioNuevo: Comentario) => {
@@ -129,42 +141,42 @@ export class RevistaSuscritaComponent implements OnInit {
             fecha: ''
           })
         },
-        (error:any) => {
+        (error: any) => {
           console.log(error.error.message);
         }
       )
     }
   }
 
-  obtenerEtiquetasRevista(){
-    this._revistasService.etiquetasRevista(this._revista.nombre,'etiquetas_revista').subscribe(
+  obtenerEtiquetasRevista() {
+    this._revistasService.etiquetasRevista(this._revista.nombre, 'etiquetas_revista').subscribe(
       (_etiquetasRevista: Etiqueta[]) => {
         this._etiquetasRevista = _etiquetasRevista;
       }
     )
   }
 
-  obtenerEstadisticasRevista(){
-    this._revistasService.cantidadEstadisticaRevista(this._revista.nombre,'likes').subscribe(
+  obtenerEstadisticasRevista() {
+    this._revistasService.cantidadEstadisticaRevista(this._revista.nombre, 'likes').subscribe(
       (_numeroReacciones: number) => {
         this._numeroReacciones = _numeroReacciones;
       }
     );
 
-    this._revistasService.cantidadEstadisticaRevista(this._revista.nombre,'comentarios').subscribe(
+    this._revistasService.cantidadEstadisticaRevista(this._revista.nombre, 'comentarios').subscribe(
       (_numeroComentarios: number) => {
         this._numeroComentarios = _numeroComentarios;
       }
     );
 
-    this._revistasService.cantidadEstadisticaRevista(this._revista.nombre,'suscripciones').subscribe(
+    this._revistasService.cantidadEstadisticaRevista(this._revista.nombre, 'suscripciones').subscribe(
       (_numeroSuscripciones: number) => {
         this._numeroSuscripciones = _numeroSuscripciones;
       }
     );
   }
 
-  obtenerListadoPublicaciones(){
+  obtenerListadoPublicaciones() {
     this._revistasService.obtenerListadoPublicaciones(this._revista.nombre).subscribe(
       (_listadoPublicaciones: Publicacion[]) => {
         console.log(_listadoPublicaciones)
@@ -173,7 +185,7 @@ export class RevistaSuscritaComponent implements OnInit {
     )
   }
 
-  obtenerListadoComentarios(){
+  obtenerListadoComentarios() {
     this._revistasService.obtenerListadoComentarios(this._revista.nombre).subscribe(
       (_listadoComentarios: Comentario[]) => {
         this._listadoComentarios = _listadoComentarios;

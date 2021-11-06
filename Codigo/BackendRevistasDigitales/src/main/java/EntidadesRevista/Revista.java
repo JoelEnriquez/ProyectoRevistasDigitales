@@ -21,6 +21,8 @@ public class Revista {
     private String nombreCategoria;
     private String userName;
 
+    
+    private int cantidadSuscripciones; //Atributo para reporte
     /**
      * Constructor without costo suscripcion
      * @param nombre
@@ -93,6 +95,48 @@ public class Revista {
         this.userName = userName;
     }
 
+    /**
+     * Constructor for report of coments
+     * @param nombre
+     * @param descripcion
+     * @param pago
+     * @param costoSuscripcion
+     * @param costoDia
+     * @param nombreCategoria
+     * @param userName 
+     */
+    public Revista(String nombre, String descripcion, boolean pago, Double costoSuscripcion, Double costoDia, String nombreCategoria, String userName) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.pago = pago;
+        this.costoSuscripcion = costoSuscripcion;
+        this.costoDia = costoDia;
+        this.nombreCategoria = nombreCategoria;
+        this.userName = userName;
+    }
+    
+    /**
+     * Constructor for report of popularity of magazine
+     * @param nombre
+     * @param descripcion
+     * @param pago
+     * @param costoSuscripcion
+     * @param costoDia
+     * @param nombreCategoria
+     * @param userName
+     * @param cantidadSuscripciones 
+     */
+    public Revista(String nombre, String descripcion, boolean pago, Double costoSuscripcion, Double costoDia, String nombreCategoria, String userName, int cantidadSuscripciones) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.pago = pago;
+        this.costoSuscripcion = costoSuscripcion;
+        this.costoDia = costoDia;
+        this.nombreCategoria = nombreCategoria;
+        this.userName = userName;
+        this.cantidadSuscripciones = cantidadSuscripciones;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -171,6 +215,14 @@ public class Revista {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getCantidadSuscripciones() {
+        return cantidadSuscripciones;
+    }
+
+    public void setCantidadSuscripciones(int cantidadSuscripciones) {
+        this.cantidadSuscripciones = cantidadSuscripciones;
     }
    
     
