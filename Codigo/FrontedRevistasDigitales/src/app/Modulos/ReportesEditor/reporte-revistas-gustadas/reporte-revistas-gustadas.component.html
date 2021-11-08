@@ -49,9 +49,16 @@
                 <button type="submit" class="mt-4 btn btn-primary">
                   Generar Reporte
                 </button>
-                <button *ngIf="_listadoRevistasReaccion" type="button" (click)="imprimirReporte()" class="ml-1 mt-4 btn btn-success">
+                <a
+                  name="download"
+                  id="download"
+                  class="ml-1 mt-4 btn btn-success"
+                  role="button"
+                  href="{{ _url }}"
+                  *ngIf="_listadoRevistasReaccion"
+                >
                   Inprimir Reporte
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -63,7 +70,7 @@
     <div class="col-12">
       <div
         *ngIf="_listadoRevistasReaccion"
-      > 
+      >
         <div class="row justify-content-center text-center font-weight-bold" style="font-size: 20px; font-weight: bold;">
           <div class="col-3">
             Nombre de Revista
@@ -105,11 +112,11 @@
                 <tbody>
                   <tr *ngFor="let _meGusta of _revistaReaccion.meGusta">
                     <td>{{ _meGusta.userName }}</td>
-                    <td>{{ _meGusta.fechaReaccionDate }}</td> 
+                    <td>{{ _meGusta.fechaReaccionDate }}</td>
                   </tr>
                 </tbody>
               </table>
-            </div> 
+            </div>
           </div>
         </div>
       </div>

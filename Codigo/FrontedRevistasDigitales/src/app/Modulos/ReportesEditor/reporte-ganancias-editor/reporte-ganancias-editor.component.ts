@@ -55,9 +55,9 @@ export class ReporteGananciasEditorComponent implements OnInit {
     this.obtenerListadoDeRevistas();
   }
 
-  obtenerLink() {
-    let _url = Rutas.API_URL + "FileControl?action=pdf&ruta_pdf=" + this._pathFile;
-    this._url = this.sanitizer.bypassSecurityTrustResourceUrl(_url);
+  obtenerLink(){
+    let _url = Rutas.API_URL + "JasperControl?user_name="+this._editor.userName+"&fecha_inicio="+this._fechaInicial+"&fecha_fin="+this._fechaFinal+"&filtro="+this._revista+"&tipo=EDITOR&action=ganancias_editor";
+    this._url = _url;
   }
 
   descargarPDF() {
@@ -95,7 +95,7 @@ export class ReporteGananciasEditorComponent implements OnInit {
     }
     return null;
   }
-  
+
 
   generarReporte() {
     this._listadoGananciasTotales =null;
@@ -119,8 +119,9 @@ export class ReporteGananciasEditorComponent implements OnInit {
             this._listadoGananciasTotales = new Array();
           }
           this.calcularGanancias();
+          this.obtenerLink();
         },
-        (error:any) => {  
+        (error:any) => {
           this._mensajeError = error.error.message;
           this._mostrarError = true;
           this.limpiarDatos();
@@ -137,5 +138,7 @@ export class ReporteGananciasEditorComponent implements OnInit {
     this._listadoGananciaEditor = null;
     this._listadoGananciasTotales = null;
   }
+
+
 
 }

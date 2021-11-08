@@ -40,44 +40,44 @@
 	<detail>
 		<band height="75">
 			<textField>
-				<reportElement x="0" y="30" width="290" height="20" uuid="0dc22949-b5b4-4aca-b5e5-dd6ad56037d4"/>
+				<reportElement x="0" y="30" width="260" height="20" uuid="0dc22949-b5b4-4aca-b5e5-dd6ad56037d4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nombreRevista}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="378" y="30" width="86" height="20" uuid="e0a73ddc-0489-4f05-9d47-145ab79ed2a2"/>
+				<reportElement x="350" y="30" width="86" height="20" uuid="e0a73ddc-0489-4f05-9d47-145ab79ed2a2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="290" y="30" width="88" height="20" uuid="56f26b2e-a7b3-45a1-8bf1-d697356fc34d"/>
+				<reportElement x="260" y="30" width="90" height="20" uuid="56f26b2e-a7b3-45a1-8bf1-d697356fc34d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="465" y="30" width="90" height="20" uuid="92ab44b6-8c51-438d-a245-9016db888ba0"/>
+				<reportElement x="436" y="30" width="118" height="20" uuid="92ab44b6-8c51-438d-a245-9016db888ba0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{precioSus}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Q"+$F{precioSus}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="10" width="290" height="20" uuid="156af676-6f62-4195-9190-8ae844440a35"/>
+				<reportElement x="0" y="10" width="260" height="20" uuid="156af676-6f62-4195-9190-8ae844440a35"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[REVISTA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="10" width="88" height="20" uuid="45ef8275-4c23-48ad-970c-d506864ac293"/>
+				<reportElement x="260" y="10" width="90" height="20" uuid="45ef8275-4c23-48ad-970c-d506864ac293"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[CATEGORIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="378" y="10" width="86" height="20" uuid="dc4e6ad2-f260-4d45-85f3-ae8e86a2409c"/>
+				<reportElement x="350" y="10" width="86" height="20" uuid="dc4e6ad2-f260-4d45-85f3-ae8e86a2409c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[EDITOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="464" y="10" width="90" height="20" uuid="d4408053-a0b7-4181-a4d7-53de85ddc4e6"/>
+				<reportElement x="436" y="10" width="118" height="20" uuid="d4408053-a0b7-4181-a4d7-53de85ddc4e6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[SUSCRIPCIÓN]]></text>
+				<text><![CDATA[COSTO SUSCRIPCIÓN]]></text>
 			</staticText>
 			<subreport>
 				<reportElement x="0" y="50" width="554" height="20" uuid="b41a5835-cebd-463d-9586-2e234ffa647d"/>
@@ -101,8 +101,8 @@
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="2382f892-33fc-455b-8851-a89c376f7651"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<reportElement x="0" y="4" width="180" height="13" uuid="2382f892-33fc-455b-8851-a89c376f7651"/>
+				<textFieldExpression><![CDATA["Fecha de reporte: "+ new SimpleDateFormat("dd/MM/yyyy").format(NOW( ))]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

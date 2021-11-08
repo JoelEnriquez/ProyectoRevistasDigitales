@@ -5,14 +5,20 @@
  */
 package ControladoresFile;
 
+import Convertidores.ConvertidorRevistaComentarioList;
+import Convertidores.ConvertidorRevistaSuscripcionList;
 import EntidadesApoyo.RutasEnum;
 import EntidadesJasper.GananciaEditor;
+import EntidadesJasper.RevistaComentario;
 import EntidadesJasper.RevistaReaccion;
+import EntidadesJasper.RevistaSuscripcion;
 import EntidadesRevista.Comentario;
 import EntidadesRevista.Suscripcion;
 import ErrorAPI.ErrorResponse;
 import JasperModel.JasperService;
 import ReporteModel.ValidadorParametros;
+import ReportesAdmin.ReporteRevistasComentadas;
+import ReportesAdmin.ReporteRevistasPopulares;
 import ReportesEditor.ReporteComentarios;
 import ReportesEditor.ReporteGananciasEditor;
 import ReportesEditor.ReporteReacciones;
@@ -41,6 +47,7 @@ public class JasperControl extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/pdf");
+        response.setHeader("Content-disposition", "attachment; filename=Reporte.pdf");
         ValidadorParametros vp = new ValidadorParametros();
 
         String fechaInicio = request.getParameter("fecha_inicio");
@@ -64,7 +71,7 @@ public class JasperControl extends HttpServlet {
                     printEditorReport(request, response, fechaIngresada, date1, date2, nombreUsuario, filtro);
                     break;
                 case "ADMIN":
-                    //printAdminReport(request, response, fechaIngresada, date1, date2);
+                    printAdminReport(request, response, fechaIngresada, date1, date2);
                     break;
 
             }
@@ -95,7 +102,7 @@ public class JasperControl extends HttpServlet {
             case "mas_gustadas":
                 List<RevistaReaccion> listadoMeGusta = new ReporteReacciones().getListadoRevistasMeGusta(date1, date2, filtro, fechaIngresada, usuarioEditor);
                 source = new JRBeanCollectionDataSource(listadoMeGusta);
-                pathReport = subPath + "ReporteSuscripciones.jasper";
+                pathReport = subPath + "ReporteReacciones.jasper";
                 js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
                 break;
             case "ganancias_editor":
@@ -118,40 +125,22 @@ public class JasperControl extends HttpServlet {
      * @throws IOException
      * @throws JRException
      */
-//    private void printAdminReport(HttpServletRequest request, HttpServletResponse response, boolean validDates, Date date1, Date date2) throws IOException, JRException {
-//        JasperService jm = new JasperService();
-//        String subPath = GeneralPaths.JASPER_ADMIN_SUB_PATH_RELATIVE.getMessage();
-//
-//        switch (request.getParameter("action")) {
-//            case "earns-advers":
-//                jm.printReport(response.getOutputStream(), jm.getMasterReportPathAdmin("earns-advers", validDates),
-//                        jm.getBasicKeyMapForJasper(date1, date2, "", validDates, ""));
-//                break;
-//            case "most-subscribed":
-//                ArrayList<MaganizeSubscriptionReport> mags = new SubscriptionSelect().selectMostSubscribedMags(validDates, date1, date2);
-//                jm.printReportWithComplexBeans(mags, jm.getMasterReportPathAdmin("most-subscribed", validDates),
-//                        jm.getBasicKeyMapForJasper(null, null, "", validDates, subPath + "TopMagsDetails.jasper"), response.getOutputStream());
-//                break;
-//            case "most-commented": //
-//                ArrayList<MagazineCommentsReport> magsComments = new CommentSelect().getMagazineMostCommentedes(date1, date2, validDates);
-//                jm.printReportWithComplexBeans1(magsComments, jm.getMasterReportPathAdmin("most-commented", validDates),
-//                        jm.getBasicKeyMapForJasper(null, null, "", validDates, subPath + "MasCommentDetails.jasper"), response.getOutputStream());
-//                break;
-//            case "earns-mags":
-//                String subRepTmp = validDates ? "MagEarningsSubDetail.jasper" : "MagEarningsSubDetailNoParms.jasper";
-//                jm.printReport(response.getOutputStream(), jm.getMasterReportPathAdmin("earns-mags", validDates),
-//                        jm.getBasicKeyMapForJasper(date1, date2, "", validDates, subPath + subRepTmp));
-//                break;
-//            case "total-earnings":
-//                // get map and add object
-//                Map<String, Object> hashMap = jm.getBasicKeyMapForJasper(date1, date2, "", validDates, "");
-//                hashMap.put("list", hashMap);
-//                // call tmp
-//                ArrayList<EarningResult> earnings = new TotalEarningsModel().getTotalEarnings(date1, date2, validDates);
-//                jm.printReportWithComplexBeans2(earnings, jm.getMasterReportPathAdmin("total-earnings", validDates), hashMap, response.getOutputStream());
-//                break;
-//            default:
-//                break;
-//        }
-//    }
+    private void printAdminReport(HttpServletRequest request, HttpServletResponse response, boolean fechaIngresada, Date date1, Date date2) throws IOException, JRException {
+        JasperService js = new JasperService();
+        String subPath = RutasEnum.RUTA_TO_ADMIN_REPORTS.getRuta();
+        String pathReport = "";
+        JRDataSource source;
+        switch (request.getParameter("action")) {
+            case "revistas_populares":
+                List<RevistaSuscripcion> listadoRevistaSuscripciones = new ReporteRevistasPopulares().getListadoRevistasConSuscripciones(date1, date2, fechaIngresada);
+                source = new JRBeanCollectionDataSource(listadoRevistaSuscripciones);
+                pathReport = subPath + "ReporteRevistasPopulares.jasper";
+                js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
+                break;
+            case "revistas_comentadas":
+                List<RevistaComentario> listadoRevistasComentarios = new ReporteRevistasComentadas().getListadoRevistasConComentarios(date1, date2, fechaIngresada);
+                response.getWriter().append(new ConvertidorRevistaComentarioList((Class<List<RevistaComentario>>) listadoRevistasComentarios.getClass()).toJson(listadoRevistasComentarios));
+                break;
+        }
+    }
 }

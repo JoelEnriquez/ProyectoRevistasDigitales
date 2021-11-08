@@ -19,6 +19,7 @@ import { FilesService } from '../../../Services/files.service';
 import { ReportesService } from '../../../Services/reportes.service';
 import { RevistaReaccion } from '../../../Objects/ReportsObjets/RevistaMeGusta';
 import { MeGusta } from 'src/app/Objects/Revista/MeGusta';
+import { Rutas } from 'src/app/Objects/Rutas/Rutas';
 
 @Component({
   selector: 'app-reporte-revistas-gustadas',
@@ -88,8 +89,9 @@ export class ReporteRevistasGustadasComponent implements OnInit {
       .subscribe(
         (_listadoRevistasReaccion: RevistaReaccion[]) => {
           this._listadoRevistasReaccion = _listadoRevistasReaccion;
+          this.obtenerLink();
         },
-        (error:any) => {  
+        (error:any) => {
           this._mensajeError = error.error.message;
           this._mostrarError = true;
           this.limpiarDatos();
@@ -99,6 +101,11 @@ export class ReporteRevistasGustadasComponent implements OnInit {
 
   imprimirReporte(){
 
+  }
+
+  obtenerLink(){
+    let _url = Rutas.API_URL + "JasperControl?user_name="+this._editor.userName+"&fecha_inicio="+this._fechaInicial+"&fecha_fin="+this._fechaFinal+"&filtro="+this._revista+"&tipo=EDITOR&action=mas_gustadas";
+    this._url = _url;
   }
 
   limpiarDatos(){

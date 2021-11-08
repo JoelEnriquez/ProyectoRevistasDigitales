@@ -53,10 +53,6 @@ export class ReporteComentariosComponent implements OnInit {
     this.obtenerListadoDeRevistas();
   }
 
-  obtenerLink() {
-    let _url = Rutas.API_URL + "FileControl?action=pdf&ruta_pdf=" + this._pathFile;
-    this._url = this.sanitizer.bypassSecurityTrustResourceUrl(_url);
-  }
 
   descargarPDF() {
     let _url = Rutas.API_URL + "FileControl?action=descargar&ruta_pdf=" + this._pathFile;
@@ -88,8 +84,9 @@ export class ReporteComentariosComponent implements OnInit {
       .subscribe(
         (_listadoComentarios: Comentario[]) => {
           this._listadoComentarios = _listadoComentarios;
+          this.obtenerLink();
         },
-        (error:any) => {  
+        (error:any) => {
           this._mensajeError = error.error.message;
           this._mostrarError = true;
           this.limpiarDatos();
@@ -97,8 +94,9 @@ export class ReporteComentariosComponent implements OnInit {
       );
   }
 
-  imprimirReporte(){
-
+  obtenerLink(){
+    let _url = Rutas.API_URL + "JasperControl?user_name="+this._editor.userName+"&fecha_inicio="+this._fechaInicial+"&fecha_fin="+this._fechaFinal+"&filtro="+this._revista+"&tipo=EDITOR&action=comentarios";
+    this._url = _url;
   }
 
   limpiarDatos(){

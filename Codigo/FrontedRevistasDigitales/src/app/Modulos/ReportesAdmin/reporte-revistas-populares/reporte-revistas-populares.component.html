@@ -31,14 +31,16 @@
                 <button type="submit" class="mt-4 btn btn-primary">
                   Generar Reporte
                 </button>
-                <button
-                  *ngIf="_listadoRevistaSuscripciones"
-                  type="button"
-                  (click)="imprimirReporte()"
+                <a
+                  name="download"
+                  id="download"
                   class="ml-1 mt-4 btn btn-success"
+                  role="button"
+                  href="{{ _url }}"
+                  *ngIf="_listadoRevistaSuscripciones"
                 >
                   Inprimir Reporte
-                </button>
+                </a>
               </div>
             </div>
           </div>

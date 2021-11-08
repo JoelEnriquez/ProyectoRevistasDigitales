@@ -14,9 +14,9 @@ public enum RutasEnum {
     RUTA_TO_SAVE_PDF("Files/"),
     RUTA_FROM_NO_PROFILE_PICTURE("Image/NoProFilePicture.jpg"),
     RUTA_TO_EDITOR_REPORTS("ProyectoRevistas/Editor/"),
-    RUTA_TO_EDITOR_SUB_REPORTS("ProyectoRevistas/Editor/SubReporte/"),
-    RUTA_TO_ADMIN_REPORTS("ProyectoRevistas/Administrador/"),
-    RUTA_TO_ADMIN_SUB_REPORTS("ProyectoRevistas/Administrador/SubReporte/");
+    RUTA_TO_EDITOR_SUB_REPORTS("ProyectoRevistas/Editor/SubEditor/"),
+    RUTA_TO_ADMIN_REPORTS("ProyectoRevistas/Admin/"),
+    RUTA_TO_ADMIN_SUB_REPORTS("ProyectoRevistas/Admin/SubAdmin/");
     
     private String ruta;
 

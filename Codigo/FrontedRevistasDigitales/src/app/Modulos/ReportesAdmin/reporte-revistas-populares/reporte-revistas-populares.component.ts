@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Admin } from 'src/app/Objects/Persona/Admin';
 import { RevistaSuscripcion } from 'src/app/Objects/ReportsObjets/RevistaSuscripcion';
+import { Rutas } from 'src/app/Objects/Rutas/Rutas';
 import { FilesService } from 'src/app/Services/files.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { ReportesService } from 'src/app/Services/reportes.service';
@@ -38,7 +39,7 @@ export class ReporteRevistasPopularesComponent implements OnInit {
     private _revistaService: RevistaService,
     private _filesService: FilesService,
     private _reportesService: ReportesService
-  ) { 
+  ) {
     this._admin = JSON.parse(`${this._localService.obtenerData('editor')}`);
   }
 
@@ -47,6 +48,11 @@ export class ReporteRevistasPopularesComponent implements OnInit {
       fecha1: [''],
       fecha2: [''],
     });
+  }
+
+  obtenerLink(){
+    let _url = Rutas.API_URL + "JasperControl?&fecha_inicio="+this._fechaInicial+"&fecha_fin="+this._fechaFinal+"&tipo=ADMIN&action=revistas_populares";
+    this._url = _url;
   }
 
   generarReporte() {
@@ -63,8 +69,9 @@ export class ReporteRevistasPopularesComponent implements OnInit {
       .subscribe(
         (_listadoRevistaSuscripciones: RevistaSuscripcion[]) => {
           this._listadoRevistaSuscripciones = _listadoRevistaSuscripciones;
+          this.obtenerLink();
         },
-        (error:any) => {  
+        (error:any) => {
           this._mensajeError = error.error.message;
           this._mostrarError = true;
           this.limpiarDatos();
