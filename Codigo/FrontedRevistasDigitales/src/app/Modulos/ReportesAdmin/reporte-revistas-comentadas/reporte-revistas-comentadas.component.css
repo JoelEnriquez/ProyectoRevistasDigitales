@@ -1,10 +1,10 @@
   
-  .tableFixHeadComentario {
+  .tableFixHeadRevista {
     overflow-y: auto;
-    height: 500px;
+    height: 150px;
   }
   
-  .tableFixHeadComentario thead th {
+  .tableFixHeadRevista thead th {
     position: sticky;
     top: 0;
   }

@@ -1,46 +1,99 @@
 <app-header-editor></app-header-editor>
-<div class="container">
-  <div class="row mt-3">
-    <div class="col-8">
-      <iframe [src]="_url" width="100%" height="800px"></iframe>
-    </div>
-
-    <div class="col-4 align-self-center">
-      <div class="row">
-        <div class="col-12">
-          <h3 *ngIf="_mostrarError" class="alert alert-danger">{{_mensajeError}}</h3>
-          <form [formGroup]="_filtrarDatosForm" (ngSubmit)="generarReporte()">
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Fecha Inicial</label>
-              <div class="col-sm-10">
-                <input formControlName="fecha1" type="date" class="form-control" id="inputEmail3">
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-12">
+      <h3 *ngIf="_mostrarError" class="alert alert-danger text-center">
+        {{ _mensajeError }}
+      </h3>
+      <form [formGroup]="_filtrarDatosForm" (ngSubmit)="generarReporte()">
+        <div class="form-row align-items-center">
+          <div class="col-12">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="fechaInicial">Fecha Inicial</label>
+                <input
+                  formControlName="fecha1"
+                  type="date"
+                  class="form-control"
+                  id="fechaInicial"
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <label for="fechaFinal">Fecha Final</label>
+                <input
+                  formControlName="fecha2"
+                  type="date"
+                  class="form-control"
+                  id="fechaFinal"
+                />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="fechaFinal">Filtrar por Revista</label>
+                <select
+                  formControlName="revista"
+                  class="custom-select my-1 mr-sm-2"
+                  id="inlineFormCustomSelectPref"
+                >
+                  <option [ngValue]="null">
+                    Seleccione una categoria para la revista..
+                  </option>
+                  <option
+                    *ngFor="let _revista of _listadoRevistasPropias"
+                    [ngValue]="_revista.nombre"
+                  >
+                    {{ _revista.nombre }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <button type="submit" class="mt-4 btn btn-primary">
+                  Generar Reporte
+                </button>
+                <button
+                  *ngIf="_listadoSuscripciones"
+                  type="button"
+                  (click)="imprimirReporte()"
+                  class="ml-1 mt-4 btn btn-success"
+                >
+                  Inprimir Reporte
+                </button>
               </div>
             </div>
-            <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 col-form-label">Fecha Final</label>
-              <div class="col-sm-10">
-                <input type="date" formControlName="fecha2" class="form-control" id="inputPassword3">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Filtrar por revista</label>
-              <select formControlName="revista" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                <option [ngValue]="null">Seleccione una categoria para la revista..</option>
-                <option *ngFor="let _revista of _listadoRevistasPropias" [ngValue]="_revista.nombre">{{_revista.nombre}}</option>
-              </select>
-            </div>
-            <div class="form-group row justify-content-center">
-              <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Generar Reporte</button>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <a *ngIf="_url" (click)="descargarPDF()"
-          style="font-size: 2.5rem;line-height: 1.5;letter-spacing: 0.174em;font-weight: 600;"
-          class="btn btn-outline-success">Descargar</a>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div
+        *ngIf="_listadoSuscripciones"
+        class="tableFixHeadSuscripcion table-inverse table-responsive"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Estado</th>
+              <th>Fecha de Suscripcion</th>
+              <th>Fecha de Caducidad</th>
+              <th>Usuario Lector</th>
+              <th>Nombre de Revista</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let _suscripcion of _listadoSuscripciones">
+              <td>{{ _suscripcion.id }}</td>
+              <td><div *ngIf="_suscripcion.suscripcionActiva; else elseBlock">Activa</div>
+                <ng-template #elseBlock>Deshabilitada</ng-template></td>
+              <td>{{ _suscripcion.fechaSuscripcionDate }}</td>
+              <td><div *ngIf="_suscripcion.fechaCaducidadDate; else elseBlockDate">{{_suscripcion.fechaCaducidadDate}}</div>
+                <ng-template #elseBlockDate>Sin Caducidad</ng-template></td>
+              <td>{{ _suscripcion.userName }}</td>
+              <td>{{ _suscripcion.nombreRevista }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

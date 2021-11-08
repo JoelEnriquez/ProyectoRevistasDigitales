@@ -96,7 +96,12 @@ public class ReporteRevistasPopulares {
             }
             try ( ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    listadoSuscripciones.add(new Suscripcion(rs.getInt(1), rs.getDate(2), rs.getString(5), rs.getString(6)));
+                    listadoSuscripciones.add(new Suscripcion(rs.getInt(1),
+                                    rs.getDate(2),
+                                    rs.getDate(3),
+                                    rs.getBoolean(4),
+                                    rs.getString(5),
+                                    rs.getString(6)));
                 }
             }
         } catch (Exception e) {

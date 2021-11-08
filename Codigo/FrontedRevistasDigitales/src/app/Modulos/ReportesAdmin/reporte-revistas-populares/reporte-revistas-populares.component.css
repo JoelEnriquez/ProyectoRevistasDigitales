@@ -1,24 +1,24 @@
-  
-  .tableFixHeadComentario {
+
+  .tableFixHeadRevista {
     overflow-y: auto;
-    height: 500px;
+    height: 150px;
   }
-  
-  .tableFixHeadComentario thead th {
+
+  .tableFixHeadRevista thead th {
     position: sticky;
     top: 0;
   }
-  
+
   table {
     border-collapse: collapse;
     width: 100%;
     text-align: center;
   }
-  
+
   input {
   text-align: center;
   }
-  
+
   th,td {
     padding: 8px 16px;
     border: 1px solid #ccc;
@@ -26,4 +26,3 @@
   th {
     background: #eee;
   }
-  

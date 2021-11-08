@@ -107,7 +107,7 @@ public class ReporteReacciones {
             }
             try ( ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    listadoMeGusta.add(new MeGusta(rs.getString(1), rs.getString(2), rs.getDate(3).toString()));
+                    listadoMeGusta.add(new MeGusta(rs.getString(1), rs.getString(2), rs.getDate(3)));
                 }
             }
         } catch (Exception e) {

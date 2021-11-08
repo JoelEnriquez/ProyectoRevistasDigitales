@@ -4,6 +4,7 @@ export class Comentario {
     public contenido:string,
     public fechaComentario: string,
     public nombreRevista: string,
-    public userName:string
+    public userName:string,
+    public fechaComentarioDate?:string
   ){}
 }

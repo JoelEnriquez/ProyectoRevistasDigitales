@@ -7,5 +7,9 @@ export class Suscripcion {
     public tipoPago?:string,
     public cantidadTiempo?:number,
     public fechaCaducidad?:string,
+    public id?:number,
+    public montoGanancia?:number,
+    public fechaSuscripcionDate?:string,
+    public fechaCaducidadDate?:string
   ){}
 }

@@ -8,6 +8,8 @@ import { LocalStorageService } from '../../../Services/local-storage.service';
 import { RevistaService } from '../../../Services/revista.service';
 import { Revista } from '../../../Objects/Revista/Revista';
 import { FilesService } from '../../../Services/files.service';
+import { Comentario } from 'src/app/Objects/Revista/Comentario';
+import { ReportesService } from 'src/app/Services/reportes.service';
 
 @Component({
   selector: 'app-reporte-comentarios',
@@ -24,13 +26,20 @@ export class ReporteComentariosComponent implements OnInit {
   _listadoRevistasPropias!: Revista[]
   _filtrarDatosForm!: FormGroup;
 
+  _fechaInicial!: string;
+  _fechaFinal!: string;
+  _revista!: string;
+  _dataSource!: any;
+  _listadoComentarios!: Comentario[] | null;
+
   constructor(
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _localService: LocalStorageService,
     private _revistaService: RevistaService,
-    private _filesService: FilesService
+    private _filesService: FilesService,
+    private _reportService: ReportesService
   ) {
     this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
   }
@@ -65,12 +74,38 @@ export class ReporteComentariosComponent implements OnInit {
   generarReporte() {
     this._mensajeError = '';
     this._mostrarError = false;
-    const _fechaInicial = this._filtrarDatosForm.value.fecha1;
-    const _fechaFinal = this._filtrarDatosForm.value.fecha2;
-    const _revista = this._filtrarDatosForm.value.revista;
+    this._fechaInicial = this._filtrarDatosForm.value.fecha1;
+    this._fechaFinal = this._filtrarDatosForm.value.fecha2;
+    this._revista = this._filtrarDatosForm.value.revista;
 
-    let url = this._filesService.obtenerReporte(this._editor.userName, _fechaInicial, _fechaFinal, _revista, 'comentarios', 'EDITOR');
-    this._url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    this._reportService
+      .obtenerReporteComentariosRevista(
+        this._editor.userName,
+        this._fechaInicial,
+        this._fechaFinal,
+        this._revista
+      )
+      .subscribe(
+        (_listadoComentarios: Comentario[]) => {
+          this._listadoComentarios = _listadoComentarios;
+        },
+        (error:any) => {  
+          this._mensajeError = error.error.message;
+          this._mostrarError = true;
+          this.limpiarDatos();
+        }
+      );
+  }
+
+  imprimirReporte(){
+
+  }
+
+  limpiarDatos(){
+    this._fechaInicial = '';
+    this._fechaFinal = '';
+    this._revista = '';
+    this._listadoComentarios = null;
   }
 
 }

@@ -3,5 +3,6 @@ export class MeGusta {
     public nombreRevista:string,
     public userName:string,
     public fechaReaccion:string,
+    public fechaReaccionDate?:string
   ){}
 }

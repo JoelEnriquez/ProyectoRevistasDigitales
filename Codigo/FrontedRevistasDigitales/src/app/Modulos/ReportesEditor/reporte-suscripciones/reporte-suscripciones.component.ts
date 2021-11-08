@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Editor } from '../../../Objects/Persona/Editor';
+import { Suscripcion } from 'src/app/Objects/Revista/Suscripcion';
+import { ReportesService } from 'src/app/Services/reportes.service';
 
 @Component({
   selector: 'app-reporte-suscripciones',
@@ -24,13 +26,20 @@ export class ReporteSuscripcionesComponent implements OnInit {
   _listadoRevistasPropias!: Revista[]
   _filtrarDatosForm!: FormGroup;
 
+  _fechaInicial!: string;
+  _fechaFinal!: string;
+  _revista!: string;
+  _dataSource!: any;
+  _listadoSuscripciones!: Suscripcion[] | null;
+
   constructor(
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _localService: LocalStorageService,
     private _revistaService: RevistaService,
-    private _filesService: FilesService
+    private _filesService: FilesService,
+    private _reportesService:ReportesService
   ) {
     this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
    }
@@ -65,12 +74,38 @@ export class ReporteSuscripcionesComponent implements OnInit {
   generarReporte() {
     this._mensajeError = '';
     this._mostrarError = false;
-    const _fechaInicial = this._filtrarDatosForm.value.fecha1;
-    const _fechaFinal = this._filtrarDatosForm.value.fecha2;
-    const _revista = this._filtrarDatosForm.value.revista;
+    this._fechaInicial = this._filtrarDatosForm.value.fecha1;
+    this._fechaFinal = this._filtrarDatosForm.value.fecha2;
+    this._revista = this._filtrarDatosForm.value.revista;
 
-    let url = this._filesService.obtenerReporte(this._editor.userName, _fechaInicial, _fechaFinal, _revista, 'suscripciones_revista', 'EDITOR');
-    this._url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    this._reportesService
+      .obtenerReporteSuscripciones(
+        this._editor.userName,
+        this._fechaInicial,
+        this._fechaFinal,
+        this._revista
+      )
+      .subscribe(
+        (_listadoSuscripciones: Suscripcion[]) => {
+          this._listadoSuscripciones = _listadoSuscripciones;
+        },
+        (error:any) => {  
+          this._mensajeError = error.error.message;
+          this._mostrarError = true;
+          this.limpiarDatos();
+        }
+      );
+  }
+
+  imprimirReporte(){
+
+  }
+
+  limpiarDatos(){
+    this._fechaInicial = '';
+    this._fechaFinal = '';
+    this._revista = '';
+    this._listadoSuscripciones = null;
   }
 
 }

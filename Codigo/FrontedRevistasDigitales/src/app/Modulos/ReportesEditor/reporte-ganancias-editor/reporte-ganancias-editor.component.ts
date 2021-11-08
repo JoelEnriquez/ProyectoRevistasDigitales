@@ -8,6 +8,9 @@ import { LocalStorageService } from '../../../Services/local-storage.service';
 import { RevistaService } from '../../../Services/revista.service';
 import { FilesService } from '../../../Services/files.service';
 import { Rutas } from '../../../Objects/Rutas/Rutas';
+import { GananciaEditor } from 'src/app/Objects/ReportsObjets/GananciaEditor';
+import { ReportesService } from 'src/app/Services/reportes.service';
+import { MontoRevista } from 'src/app/Objects/ReportsObjets/MontoRevista';
 
 @Component({
   selector: 'app-reporte-ganancias-editor',
@@ -24,13 +27,21 @@ export class ReporteGananciasEditorComponent implements OnInit {
   _listadoRevistasPropias!: Revista[]
   _filtrarDatosForm!: FormGroup;
 
+  _fechaInicial!: string;
+  _fechaFinal!: string;
+  _revista!: string;
+  _dataSource!: any;
+  _listadoGananciaEditor!: GananciaEditor[] | null;
+  _listadoGananciasTotales!: MontoRevista[] | null;
+
   constructor(
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _localService: LocalStorageService,
     private _revistaService: RevistaService,
-    private _filesService: FilesService
+    private _filesService: FilesService,
+    private _reportesService: ReportesService
   ) {
     this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
    }
@@ -62,15 +73,69 @@ export class ReporteGananciasEditorComponent implements OnInit {
     )
   }
 
+  calcularGanancias(){
+    if (this._listadoGananciaEditor!=null) {
+      this._listadoGananciaEditor.forEach(_gananciaEditor => {
+        let _ganancia:number = 0;
+        _gananciaEditor.suscripciones.forEach(_suscripcion => {
+          if (_suscripcion.montoGanancia!=undefined) {
+            _ganancia += _suscripcion.montoGanancia;
+          }
+        });
+        if (this._listadoGananciasTotales!=null) {
+          this._listadoGananciasTotales.push(new MontoRevista(_ganancia,_gananciaEditor.revista.nombre));
+        }
+      });
+    }
+  }
+
+  obtenerGananciaPorNombre(_nombreRevista:string){
+    if (this._listadoGananciasTotales!=null) {
+      return this._listadoGananciasTotales.find(g => g.nombreRevista==_nombreRevista);
+    }
+    return null;
+  }
+  
+
   generarReporte() {
+    this._listadoGananciasTotales =null;
     this._mensajeError = '';
     this._mostrarError = false;
-    const _fechaInicial = this._filtrarDatosForm.value.fecha1;
-    const _fechaFinal = this._filtrarDatosForm.value.fecha2;
-    const _revista = this._filtrarDatosForm.value.revista;
+    this._fechaInicial = this._filtrarDatosForm.value.fecha1;
+    this._fechaFinal = this._filtrarDatosForm.value.fecha2;
+    this._revista = this._filtrarDatosForm.value.revista;
 
-    let url = this._filesService.obtenerReporte(this._editor.userName, _fechaInicial, _fechaFinal, _revista, 'ganancias_editor', 'EDITOR');
-    this._url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    this._reportesService
+      .obtenerReporteGananciasEditor(
+        this._editor.userName,
+        this._fechaInicial,
+        this._fechaFinal,
+        this._revista
+      )
+      .subscribe(
+        (_listadoGananciaEditor: GananciaEditor[]) => {
+          this._listadoGananciaEditor = _listadoGananciaEditor;
+          if (this._listadoGananciasTotales ==undefined || this._listadoGananciasTotales==null) {
+            this._listadoGananciasTotales = new Array();
+          }
+          this.calcularGanancias();
+        },
+        (error:any) => {  
+          this._mensajeError = error.error.message;
+          this._mostrarError = true;
+          this.limpiarDatos();
+        }
+      );
+  }
+  imprimirReporte(){
+
+  }
+  limpiarDatos(){
+    this._fechaInicial = '';
+    this._fechaFinal = '';
+    this._revista = '';
+    this._listadoGananciaEditor = null;
+    this._listadoGananciasTotales = null;
   }
 
 }

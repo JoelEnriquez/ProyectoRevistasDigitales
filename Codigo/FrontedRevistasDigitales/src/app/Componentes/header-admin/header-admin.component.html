@@ -14,32 +14,32 @@
                     <a class="nav-link active" aria-current="page" href="#">Cambiar Gasto de Revista</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Crear Anuncio</a>
+                    <a class="nav-link active disabled" ng-disabled="true" aria-current="page" href="#">Crear Anuncio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Ver listado anuncios</a>
+                    <a class="nav-link active disabled"  aria-current="page" href="#">Ver listado anuncios</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes de Ganancia</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#tab2Id">Ganancia por Revista</a>
-                        <a class="dropdown-item" href="#tab3Id">Ganancia por Anunciante</a>
-                        <a class="dropdown-item" href="#tab4Id">Ganancias Totales</a>
+                        <a class="dropdown-item disabled" ng-disabled="true" href="#tab2Id">Ganancia por Revista</a>
+                        <a class="dropdown-item disabled" ng-disabled="true" href="#tab3Id">Ganancia por Anunciante</a>
+                        <a class="dropdown-item disabled" ng-disabled="true" href="#tab4Id">Ganancias Totales</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes de Revistas</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#tab2Id">Revistas mas populares</a>
-                        <a class="dropdown-item" href="#tab3Id">Revistas mas comentas</a>
-                        <a class="dropdown-item" href="#tab4Id">Ganancias Totales</a>
+                        <a class="dropdown-item" href="{{rutasAdmin.MOST_SUSCRIBED_MAGAZINES}}">Revistas mas populares</a>
+                        <a class="dropdown-item" href="{{rutasAdmin.MOST_COMENTED_MAGAZINES}}">Revistas mas comentas</a>
+                        <a class="dropdown-item disabled" ng-disabled="true" href="#tab4Id">Ganancias Totales</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes de Anuncios</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#tab2Id">Reporte Anuncios</a>
-                        <a class="dropdown-item" href="#tab3Id">Efectividad de anuncios</a>
+                        <a class="dropdown-item disabled" ng-disabled="true" href="#tab2Id">Reporte Anuncios</a>
+                        <a class="dropdown-item disabled" ng-disabled="true" href="#tab3Id">Efectividad de anuncios</a>
                     </div>
                 </li>
             </ul>

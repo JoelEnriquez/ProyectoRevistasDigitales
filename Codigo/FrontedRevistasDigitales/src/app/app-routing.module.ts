@@ -26,6 +26,8 @@ import { ReporteComentariosComponent } from './Modulos/ReportesEditor/reporte-co
 import { ReporteSuscripcionesComponent } from './Modulos/ReportesEditor/reporte-suscripciones/reporte-suscripciones.component';
 import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/reporte-ganancias-editor/reporte-ganancias-editor.component';
 import { ReporteRevistasGustadasComponent } from './Modulos/ReportesEditor/reporte-revistas-gustadas/reporte-revistas-gustadas.component';
+import { ReporteRevistasComentadasComponent } from './Modulos/ReportesAdmin/reporte-revistas-comentadas/reporte-revistas-comentadas.component';
+import { ReporteRevistasPopularesComponent } from './Modulos/ReportesAdmin/reporte-revistas-populares/reporte-revistas-populares.component';
 
 const routes: Routes = [
   {
@@ -116,6 +118,14 @@ const routes: Routes = [
   {
     path: RutasEditor.LIKES_REPORT,
     component: ReporteRevistasGustadasComponent
+  },
+  {
+    path: RutasAdmin.MOST_COMENTED_MAGAZINES,
+    component: ReporteRevistasComentadasComponent
+  },
+  {
+    path: RutasAdmin.MOST_SUSCRIBED_MAGAZINES,
+    component: ReporteRevistasPopularesComponent
   }
 
 ];

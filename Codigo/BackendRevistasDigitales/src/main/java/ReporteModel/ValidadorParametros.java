@@ -14,18 +14,16 @@ import java.time.LocalDate;
 public class ValidadorParametros {
     
     public boolean fechasInvervaloCorrecto(LocalDate fecha1, LocalDate fecha2) throws Exception{
-        if (fecha2.isAfter(fecha1)) {
-            
-            throw new Exception("La fecha 1 tiene que estar antes que la fecha 2");
-            
+        if (fecha2.isBefore(fecha1)) {   
+            throw new Exception("La fecha 1 tiene que estar antes que la fecha 2");          
         } else {
             return true;
         }
     }
     
     public boolean ambasFechasIngresadas(String fecha1, String fecha2) throws Exception{
-        if ((fecha1!=null && fecha2==null) || (fecha1==null && fecha2!=null)) {
-            throw new Exception("Ingrese ambas fechas para el intervalo");
+        if ((fecha1.equals("") && !fecha2.equals("")) || (!fecha1.equals("") && fecha2.equals(""))) {
+            throw new Exception("Ingrese ambas fechas para el filtrado por intervalo");
         } else {
             return fechasInvervaloCorrecto(LocalDate.parse(fecha1), LocalDate.parse(fecha2));
         }

@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row mt-4">
     <div class="col-12">
-      <h3 *ngIf="_mostrarError" class="alert alert-danger">
+      <h3 *ngIf="_mostrarError" class="alert alert-danger text-center">
         {{ _mensajeError }}
       </h3>
       <form [formGroup]="_filtrarDatosForm" (ngSubmit)="generarReporte()">
@@ -105,7 +105,7 @@
                 <tbody>
                   <tr *ngFor="let _meGusta of _revistaReaccion.meGusta">
                     <td>{{ _meGusta.userName }}</td>
-                    <td>{{ _meGusta.fechaReaccion }}</td> 
+                    <td>{{ _meGusta.fechaReaccionDate }}</td> 
                   </tr>
                 </tbody>
               </table>

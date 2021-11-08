@@ -1,0 +1,107 @@
+<app-header-admin></app-header-admin>
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-12">
+      <h3 *ngIf="_mostrarError" class="alert alert-danger text-center">
+        {{ _mensajeError }}
+      </h3>
+      <form [formGroup]="_filtrarDatosForm" (ngSubmit)="generarReporte()">
+        <div class="form-row align-items-center">
+          <div class="col-12">
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="fechaInicial">Fecha Inicial</label>
+                <input
+                  formControlName="fecha1"
+                  type="date"
+                  class="form-control"
+                  id="fechaInicial"
+                />
+              </div>
+              <div class="form-group col-md-5">
+                <label for="fechaFinal">Fecha Final</label>
+                <input
+                  formControlName="fecha2"
+                  type="date"
+                  class="form-control"
+                  id="fechaFinal"
+                />
+              </div>
+              <div class="form-group col-md-2">
+                <button type="submit" class="mt-4 btn btn-primary">
+                  Generar Reporte
+                </button>
+                <button
+                  *ngIf="_listadoRevistaComentarios"
+                  type="button"
+                  (click)="imprimirReporte()"
+                  class="ml-1 mt-4 btn btn-success"
+                >
+                  Inprimir Reporte
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div *ngIf="_listadoRevistaComentarios">
+        <div
+          class="row justify-content-center text-center font-weight-bold"
+          style="font-size: 20px; font-weight: bold"
+        >
+          <div class="col-3">Nombre de Revista</div>
+          <div class="col-3">Nombre de Categoria</div>
+          <div class="col-3">Nombre de Editor</div>
+          <div class="col-3">Precio de Suscripcion</div>
+        </div>
+        <div
+          *ngFor="let _revistaComentario of _listadoRevistaComentarios"
+          class="container-fluid mt-3 p-3 border border-secondary"
+        >
+          <div class="row text-center" style="font-size: 16px">
+            <div class="col-3">
+              <p>{{ _revistaComentario.revista.nombre }}</p>
+            </div>
+            <div class="col-3">
+              <p>{{ _revistaComentario.revista.nombreCategoria }}</p>
+            </div>
+            <div class="col-3">
+              <p>{{ _revistaComentario.revista.userName }}</p>
+            </div>
+            <div class="col-3">
+              <p>Q{{ _revistaComentario.revista.costoSuscripcion }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="tableFixHeadRevista table-inverse table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Contenido</th>
+                    <th>Fecha de Comentario</th>
+                    <th>Nombre de Usuario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let _comentario of _revistaComentario.comentarios"
+                  >
+                    <td>{{ _comentario.id }}</td>
+                    <td>{{ _comentario.contenido }}</td>
+                    <td>{{ _comentario.fechaComentarioDate }}</td>
+                    <td>{{ _comentario.userName }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

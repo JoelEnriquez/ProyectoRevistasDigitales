@@ -46,6 +46,8 @@ import { ReporteGananciasEditorComponent } from './Modulos/ReportesEditor/report
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './Objects/Herramientas/material.module';
+import { ReporteRevistasPopularesComponent } from './Modulos/ReportesAdmin/reporte-revistas-populares/reporte-revistas-populares.component';
+import { ReporteRevistasComentadasComponent } from './Modulos/ReportesAdmin/reporte-revistas-comentadas/reporte-revistas-comentadas.component';
 
 
 
@@ -89,6 +91,8 @@ import { MaterialModule } from './Objects/Herramientas/material.module';
     ReporteSuscripcionesComponent,
     ReporteRevistasGustadasComponent,
     ReporteGananciasEditorComponent,
+    ReporteRevistasPopularesComponent,
+    ReporteRevistasComentadasComponent,
   ],
   imports: [
     BrowserModule,
