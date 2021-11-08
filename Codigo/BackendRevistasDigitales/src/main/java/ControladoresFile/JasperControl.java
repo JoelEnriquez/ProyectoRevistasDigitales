@@ -73,10 +73,9 @@ public class JasperControl extends HttpServlet {
                 case "ADMIN":
                     printAdminReport(request, response, fechaIngresada, date1, date2);
                     break;
-
             }
         } catch (Exception e) {
-            ErrorResponse.mostrarError(response, e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }
@@ -139,7 +138,9 @@ public class JasperControl extends HttpServlet {
                 break;
             case "revistas_comentadas":
                 List<RevistaComentario> listadoRevistasComentarios = new ReporteRevistasComentadas().getListadoRevistasConComentarios(date1, date2, fechaIngresada);
-                response.getWriter().append(new ConvertidorRevistaComentarioList((Class<List<RevistaComentario>>) listadoRevistasComentarios.getClass()).toJson(listadoRevistasComentarios));
+                source = new JRBeanCollectionDataSource(listadoRevistasComentarios);
+                pathReport = subPath + "ReporteRevistasComentadas.jasper";
+                js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
                 break;
         }
     }
