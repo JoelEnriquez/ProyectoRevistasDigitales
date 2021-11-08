@@ -93,7 +93,7 @@ public class JasperControl extends HttpServlet {
                 js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);
                 break;
             case "mas_gustadas":
-                List<RevistaReaccion> listadoMeGusta = new ReporteReacciones().getListadoRevistasMeGusta(date1, date2, fechaIngresada, usuarioEditor);
+                List<RevistaReaccion> listadoMeGusta = new ReporteReacciones().getListadoRevistasMeGusta(date1, date2, filtro, fechaIngresada, usuarioEditor);
                 source = new JRBeanCollectionDataSource(listadoMeGusta);
                 pathReport = subPath + "ReporteSuscripciones.jasper";
                 js.imprimirReporteBeans(response.getOutputStream(), pathReport, source);

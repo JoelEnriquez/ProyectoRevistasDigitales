@@ -1,7 +1,13 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { Editor } from '../../../Objects/Persona/Editor';
 import { Revista } from '../../../Objects/Revista/Revista';
@@ -12,30 +18,30 @@ import { RevistaService } from '../../../Services/revista.service';
 import { FilesService } from '../../../Services/files.service';
 import { ReportesService } from '../../../Services/reportes.service';
 import { RevistaReaccion } from '../../../Objects/ReportsObjets/RevistaMeGusta';
-
-
+import { MeGusta } from 'src/app/Objects/Revista/MeGusta';
 
 @Component({
   selector: 'app-reporte-revistas-gustadas',
   templateUrl: './reporte-revistas-gustadas.component.html',
-  styleUrls: ['./reporte-revistas-gustadas.component.css']
+  styleUrls: ['./reporte-revistas-gustadas.component.css'],
 })
-export class ReporteRevistasGustadasComponent implements  AfterViewInit  {
-
+export class ReporteRevistasGustadasComponent implements AfterViewInit {
   _pathFile!: string;
   _url!: SafeResourceUrl;
   _mensajeError!: string;
   _mostrarError: boolean = false;
-  _mensaje:string = '';
+  _mensaje: string = '';
   _editor: Editor;
-  _listadoRevistasPropias!: Revista[]
+  _listadoRevistasPropias!: Revista[];
   _filtrarDatosForm!: FormGroup;
 
-  _fechaInicial!:string;
-  _fechaFinal!:string;
-  _revista!:string;
-  _dataSource!:any;
-  _listadoRevistasReaccion!:RevistaReaccion[]
+  _fechaInicial!: string;
+  _fechaFinal!: string;
+  _revista!: string;
+  _dataSource!: any;
+  _listadoRevistasReaccion!: RevistaReaccion[];
+  _listadoRevistas!: Revista[];
+  _listadoMeGusta!:MeGusta[][];
 
   displayedColumns: string[] = ['revista', 'name', 'weight', 'symbol'];
   // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -51,28 +57,29 @@ export class ReporteRevistasGustadasComponent implements  AfterViewInit  {
       fecha1: [''],
       fecha2: [''],
       revista: [null],
-    })
+    });
     this.obtenerListadoDeRevistas();
   }
 
   obtenerListadoDeRevistas() {
-    this._revistaService.revistasPropias(this._editor.userName, "revistas_propias").subscribe(
-      (_listadoRevistas: Revista[]) => {
+    this._revistaService
+      .revistasPropias(this._editor.userName, 'revistas_propias')
+      .subscribe((_listadoRevistas: Revista[]) => {
         this._listadoRevistasPropias = _listadoRevistas;
-      }
-    )
+      });
   }
 
-  constructor(private sanitizer: DomSanitizer,
+  constructor(
+    private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _localService: LocalStorageService,
     private _revistaService: RevistaService,
     private _filesService: FilesService,
-    private _reportesService: ReportesService) {
-      this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
-     }
-
+    private _reportesService: ReportesService
+  ) {
+    this._editor = JSON.parse(`${this._localService.obtenerData('editor')}`);
+  }
 
   generarReporte() {
     this._mensajeError = '';
@@ -81,21 +88,29 @@ export class ReporteRevistasGustadasComponent implements  AfterViewInit  {
     this._fechaFinal = this._filtrarDatosForm.value.fecha2;
     this._revista = this._filtrarDatosForm.value.revista;
 
-    this._reportesService.obtenerReporteMeGusta(this._editor.userName,this._fechaInicial,this._fechaFinal,this._revista).subscribe(
-      (_listadoRevistasReaccion:RevistaReaccion[]) => {
-        this._listadoRevistasReaccion = _listadoRevistasReaccion;
-        this._dataSource = new MatTableDataSource<RevistaReaccion>(this._listadoRevistasReaccion);
-        this._dataSource.paginator = this.paginator;
-      },
-      (error) => {
-        this._mensajeError = error.error.message;
-        this._mostrarError = true;
-      }
-    );  
+    this._reportesService
+      .obtenerReporteMeGusta(
+        this._editor.userName,
+        this._fechaInicial,
+        this._fechaFinal,
+        this._revista
+      )
+      .subscribe(
+        (_listadoRevistasReaccion: RevistaReaccion[]) => {
+          this._listadoRevistasReaccion = _listadoRevistasReaccion;
+          console.log(_listadoRevistasReaccion)
+        },
+        (error) => {
+          this._mensajeError = error.error.message;
+          this._mostrarError = true;
+        }
+      );
+  }
+
+  imprimirReporte(){
+    
   }
 }
-
-
 
 // const ELEMENT_DATA: PeriodicElement[] = [
 //   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},

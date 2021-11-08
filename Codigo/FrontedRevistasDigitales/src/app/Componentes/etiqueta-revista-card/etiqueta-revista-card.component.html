@@ -1,7 +1,7 @@
 <div class="container-fluid bg-secondary mt-4">
   <div class="row justify-content-between p-3">
     <div class="col-4">
-      <h4>{{_etiqueta.nombre}}</h4>
+      <h4 style="font-size: 26px;">{{_etiqueta.nombre}}</h4>
     </div>
     <button (click)="mostrarMasRevistas($event)" [routerLink]="['/'+_rutas.SEARCH,'',_etiqueta.nombre]">
       Mostrar mas...

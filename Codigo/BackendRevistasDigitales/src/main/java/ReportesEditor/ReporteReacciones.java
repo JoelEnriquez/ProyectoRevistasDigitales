@@ -10,6 +10,7 @@ import EntidadesJasper.RevistaSuscripcion;
 import EntidadesRevista.MeGusta;
 import EntidadesRevista.Revista;
 import EntidadesRevista.Suscripcion;
+import RevistasModel.DBRevista;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -21,15 +22,25 @@ import java.util.ArrayList;
  * @author joel
  */
 public class ReporteReacciones {
+
     private final Connection conexion = ConexionDB.ConexionDB.getConexion();
-    private final String obtenerListadoMeGustaPorNombre = "select * from Suscripcion WHERE nombre_revista = ? ";
-    private final String obtenerListadoMeGustaPorNombreEIntervalo = obtenerListadoMeGustaPorNombre + " AND fecha_suscripcion between ? AND ?";
+    private final String obtenerListadoMeGustaPorNombre = "select * from Me_Gusta WHERE nombre_revista = ? ";
+    private final String obtenerListadoMeGustaPorNombreEIntervalo = obtenerListadoMeGustaPorNombre + " AND fecha_reaccion between ? AND ?";
     private final String obtenerListadoRevistas = "select r.* from Revista r INNER JOIN Me_Gusta mg on r.nombre = mg.nombre_revista WHERE r.user_name = ? GROUP BY r.nombre ORDER BY count(mg.nombre_revista) DESC";
     private final String obtenerListadoRevistasIntervalo = "select r.* from Revista r INNER JOIN Me_Gusta mg on r.nombre = mg.nombre_revista WHERE r.user_name = ? AND mg.fecha_reaccion BETWEEN ? AND ? GROUP BY r.nombre ORDER BY count(mg.nombre_revista) DESC";
-    
-    public ArrayList<RevistaReaccion> getListadoRevistasMeGusta(Date fecha1, Date fecha2, boolean intervalo, String userNameEditor) {
+
+    public ArrayList<RevistaReaccion> getListadoRevistasMeGusta(Date fecha1, Date fecha2, String nombreRevista, boolean intervalo, String userNameEditor) {
+        boolean consultaParticular = false;
+        if (!nombreRevista.equals("null")) {
+            consultaParticular = true;
+        }
         ArrayList<RevistaReaccion> listadoRevistasMeGusta = new ArrayList<>();
-        ArrayList<Revista> listadoRevistas = getRevistasPorMeGusta(fecha1, fecha2, intervalo, userNameEditor);
+        ArrayList<Revista> listadoRevistas;
+        if (consultaParticular) {
+            listadoRevistas = new DBRevista().obtenerRevistasParametro(nombreRevista, "info_revista");
+        } else {
+            listadoRevistas = getRevistasPorMeGusta(fecha1, fecha2, intervalo, userNameEditor);
+        }
         for (Revista revista : listadoRevistas) {
             listadoRevistasMeGusta.add(new RevistaReaccion(revista, getListadoMeGustaPorRevista(fecha1, fecha2, intervalo, revista.getNombre())));
         }
@@ -50,7 +61,7 @@ public class ReporteReacciones {
         String query = obtenerListadoRevistas;
         if (intervalo) {
             query = obtenerListadoRevistasIntervalo; //Without intervalo
-        }        
+        }
         try ( PreparedStatement ps = conexion.prepareStatement(query)) {
             ps.setString(1, userNameEditor);
             if (intervalo) {
@@ -87,7 +98,7 @@ public class ReporteReacciones {
         String query = obtenerListadoMeGustaPorNombre;
         if (intervalo) {
             query = obtenerListadoMeGustaPorNombreEIntervalo;
-        }        
+        }
         try ( PreparedStatement ps = conexion.prepareStatement(query)) {
             ps.setString(1, nombreRevista);
             if (intervalo) {
@@ -96,11 +107,11 @@ public class ReporteReacciones {
             }
             try ( ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    listadoMeGusta.add(new MeGusta(rs.getString(1), rs.getString(2), rs.getDate(3)));
+                    listadoMeGusta.add(new MeGusta(rs.getString(1), rs.getString(2), rs.getDate(3).toString()));
                 }
             }
         } catch (Exception e) {
         }
-        return listadoMeGusta;        
+        return listadoMeGusta;
     }
 }

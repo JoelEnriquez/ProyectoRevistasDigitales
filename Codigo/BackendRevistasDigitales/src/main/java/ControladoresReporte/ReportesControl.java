@@ -7,13 +7,11 @@ package ControladoresReporte;
 
 import Convertidores.ConvertidorComentarioList;
 import Convertidores.ConvertidorRevistaReaccionList;
-import EntidadesApoyo.RutasEnum;
 import EntidadesJasper.GananciaEditor;
 import EntidadesJasper.RevistaReaccion;
 import EntidadesRevista.Comentario;
 import EntidadesRevista.Suscripcion;
 import ErrorAPI.ErrorResponse;
-import JasperModel.JasperService;
 import ReporteModel.ValidadorParametros;
 import ReportesEditor.ReporteComentarios;
 import ReportesEditor.ReporteGananciasEditor;
@@ -27,9 +25,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 /**
  *
@@ -86,7 +82,7 @@ public class ReportesControl extends HttpServlet {
                 
                 break;
             case "mas_gustadas":
-                List<RevistaReaccion> listadoMeGusta = new ReporteReacciones().getListadoRevistasMeGusta(date1, date2, fechaIngresada, usuarioEditor);
+                List<RevistaReaccion> listadoMeGusta = new ReporteReacciones().getListadoRevistasMeGusta(date1, date2,filtro, fechaIngresada, usuarioEditor);
                 response.getWriter().append(new ConvertidorRevistaReaccionList((Class<List<RevistaReaccion>>) listadoMeGusta.getClass()).toJson(listadoMeGusta));
                 break;
             case "ganancias_editor":
