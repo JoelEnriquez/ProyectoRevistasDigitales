@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GananciasEditor" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fd5df8d-afea-4936-8902-2c8698603e1a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NoFuncionaEsaOnda"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="revista" class="EntidadesRevista.Revista">
+		<fieldDescription><![CDATA[revista]]></fieldDescription>
+	</field>
+	<field name="nombreRevista" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.nombre]]></fieldDescription>
+	</field>
+	<field name="usuario" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.userName]]></fieldDescription>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.nombreCategoria]]></fieldDescription>
+	</field>
+	<field name="precioSus" class="java.lang.Double">
+		<fieldDescription><![CDATA[revista.costoSuscripcion]]></fieldDescription>
+	</field>
+	<field name="meGusta" class="java.util.List">
+		<fieldDescription><![CDATA[meGusta]]></fieldDescription>
+	</field>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="rgba(115, 102, 250, 0.6901961)" uuid="fdfd5e85-27d1-4e40-9e82-5c62076ed923"/>
+				<staticText>
+					<reportElement x="0" y="10" width="595" height="43" forecolor="#FFFFFF" uuid="455bbcba-41ed-43c7-a880-c73b446b0cbe"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reporte de Me Gusta]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="90">
+			<textField>
+				<reportElement x="260" y="30" width="90" height="20" uuid="b56e48d6-a691-452d-bd8d-a89d75dc07a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="30" width="118" height="20" uuid="cd1f8589-d040-49f8-82f6-516b71c30179"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Q"+$F{precioSus}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="350" y="10" width="86" height="20" uuid="cd25d7ff-b431-46a8-8334-626974681baa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[EDITOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="10" width="118" height="20" uuid="ca681c7c-1917-4629-ba76-db53ee95d57e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[COSTO SUSCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="10" width="90" height="20" uuid="974f7e85-64ad-4c18-b131-a6dbc2dc72d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CATEGORIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="260" height="20" uuid="683eb813-2db0-402c-b7d9-c64fff6b7ea0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreRevista}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="260" height="20" uuid="82e14a6d-a54d-4f11-afcb-85b05c9e9967"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[REVISTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="30" width="86" height="20" uuid="48226443-1e0e-4777-893a-f05e837a28e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="1" y="50" width="553" height="40" uuid="f98a5fb8-972b-4a47-9a5a-26c5b1ae132c"/>
+				<subreportParameter name="MeGusta">
+					<subreportParameterExpression><![CDATA[$F{meGusta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{meGusta})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["/ProyectoRevistas/Editor/SubEditor/MeGustaOb.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0beac353-d0e6-4fef-9ca9-a8bea101cfdc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="a6410d75-8477-4a3f-8879-c2c2000547b4"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="180" height="13" uuid="2382f892-33fc-455b-8851-a89c376f7651"/>
+				<textFieldExpression><![CDATA["Fecha de reporte: "+ new SimpleDateFormat("dd/MM/yyyy").format(NOW( ))]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

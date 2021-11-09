@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ComentOb" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3ff9bb11-4f1b-40bf-a4fe-1591f53b8b59">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="contenido" class="java.lang.String">
+		<fieldDescription><![CDATA[contenido]]></fieldDescription>
+	</field>
+	<field name="fechaComentarioDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[fechaComentarioDate]]></fieldDescription>
+	</field>
+	<field name="userName" class="java.lang.String">
+		<fieldDescription><![CDATA[userName]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="110" height="30" uuid="f127c25b-d884-432a-bd36-ad7829e4e028">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f28f492-83ce-4578-9c0e-8834ea2f0ce4"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="140" height="30" uuid="157bc1ef-aefd-441c-9044-b8d11cefd789">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="690df99d-5d5f-4d1d-bf23-a00fa3efda43"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Contenido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="148" height="30" uuid="d2ac732d-439b-48a9-a14d-f774c56be60b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f288fe32-c8aa-46dc-a6d9-4ce1cda509e2"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha Comentario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="0" width="157" height="30" uuid="66300c6b-a853-4952-b849-9f18fd8cccb2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="681bc0d3-215d-4208-9c64-b834da1bdb61"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre Usuario Lector]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="110" height="30" uuid="b5137f86-127d-45ef-b13a-f3fa50cfbba5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f28f492-83ce-4578-9c0e-8834ea2f0ce4"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="140" height="30" uuid="0dbf1158-dfea-4341-a6ab-8ab67e51eeac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="690df99d-5d5f-4d1d-bf23-a00fa3efda43"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{contenido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="148" height="30" uuid="9e5328ad-cb07-4521-bcda-5677629715d5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f288fe32-c8aa-46dc-a6d9-4ce1cda509e2"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fechaComentarioDate})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="0" width="157" height="30" uuid="74615346-923b-4cee-970f-08958618f601">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="681bc0d3-215d-4208-9c64-b834da1bdb61"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

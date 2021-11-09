@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteRevistasPopulares" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3de1b26a-1118-490d-878d-e4399d258e9f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ReporterAdapter"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="revista" class="EntidadesRevista.Revista">
+		<fieldDescription><![CDATA[revista]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.nombre]]></fieldDescription>
+	</field>
+	<field name="nombreCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.nombreCategoria]]></fieldDescription>
+	</field>
+	<field name="nombreEditor" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.userName]]></fieldDescription>
+	</field>
+	<field name="costoSuscripcion" class="java.lang.Double">
+		<fieldDescription><![CDATA[revista.costoSuscripcion]]></fieldDescription>
+	</field>
+	<field name="listadoSuscripciones" class="java.util.List">
+		<fieldDescription><![CDATA[listadoSuscripciones]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="rgba(156, 146, 6, 0.6039216)" uuid="a84215e2-1b79-4739-bbcc-c06fe1daf30a"/>
+				<staticText>
+					<reportElement x="0" y="10" width="595" height="70" forecolor="#FFFFFF" uuid="f0aa405f-3d8e-469f-8115-d9dce89c0fc6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="28" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reporte de Revistas Mas Populares]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="118">
+			<staticText>
+				<reportElement x="436" y="10" width="118" height="20" uuid="f9075836-4aef-43cc-ba89-d3fd0b54934b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[COSTO SUSCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="260" height="20" uuid="5e7bf71b-8c55-4cce-8461-86f2cff860eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[REVISTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="10" width="90" height="20" uuid="b80a5af0-7698-492a-bab9-2f4c24c3f2d3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CATEGORIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="10" width="86" height="20" uuid="aeedb157-b923-47b2-bfb6-787536ae3b0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[EDITOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="260" height="24" uuid="7955cb89-a839-485b-aaa6-05a5fa334b42"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="30" width="90" height="24" uuid="c715c4f4-7a42-43ba-873d-d021a20e9111"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="30" width="86" height="24" uuid="4093e6f5-9828-4d34-b876-2865c5b5a6dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreEditor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="30" width="118" height="24" uuid="c17af3b2-04d7-4894-b114-3276e7ed7458"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Q"+$F{costoSuscripcion}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="54" width="554" height="56" uuid="69b50316-d7e0-4ebb-ab60-626ebf43be4e"/>
+				<subreportParameter name="suscripcion">
+					<subreportParameterExpression><![CDATA[$F{listadoSuscripciones}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listadoSuscripciones})
+]]></dataSourceExpression>
+				<subreportExpression><![CDATA["/ProyectoRevistas/Admin/SubAdmin/SuscripcionObAdmin.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="77b2204d-be48-4b65-9d00-dc1e89cf1ca9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="36971138-72e7-4551-844b-60a0cf013132"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="f997c84a-e1bb-432d-af46-51b13e388bf6"/>
+				<textFieldExpression><![CDATA["Fecha de reporte: "+ new SimpleDateFormat("dd/MM/yyyy").format(NOW( ))]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

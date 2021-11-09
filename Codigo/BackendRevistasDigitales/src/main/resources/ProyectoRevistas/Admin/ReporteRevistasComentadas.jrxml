@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteRevistasPopulares" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3de1b26a-1118-490d-878d-e4399d258e9f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ReporterAdapter"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="revista" class="EntidadesRevista.Revista">
+		<fieldDescription><![CDATA[revista]]></fieldDescription>
+	</field>
+	<field name="comentarios" class="java.util.List">
+		<fieldDescription><![CDATA[comentarios]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.nombre]]></fieldDescription>
+	</field>
+	<field name="nombreCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.nombreCategoria]]></fieldDescription>
+	</field>
+	<field name="userName" class="java.lang.String">
+		<fieldDescription><![CDATA[revista.userName]]></fieldDescription>
+	</field>
+	<field name="costoSuscripcion" class="java.lang.Double">
+		<fieldDescription><![CDATA[revista.costoSuscripcion]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="rgba(158, 34, 9, 0.6039216)" uuid="a84215e2-1b79-4739-bbcc-c06fe1daf30a"/>
+				<staticText>
+					<reportElement x="0" y="10" width="595" height="70" forecolor="#FFFFFF" uuid="f0aa405f-3d8e-469f-8115-d9dce89c0fc6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="28" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reporte de Revistas Comentadas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="8b90513d-79fc-4260-ba11-dfcbe84642c2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82159970-d695-4840-be90-d109798695c7"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre Revista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="30" uuid="6ca61083-6828-4bca-921f-c66808033113">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="253a82b5-f934-4624-89cf-d79b48bcf6de"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="30" uuid="8930dff5-9350-47b5-90c5-ebadabaa4f0d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87b3ced1-b371-44e1-a6f1-1f7cf5639336"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre Editor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="30" uuid="07c411a8-b382-4b90-9d7e-d20958ba63ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a658101b-81c2-499e-b983-513b8cbbdd2b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Precio Suscripcion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="90">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="e280c633-a366-4512-a9e9-7279d5c3cb18">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82159970-d695-4840-be90-d109798695c7"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="39b8583a-dc02-40a9-8c5d-e782ef088177">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="253a82b5-f934-4624-89cf-d79b48bcf6de"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombreCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="30" uuid="5987362f-7891-4ced-904a-c1e91e3ed19a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87b3ced1-b371-44e1-a6f1-1f7cf5639336"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="30" uuid="141f7a33-c830-4462-a350-48968d063e7b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a658101b-81c2-499e-b983-513b8cbbdd2b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Q"+$F{costoSuscripcion}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="40" width="555" height="40" uuid="fb16bd1b-5d6f-4f7f-a711-069ce5c079b2"/>
+				<subreportParameter name="coment">
+					<subreportParameterExpression><![CDATA[$F{comentarios}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{comentarios})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["/ProyectoRevistas/Admin/SubAdmin/ComentOb.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="77b2204d-be48-4b65-9d00-dc1e89cf1ca9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="36971138-72e7-4551-844b-60a0cf013132"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="f997c84a-e1bb-432d-af46-51b13e388bf6"/>
+				<textFieldExpression><![CDATA["Fecha de reporte: "+ new SimpleDateFormat("dd/MM/yyyy").format(NOW( ))]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
